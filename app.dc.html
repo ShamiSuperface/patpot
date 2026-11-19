@@ -150,6 +150,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 
 <sc-if value="{{vHome}}" hint-placeholder-val="{{ true }}">
 <div class="pop" style="display: flex; flex-direction: column; gap: 22px">
+<sc-if value="{{isOrg}}" hint-placeholder-val="{{ false }}"><button type="button" class="squish" onClick="{{goDaily}}" style="align-self: flex-start; min-height: 52px; padding: 0 22px; border-radius: 999px; border: none; background: #0B6E73; color: #FFFFFF; font-family: Rubik, Arial, sans-serif; font-size: 18px; font-weight: 800; cursor: pointer; box-shadow: 0 10px 22px rgba(11,110,115,0.25)">סיכום יומי להורים</button></sc-if>
 
 <section style="position: relative; background: #FFFFFF; border-radius: 48px 48px 48px 120px; padding: 30px 26px 54px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px; overflow: hidden; box-shadow: 0 18px 40px rgba(255,107,87,0.14)">
 <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 60px; overflow: hidden; pointer-events: none">
@@ -475,6 +476,23 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </section>
 </sc-for>
 </div>
+</div>
+</sc-if>
+
+<sc-if value="{{vDaily}}" hint-placeholder-val="{{ false }}">
+<div class="pop" style="display: flex; flex-direction: column; gap: 14px">
+<section style="background: #D8F3EA; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">סיכום יומי להורים</h1>
+<p style="margin: 0; font-size: 17px; color: #3A3950; line-height: 1.6">הסיכום אוסף את הפעילויות שסומנו היום ״עבד״ או ״פחות עבד״ ואת המילים שסומנו, מכל המכשירים של המעון. בוואטסאפ בוחרים את קבוצת ההורים ושולחים.</p>
+</section>
+<sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 999px; padding: 16px 22px; font-size: 17px">אוספים את הפעילויות של היום...</p></sc-if>
+<sc-if value="{{dailyError}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 16px 22px; font-size: 17px; color: #8A1F3A">לא הצלחנו לטעון את הסיכום. בדקי את החיבור לאינטרנט ונסי שוב.</p></sc-if>
+<sc-if value="{{dailyEmpty}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; background: #FFFFFF; border-radius: 28px; padding: 16px 22px; font-size: 17px; line-height: 1.6">עוד לא סומנו היום פעילויות. אחרי פעילות, סמני ״עבד״ או ״פחות עבד״ בכרטיס שלה, והיא תיכנס לסיכום.</p></sc-if>
+<sc-if value="{{dailyReady}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border-radius: 28px; padding: 18px 22px; font-size: 16px; line-height: 1.7; white-space: pre-wrap; box-shadow: 0 10px 22px rgba(35,34,58,0.08)">{{dailyText}}</div>
+<a href="{{dailyWa}}" target="_blank" rel="noopener" onClick="{{dailySent}}" class="squish" style="min-height: 58px; border-radius: 999px; background: #0B6E73; color: #FFFFFF; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none">שליחה לקבוצת ההורים בוואטסאפ</a>
+</sc-if>
+<button type="button" class="squish" onClick="{{dailyRefresh}}" style="min-height: 48px; border-radius: 999px; border: 2px solid #0B6E73; background: #FFFFFF; color: #0B6E73; font-size: 16px; font-weight: 800; cursor: pointer">רענון הסיכום</button>
 </div>
 </sc-if>
 
@@ -1158,6 +1176,7 @@ var STORE = 'patput-v1';
 var EDGE = { a1: '#E9C45E', a2: '#EFA0B4', a3: '#8FC6E4', change: '#EFA0B4', breakfast: '#E9C45E', lunch: '#F0AE80', art: '#BBA6F2', socio: '#86D2B4', build: '#93C8EA', book: '#E5B886', yard: '#A6D686' };
 var LOGKEY = 'patput-log';
 var SESSKEY = 'patput-session';
+var SITE_LINK = 'https://shamisuperface.github.io/patpot/';
 var ORGS = [{ id: '75531', name: 'שביל הילדות' }, { id: '90852', name: 'גן אנגלית' }];
 var SB_URL = 'https://twpptxxesvjidnaeldqe.supabase.co';
 var SB_KEY = 'sb_publishable_8WYlm3FQo8iXPz98v3gh9w_C2UuqEuX';
@@ -1188,7 +1207,7 @@ function sbRpc(name, body, tok, keep) {
 function qLoad() { try { return JSON.parse(window.localStorage.getItem(QKEY) || '[]') || []; } catch (e) { return []; } }
 function qSave(a) { try { window.localStorage.setItem(QKEY, JSON.stringify(a.slice(-500))); } catch (e) {} }
 var PAL = ['#FF6B57', '#FFC93C', '#6FC3E8', '#B49CFF', '#7ED9B8', '#FF9D5C', '#FF8FAA', '#8FD46B'];
-var VLAB = { home: 'בית', saved: 'הפעילויות שלי', words: 'בנק מילים', journey: 'המסע שלי', tips: 'עקרונות וטיפים', access: 'נגישות', about: 'אודות', admin: 'לוח בקרה' };
+var VLAB = { home: 'בית', saved: 'הפעילויות שלי', words: 'בנק מילים', journey: 'המסע שלי', tips: 'עקרונות וטיפים', access: 'נגישות', about: 'אודות', admin: 'לוח בקרה', daily: 'סיכום יומי להורים' };
 var DAYS = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
 function readLog() { try { return JSON.parse(window.localStorage.getItem(LOGKEY) || '[]') || []; } catch (e) { return []; } }
 function inc(m, k, d) { m[k] = (m[k] || 0) + (d == null ? 1 : d); }
@@ -1262,6 +1281,33 @@ function buildDash(log, f, r, from, to) {
   };
 }
 
+function dailyText(rows, orgName, dayStr) {
+  var fbLast = {}, order = [], wordLast = {}, wOrder = [];
+  (rows || []).forEach(function (r) {
+    var d = r.data || {};
+    if (r.type === 'fb' && d.act) { var k = d.age + '|' + d.space + '|' + d.act; if (!(k in fbLast)) order.push(k); fbLast[k] = d.v; }
+    if (r.type === 'word' && d.w) { if (!(d.w in wordLast)) wOrder.push(d.w); wordLast[d.w] = !!d.on; }
+  });
+  var acts = order.filter(function (k) { return fbLast[k] === 'good' || fbLast[k] === 'bad'; }).map(function (k) {
+    var p = k.split('|'); return { x: findAct(p[0], p[1], p.slice(2).join('|')), t: p.slice(2).join('|'), s: byId(SPACES, p[1]) };
+  });
+  var words = wOrder.filter(function (w) { return wordLast[w]; });
+  if (!acts.length && !words.length) return '';
+  var L = ['*פטפוט · סיכום יומי מ' + orgName + '*', dayStr, ''];
+  if (acts.length) {
+    L.push('היום עשינו במעון ' + (acts.length === 1 ? 'פעילות אחת' : acts.length + ' פעילויות') + ' להעשרה שפתית:', '');
+    acts.forEach(function (a, i) {
+      L.push((i + 1) + '. *' + a.t + '*' + (a.s ? ' (' + a.s.label + ')' : ''));
+      if (a.x && a.x[1]) L.push(a.x[1]);
+      if (a.x && a.x[3] && a.x[3].length) L.push('משפטים ששמעו: ' + a.x[3].slice(0, 2).map(function (v) { return '״' + v + '״'; }).join(' '));
+      L.push('');
+    });
+  }
+  if (words.length) { L.push('*מילים שתרגלנו היום:* ' + words.slice(0, 20).join(', '), ''); }
+  L.push('רעיון לבית: אפשר לחזור על כמה מהמילים האלה בשיחה רגילה, בארוחה או באמבטיה. בלי לבחון, פשוט להגיד ולחכות לתגובה.', '');
+  L.push('נשלח מפטפוט: ' + SITE_LINK);
+  return L.join('\n');
+}
 function toV(a) { return a.map(function (v) { return { v: v }; }); }
 function listFor(age, space) { return ((D[age] && D[age][space]) || []).concat((D2[age] && D2[age][space]) || []); }
 function findAct(age, space, t) { var l = listFor(age, space); for (var i = 0; i < l.length; i++) { if (l[i][0] === t) return l[i]; } return null; }
@@ -1339,6 +1385,18 @@ class Component extends DCLogic {
       });
     };
     return Promise.resolve(guest ? null : sbToken()).then(send).catch(function () { self._qBusy = false; });
+  }
+  loadDaily() {
+    var self = this;
+    this.setState({ dailyState: 'loading' });
+    Promise.resolve(this.flushQ()).then(function () { return sbToken(); }).then(function (tok) {
+      if (!tok) { self.logout(); return; }
+      return sbRpc('my_day_events', {}, tok).then(function (rows) {
+        var s = self.state.sess || {};
+        var day = ''; try { day = new Date().toLocaleDateString('he-IL', { weekday: 'long', day: 'numeric', month: 'long' }); } catch (e) {}
+        self.setState({ dailyState: 'ok', dailyText: dailyText(rows, s.name || '', day) });
+      });
+    }).catch(function () { self.setState({ dailyState: 'error' }); });
   }
   loadDash() {
     var self = this;
@@ -1522,11 +1580,12 @@ class Component extends DCLogic {
       ['journey', 'המסע שלי', '↑', '#D8F3EA'], ['tips', 'עקרונות וטיפים', '!', '#ECE4FF'], ['access', 'נגישות ותצוגה', 'Aא', '#FFE3EC'], ['about', 'אודות ומקורות', 'i', '#FCE9D6']
     ];
     if (isAdmin) menuDefs.unshift(['admin', 'לוח בקרה', '▦', '#FFE0D6']);
+    if (sess && sess.kind === 'org') menuDefs.splice(1, 0, ['daily', 'סיכום יומי להורים', '✉', '#D8F3EA']);
     menuDefs.push(['logout', 'התנתקות', '⎋', '#EDE7F0']);
     var menuItems = menuDefs.map(function (m) {
       var on = view === m[0] || (m[0] === 'home' && (view === 'results' || view === 'loading'));
       return { label: m[1], mark: m[2], dot: m[3], bg: on ? m[3] : '#FFFFFF', hasBadge: m[0] === 'saved' && favKeys.length > 0, badge: String(favKeys.length),
-        go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); } };
+        go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); if (m[0] === 'daily') self.loadDaily(); } };
     });
 
     var settings = [
@@ -1613,6 +1672,13 @@ class Component extends DCLogic {
       stats: stats, spaceProg: spaceProg, badges: badges,
       vTips: view === 'tips', tips: TIPS,
       vAccess: view === 'access', settings: settings,
+      vDaily: view === 'daily',
+      isOrg: !!(sess && sess.kind === 'org'), goDaily: function () { self.nav('daily'); self.loadDaily(); },
+      dailyLoading: st.dailyState === 'loading', dailyError: st.dailyState === 'error',
+      dailyEmpty: st.dailyState === 'ok' && !st.dailyText, dailyReady: st.dailyState === 'ok' && !!st.dailyText,
+      dailyText: st.dailyText || '', dailyWa: 'https://wa.me/?text=' + encodeURIComponent(st.dailyText || ''),
+      dailyRefresh: function () { self.loadDaily(); },
+      dailySent: function () { self.log({ type: 'share', act: 'סיכום יומי' }); },
       vAbout: view === 'about'
     };
   }
