@@ -1,0 +1,1623 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>פטפוט · העשרה שפתית במרחבי המעון</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&amp;family=Rubik:wght@500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FDF6EE}
+a{color:#0B6E73}a:hover{color:#084F53}
+button{font-family:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3px}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}
+@keyframes fill{from{width:6%}to{width:97%}}
+@keyframes pop{from{opacity:0;translate:0 14px;scale:.96}to{opacity:1;translate:0 0;scale:1}}
+@keyframes slide{from{transform:translateX(100%)}to{transform:none}}
+.bob{animation:bob 1.6s ease-in-out infinite}
+.fillbar{animation:fill 1.3s ease-out forwards}
+.pop{animation:pop .4s ease-out both}
+.drawer{animation:slide .25s ease-out}
+.tile{transition:transform .15s ease, box-shadow .15s ease}
+.calm .bob,.calm .fillbar,.calm .pop,.calm .drawer{animation:none}
+.calm .fillbar{width:97%}
+.calm .tile:hover{transform:none}
+.big{zoom:1.15}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(50%)}}
+@keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(14px,-22px) scale(1.08)}}
+@keyframes morph{0%,100%{border-radius:58% 42% 50% 50% / 52% 46% 54% 48%}33%{border-radius:44% 56% 40% 60% / 60% 48% 52% 40%}66%{border-radius:52% 48% 62% 38% / 44% 58% 42% 56%}}
+@keyframes rise{0%{transform:translateY(0) scale(.6);opacity:0}20%{opacity:.9}100%{transform:translateY(-260px) scale(1.1);opacity:0}}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.drift{animation:drift 22s linear infinite}
+.drift2{animation:drift 34s linear infinite reverse}
+.floaty{animation:floaty 8s ease-in-out infinite}
+.floaty2{animation:floaty 11s ease-in-out infinite reverse}
+.morph{border-radius:58% 42% 50% 50% / 52% 46% 54% 48%;animation:morph 10s ease-in-out infinite}
+.rise{animation:rise 6s ease-in infinite}
+.sway{animation:sway 4s ease-in-out infinite}
+.squish{transition:transform .15s ease}
+.squish:hover{transform:scale(1.03)}
+.squish:active{transform:scale(.95)}
+.tile:hover{transform:translateY(-5px) rotate(-1.5deg);box-shadow:0 14px 26px rgba(255,107,87,.18)}
+.calm .drift,.calm .drift2,.calm .floaty,.calm .floaty2,.calm .morph,.calm .rise,.calm .sway{animation:none}
+.calm .squish:hover,.calm .squish:active{transform:none}
+.age-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media (max-width:640px){.age-grid{grid-template-columns:repeat(1,minmax(0,1fr))}.sp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.side{display:none}
+.bbar{display:flex}
+.bspace{height:92px}
+@media (min-width:1100px){.side{display:flex}.bbar{display:none !important}.bspace{display:none}.burger{display:none !important}.mainwrap{margin-right:300px !important;margin-left:auto !important;max-width:none !important;padding-left:40px !important}.hdrwrap{max-width:none !important;padding-right:24px !important;padding-left:24px !important}}
+</style>
+</helmet>
+<div class="{{rootCls}}" dir="rtl" lang="he" style="font-family: Assistant, Arial, sans-serif; color: #23223A; background: #FDF6EE; min-height: 100vh; position: relative; overflow-x: hidden">
+<div aria-hidden="true" style="position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden">
+<div class="floaty morph" style="position: absolute; top: 12%; left: -90px; width: 260px; height: 260px; background: #FFE3EC; opacity: 0.35"></div>
+<div class="floaty2 morph" style="position: absolute; top: 48%; right: -110px; width: 300px; height: 300px; background: #DDF0FB; opacity: 0.35"></div>
+<div class="floaty morph" style="position: absolute; bottom: -80px; left: 18%; width: 240px; height: 240px; background: #FFF1C2; opacity: 0.4"></div>
+<div class="floaty2 morph" style="position: absolute; top: 30%; left: 42%; width: 120px; height: 120px; background: #E4F6D8; opacity: 0.35"></div>
+</div>
+
+<header style="position: sticky; top: 0; z-index: 20; background: #FFE0D6">
+<div class="hdrwrap" style="max-width: 960px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<button type="button" onClick="{{goHome}}" aria-label="פטפוט, למסך הבית" style="border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 4px; color: #23223A">
+<img src="/_blob/cf6ba380f849ea66cc5408e188dde6cf" alt="" width="44" height="44" style="display: block">
+<span style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.05">
+<span style="font-family: Rubik, Arial, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.01em">פטפוט</span>
+<span style="font-size: 13px; font-weight: 700; color: #55546B">מילים קטנות בכל פינה במעון</span>
+</span>
+</button>
+<div style="display: flex; align-items: center; gap: 8px">
+<sc-if value="{{hasSess}}" hint-placeholder-val="{{ false }}"><span style="background: #FFFFFF; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 800; white-space: nowrap; max-width: 34vw; overflow: hidden; text-overflow: ellipsis">{{sessName}}</span></sc-if>
+<button type="button" onClick="{{goSaved}}" aria-label="הפעילויות השמורות שלי" style="position: relative; width: 48px; height: 48px; border-radius: 24px; border: none; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255,107,87,0.18)">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#FFC93C" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>
+<sc-if value="{{hasFav}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; top: -4px; left: -4px; min-width: 22px; height: 22px; border-radius: 11px; background: #FF6B57; color: #23223A; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; padding: 0 5px; box-sizing: border-box">{{favCount}}</span></sc-if>
+</button>
+<button type="button" class="burger squish" onClick="{{openMenu}}" aria-expanded="{{menuStr}}" style="height: 48px; padding: 0 18px 0 14px; border-radius: 999px; border: none; background: #23223A; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 800">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
+<span>תפריט</span>
+</button>
+</div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -22px; height: 24px; overflow: hidden; pointer-events: none">
+<svg class="drift" width="200%" height="24" viewBox="0 0 1200 24" preserveAspectRatio="none" style="display: block; position: absolute; right: 0"><path d="M0 0h1200v8c-50 0-50 14-100 14S1050 8 1000 8s-50 14-100 14S850 8 800 8s-50 14-100 14S650 8 600 8s-50 14-100 14S450 8 400 8s-50 14-100 14S250 8 200 8s-50 14-100 14S50 8 0 8z" fill="#FFE0D6"></path></svg>
+</div>
+</header>
+
+<sc-if value="{{menu}}" hint-placeholder-val="{{ false }}">
+<div style="position: fixed; inset: 0; z-index: 50; display: flex">
+<button type="button" onClick="{{closeMenu}}" aria-label="סגירת תפריט" style="flex: 1 1 auto; border: none; background: rgba(35,34,58,0.45); cursor: pointer"></button>
+<nav class="drawer" aria-label="תפריט ראשי" style="position: absolute; top: 0; right: 0; bottom: 0; border-radius: 40px 0 0 40px; width: min(340px, 88vw); background: #FFFFFF; box-shadow: -8px 0 30px rgba(35,34,58,0.2); overflow-y: auto; padding: 20px 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 10px"><img src="/_blob/cf6ba380f849ea66cc5408e188dde6cf" alt="" width="40" height="40"><strong style="font-family: Rubik, Arial, sans-serif; font-size: 24px">פטפוט</strong></div>
+<button type="button" onClick="{{closeMenu}}" aria-label="סגירת תפריט" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: #F6EFE6; cursor: pointer; font-size: 22px; color: #23223A">×</button>
+</div>
+<div style="background: #FFF1C2; border-radius: 32px 32px 32px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+<strong style="font-size: 15px">המסע שלך · {{levelName}}</strong>
+<div style="height: 10px; border-radius: 5px; background: rgba(35,34,58,0.12); overflow: hidden"><div style="height: 100%; border-radius: 5px; background: #FF6B57; width: {{levelPct}}%"></div></div>
+<span style="font-size: 14px; color: #55546B">{{levelHint}}</span>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{menuItems}}" as="m" hint-placeholder-count="7">
+<li>
+<button type="button" onClick="{{m.go}}" style="width: 100%; min-height: 54px; border: none; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 8px 12px; text-align: right; font-size: 18px; font-weight: 700; color: #23223A; background: {{m.bg}}">
+<span aria-hidden="true" class="morph" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: {{m.dot}}; font-family: Rubik, Arial, sans-serif; font-size: 16px; font-weight: 800">{{m.mark}}</span>
+<span style="flex: 1 1 auto">{{m.label}}</span>
+<sc-if value="{{m.hasBadge}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; font-weight: 800; background: #23223A; color: #FFFFFF; border-radius: 10px; padding: 2px 8px">{{m.badge}}</span></sc-if>
+</button>
+</li>
+</sc-for>
+</ul>
+<p style="margin: 0; font-size: 13px; color: #55546B; line-height: 1.5">כלי חינמי לצוותי חינוך-טיפול במעונות יום. השמירות והסימונים נשמרים בדפדפן שלך בלבד.</p>
+</nav>
+</div>
+</sc-if>
+
+<aside class="side" aria-label="תפריט צד" style="position: fixed; top: 100px; right: 20px; bottom: 20px; width: 260px; z-index: 15; flex-direction: column; gap: 14px; overflow-y: auto">
+<div style="background: #FFFFFF; border-radius: 40px 40px 40px 14px; padding: 18px 14px; box-shadow: 0 14px 30px rgba(35,34,58,0.08); display: flex; flex-direction: column; gap: 12px">
+<div style="background: #FFF1C2; border-radius: 30px 30px 30px 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+<strong style="font-size: 15px">המסע שלך · {{levelName}}</strong>
+<div style="height: 10px; border-radius: 999px; background: rgba(35,34,58,0.12); overflow: hidden"><div style="height: 100%; border-radius: 999px; background: #FF6B57; width: {{levelPct}}%"></div></div>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+<sc-for list="{{menuItems}}" as="m" hint-placeholder-count="7">
+<li>
+<button type="button" class="squish" onClick="{{m.go}}" style="width: 100%; min-height: 52px; border: none; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 6px 10px; text-align: right; font-size: 17px; font-weight: 700; color: #23223A; background: {{m.bg}}">
+<span aria-hidden="true" class="morph" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; background: {{m.dot}}; font-family: Rubik, Arial, sans-serif; font-size: 15px; font-weight: 800">{{m.mark}}</span>
+<span style="flex: 1 1 auto">{{m.label}}</span>
+<sc-if value="{{m.hasBadge}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; font-weight: 800; background: #23223A; color: #FFFFFF; border-radius: 999px; padding: 2px 9px">{{m.badge}}</span></sc-if>
+</button>
+</li>
+</sc-for>
+</ul>
+</div>
+</aside>
+
+<nav class="bbar" aria-label="ניווט מהיר" style="position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 30; background: #FFFFFF; border-radius: 999px; box-shadow: 0 12px 30px rgba(35,34,58,0.18); padding: 6px; justify-content: space-around; gap: 2px">
+<button type="button" class="squish" onClick="{{goHome}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navHome}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-5h-6v5H5a1 1 0 0 1-1-1z" fill="#FFB3A6"></path></svg>בית</button>
+<button type="button" class="squish" onClick="{{goSaved}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navSaved}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#FFC93C" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>שמורות</button>
+<button type="button" class="squish" onClick="{{goWords}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navWords}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#A9DCF2" stroke="#23223A" stroke-width="2" stroke-linejoin="round"><path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg>מילים</button>
+<button type="button" class="squish" onClick="{{goJourney}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navJourney}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z" fill="#A8E6CF"></path><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 20h8"></path></svg>המסע</button>
+<button type="button" class="squish" onClick="{{openMenu}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: transparent"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#D2C3FF" stroke="#23223A" stroke-width="1.8"><circle cx="5" cy="12" r="2.4"></circle><circle cx="12" cy="12" r="2.4"></circle><circle cx="19" cy="12" r="2.4"></circle></svg>עוד</button>
+</nav>
+
+<main class="mainwrap" style="position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 40px 16px 72px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px">
+
+<sc-if value="{{vHome}}" hint-placeholder-val="{{ true }}">
+<div class="pop" style="display: flex; flex-direction: column; gap: 22px">
+
+<section style="position: relative; background: #FFFFFF; border-radius: 48px 48px 48px 120px; padding: 30px 26px 54px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px; overflow: hidden; box-shadow: 0 18px 40px rgba(255,107,87,0.14)">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 60px; overflow: hidden; pointer-events: none">
+<svg class="drift2" width="200%" height="60" viewBox="0 0 1200 60" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 30c100 0 100-22 200-22s100 22 200 22 100-22 200-22 100 22 200 22 100-22 200-22 100 22 200 22v30H0z" fill="#FFE3EC"></path></svg>
+<svg class="drift" width="200%" height="40" viewBox="0 0 1200 40" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 20c75 0 75-16 150-16s75 16 150 16 75-16 150-16 75 16 150 16 75-16 150-16 75 16 150 16 75-16 150-16 75 16 150 16v20H0z" fill="#FFE0D6"></path></svg>
+</div>
+<span aria-hidden="true" class="rise" style="position: absolute; bottom: 20px; left: 12%; width: 18px; height: 18px; border-radius: 50%; background: #6FC3E8"></span>
+<span aria-hidden="true" class="rise" style="position: absolute; bottom: 10px; left: 28%; width: 12px; height: 12px; border-radius: 50%; background: #FFC93C; animation-delay: 2s"></span>
+<span aria-hidden="true" class="rise" style="position: absolute; bottom: 16px; left: 6%; width: 10px; height: 10px; border-radius: 50%; background: #B49CFF; animation-delay: 3.5s"></span>
+<span aria-hidden="true" class="rise" style="position: absolute; bottom: 8px; left: 20%; width: 14px; height: 14px; border-radius: 50%; background: #7ED9B8; animation-delay: 1.2s"></span>
+<div style="position: relative; flex: 999 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<span style="align-self: flex-start; background: #FFE0D6; border-radius: 999px; padding: 5px 14px; font-size: 14px; font-weight: 800; color: #9E2F1F">למחנכות ומטפלות במעון</span>
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 40px; line-height: 1.1; font-weight: 800">כל פינה במעון היא הזדמנות לשיחה</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #3A3950">בחרי גיל, מרחב וגודל קבוצה, וקבלי 5 פעילויות להעשרה שפתית, עם משפטים מוכנים ובנק מילים. יש יותר מ-300 פעילויות במאגר.</p>
+</div>
+<div style="position: relative; flex: 1 1 160px; max-width: 220px; margin: 0 auto; display: flex; align-items: center; justify-content: center; padding: 18px"><div aria-hidden="true" class="morph" style="position: absolute; inset: 0; background: #FFF1C2"></div><img class="bob" src="/_blob/55a5ba60b8c3fe4146b54f13b98b97ec" alt="פטפוט, דמות של בועת דיבור מחייכת" width="170" height="155" style="position: relative; width: 100%; height: auto; display: block"></div>
+</section>
+
+<section aria-labelledby="h-age" style="display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 40px 40px 40px 14px; padding: 22px; box-shadow: 0 10px 26px rgba(35,34,58,0.07)">
+<h2 id="h-age" style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 40px; height: 40px; background: #FFC93C; display: inline-flex; align-items: center; justify-content: center; font-size: 18px">1</span>מי בקבוצה?</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+<sc-for list="{{ages}}" as="a" hint-placeholder-count="3">
+<button type="button" class="tile pop" aria-pressed="{{a.pressed}}" onClick="{{a.pick}}" style="animation-delay: {{a.delay}}; min-height: 96px; text-align: right; cursor: pointer; border-radius: 999px; padding: 14px 16px 14px 24px; box-shadow: {{a.shadow}}; display: flex; align-items: center; gap: 14px; color: #23223A; background: {{a.bg}}; border: {{a.border}}">
+<span aria-hidden="true" class="morph" style="flex: none; width: 58px; height: 58px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 24px; font-weight: 800">{{a.num}}</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">{{a.label}}</span>
+<span style="font-size: 15px; font-weight: 600; color: #3A3950">{{a.range}}</span>
+</span>
+<sc-if value="{{a.on}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="margin-inline-start: auto; width: 30px; height: 30px; border-radius: 50%; background: #FF6B57; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span></sc-if>
+</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="h-space" style="display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 40px 40px 40px 14px; padding: 22px; box-shadow: 0 10px 26px rgba(35,34,58,0.07)">
+<h2 id="h-space" style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 40px; height: 40px; background: #6FC3E8; display: inline-flex; align-items: center; justify-content: center; font-size: 18px">2</span>איפה את עכשיו?</h2>
+<div class="sp-grid" style="gap: 12px">
+<sc-for list="{{spaces}}" as="s" hint-placeholder-count="8">
+<button type="button" class="tile pop" aria-pressed="{{s.pressed}}" onClick="{{s.pick}}" style="animation-delay: {{s.delay}}; box-shadow: {{s.shadow}}; position: relative; min-height: 140px; cursor: pointer; border-radius: 40px 40px 40px 40px / 46px 46px 34px 34px; padding: 16px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #23223A; background: {{s.bg}}; border: {{s.border}}">
+<span class="morph" style="width: 74px; height: 74px; background: rgba(255,255,255,0.75); display: flex; align-items: center; justify-content: center"><img class="sway" src="{{s.icon}}" alt="" width="50" height="50" style="display: block"></span>
+<span style="font-size: 16px; font-weight: 800; text-align: center; line-height: 1.25">{{s.label}}</span>
+<sc-if value="{{s.on}}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position: absolute; top: 10px; left: 12px; width: 28px; height: 28px; border-radius: 50%; background: #FF6B57; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span></sc-if>
+</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="h-n" style="background: #FFFFFF; border-radius: 999px; padding: 14px 18px 14px 26px; box-shadow: 0 10px 24px rgba(180,156,255,0.16); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px">
+<h2 id="h-n" style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 40px; height: 40px; background: #B49CFF; display: inline-flex; align-items: center; justify-content: center; font-size: 18px">3</span>כמה ילדים בקבוצה?</h2>
+<div style="display: flex; align-items: center; gap: 10px">
+<button type="button" aria-label="הוספת ילד" onClick="{{inc}}" class="squish" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: #E7DEFF; color: #23223A; font-size: 28px; font-weight: 800; cursor: pointer">+</button>
+<div aria-live="polite" style="min-width: 84px; text-align: center; display: flex; flex-direction: column">
+<span style="font-family: Rubik, Arial, sans-serif; font-size: 36px; font-weight: 800; line-height: 1">{{n}}</span>
+<span style="font-size: 14px; font-weight: 700; color: #55546B">ילדים</span>
+</div>
+<button type="button" aria-label="הפחתת ילד" onClick="{{dec}}" class="squish" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: #E7DEFF; color: #23223A; font-size: 28px; font-weight: 800; cursor: pointer">−</button>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="squish" onClick="{{go}}" style="flex: 1 1 260px; min-height: 64px; border-radius: 999px; border: none; background: #FF6B57; color: #23223A; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 800; cursor: pointer; box-shadow: 0 12px 26px rgba(255,107,87,0.35)">בני לי 5 פעילויות</button>
+</sc-if>
+<sc-if value="{{notReady}}" hint-placeholder-val="{{ true }}">
+<div style="flex: 1 1 260px; min-height: 64px; border-radius: 999px; background: #F3E9DC; color: #4A4960; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 16px; text-align: center">{{missing}}</div>
+</sc-if>
+<button type="button" class="squish" onClick="{{surprise}}" style="flex: 0 1 auto; min-height: 64px; padding: 0 24px; border-radius: 999px; border: none; background: #FFFFFF; box-shadow: 0 10px 22px rgba(111,195,232,0.28); color: #23223A; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><circle cx="8.5" cy="8.5" r="1.3" fill="#23223A"></circle><circle cx="15.5" cy="15.5" r="1.3" fill="#23223A"></circle><circle cx="12" cy="12" r="1.3" fill="#23223A"></circle></svg>הפתיעי אותי</button>
+</div>
+
+</div>
+</sc-if>
+
+<sc-if value="{{vLoading}}" hint-placeholder-val="{{ false }}">
+<div style="min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center">
+<div style="position: relative; width: 200px; height: 190px; display: flex; align-items: center; justify-content: center"><div aria-hidden="true" class="morph" style="position: absolute; inset: 0; background: #FFF1C2"></div><span aria-hidden="true" class="rise" style="position: absolute; bottom: 10px; left: 20px; width: 16px; height: 16px; border-radius: 50%; background: #6FC3E8"></span><span aria-hidden="true" class="rise" style="position: absolute; bottom: 0; right: 30px; width: 12px; height: 12px; border-radius: 50%; background: #FF6B57; animation-delay: 1.5s"></span><img class="bob" src="/_blob/55a5ba60b8c3fe4146b54f13b98b97ec" alt="" width="150" height="136" style="position: relative"></div>
+<div style="width: min(320px, 80vw); height: 14px; border-radius: 999px; background: #FFE0D6; overflow: hidden"><div class="fillbar" style="height: 100%; border-radius: 999px; background: #FF6B57; width: 6%"></div></div>
+<h2 aria-live="polite" style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 26px; font-weight: 800">בוחרת בשבילך פעילויות...</h2>
+<p style="margin: 0; font-size: 17px; color: #55546B">{{selAge}} · {{selSpace}} · {{n}} ילדים</p>
+</div>
+</sc-if>
+
+<sc-if value="{{vList}}" hint-placeholder-val="{{ false }}">
+<div class="pop" style="display: flex; flex-direction: column; gap: 16px">
+
+<sc-if value="{{vResults}}" hint-placeholder-val="{{ false }}">
+<section style="position: relative; overflow: hidden; border-radius: 44px 44px 44px 110px; padding: 22px 22px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; background: {{spaceBg}}">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 34px; overflow: hidden; pointer-events: none"><svg class="drift" width="200%" height="34" viewBox="0 0 1200 34" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 17c75 0 75-13 150-13s75 13 150 13 75-13 150-13 75 13 150 13 75-13 150-13 75 13 150 13 75-13 150-13 75 13 150 13v17H0z" fill="rgba(255,255,255,0.55)"></path></svg></div>
+<span class="morph" style="flex: none; width: 82px; height: 82px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><img class="sway" src="{{spaceIcon}}" alt="" width="56" height="56"></span>
+<div style="flex: 999 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800; line-height: 1.15">{{selSpace}}</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span style="background: rgba(255,255,255,0.8); border-radius: 999px; padding: 5px 14px; font-size: 15px; font-weight: 700">{{selAge}}</span>
+<span style="background: rgba(255,255,255,0.8); border-radius: 999px; padding: 5px 14px; font-size: 15px; font-weight: 700">{{n}} ילדים</span>
+</div>
+</div>
+<button type="button" class="squish" onClick="{{goHome}}" style="position: relative; flex: none; min-height: 48px; padding: 0 20px; border-radius: 999px; border: none; background: #FFFFFF; color: #23223A; font-size: 16px; font-weight: 800; cursor: pointer">שינוי בחירה</button>
+</section>
+
+<div role="tablist" aria-label="תצוגה" style="display: flex; gap: 6px; background: #FFFFFF; border-radius: 999px; padding: 6px; box-shadow: 0 8px 20px rgba(35,34,58,0.06)">
+<sc-for list="{{tabs}}" as="tb" hint-placeholder-count="2">
+<button type="button" role="tab" aria-selected="{{tb.sel}}" onClick="{{tb.pick}}" style="flex: 1 1 0; min-height: 48px; border: none; border-radius: 999px; cursor: pointer; font-size: 17px; font-weight: 800; color: #23223A; background: {{tb.bg}}; box-shadow: {{tb.shadow}}">{{tb.label}}</button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{vSaved}}" hint-placeholder-val="{{ false }}">
+<section style="background: #FFF1C2; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">הפעילויות שלי</h1>
+<p style="margin: 0; font-size: 17px; color: #3A3950">פעילויות שסימנת בכוכב. אפשר לפתוח, לשתף בוואטסאפ או להסיר.</p>
+</section>
+<sc-if value="{{noFav}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border-radius: 44px; padding: 30px 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+<img src="/_blob/55a5ba60b8c3fe4146b54f13b98b97ec" alt="" width="110" height="100">
+<p style="margin: 0; font-size: 18px; font-weight: 700">עוד אין פעילויות שמורות</p>
+<p style="margin: 0; font-size: 16px; color: #55546B">בכל כרטיס פעילות יש כפתור ״שמירה״. מה שתשמרי יופיע כאן.</p>
+<button type="button" onClick="{{goHome}}" style="min-height: 50px; padding: 0 24px; border-radius: 25px; border: none; background: #FF6B57; color: #23223A; font-size: 18px; font-weight: 800; cursor: pointer">למציאת פעילויות</button>
+</div>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{showActs}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+
+<sc-if value="{{vResults}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 16px 20px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 8px 20px rgba(180,156,255,0.14)">
+<span aria-hidden="true" class="morph" style="flex: none; width: 44px; height: 44px; background: #E7DEFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.4"></circle><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c3 0 6 2 6 5.5"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 16px">התאמה לקבוצה של {{n}}</strong><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A3950">{{groupTip}}</p></div>
+</div>
+</sc-if>
+
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px">
+<sc-for list="{{acts}}" as="x" hint-placeholder-count="5">
+<li class="pop" style="animation-delay: {{x.delay}}; background: #FFFFFF; border-radius: 38px; overflow: hidden; box-shadow: 0 12px 28px rgba(35,34,58,0.07)">
+<button type="button" onClick="{{x.toggle}}" aria-expanded="{{x.openStr}}" style="width: 100%; min-height: 78px; border: none; background: transparent; cursor: pointer; text-align: right; padding: 18px 22px; display: flex; align-items: center; gap: 14px; color: #23223A">
+<span aria-hidden="true" class="morph" style="flex: none; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800; background: {{x.numBg}}">{{x.num}}</span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800; line-height: 1.25">{{x.t}}</span>
+<span style="font-size: 15px; font-weight: 600; color: #4A4960">{{x.g}}</span>
+<sc-if value="{{x.showWhere}}" hint-placeholder-val="{{ false }}"><span style="font-size: 14px; font-weight: 700; color: #0B6E73">{{x.where}}</span></sc-if>
+</span>
+<sc-if value="{{x.fav}}" hint-placeholder-val="{{ false }}"><svg aria-label="שמורה" role="img" width="22" height="22" viewBox="0 0 24 24" fill="#FFC93C" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round" style="flex: none"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg></sc-if>
+<span aria-hidden="true" style="flex: none; width: 38px; height: 38px; border-radius: 50%; background: #FFE0D6; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{x.open}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"></path></svg></sc-if>
+<sc-if value="{{x.closed}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></sc-if>
+</span>
+</button>
+<sc-if value="{{x.open}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 0 22px 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<strong style="font-family: Rubik, Arial, sans-serif; font-size: 17px">איך עושים?</strong>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{x.steps}}" as="st" hint-placeholder-count="3">
+<li style="display: flex; align-items: flex-start; gap: 10px; font-size: 17px; line-height: 1.55">
+<span aria-hidden="true" class="morph" style="flex: none; width: 30px; height: 30px; background: #FF6B57; color: #23223A; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; margin-top: 1px">{{st.n}}</span>
+<span>{{st.v}}</span>
+</li>
+</sc-for>
+</ol>
+</div>
+<div style="background: #D8F3EA; border-radius: 30px 30px 30px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+<strong style="font-size: 16px; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linejoin="round"><path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"></path></svg>מה אפשר להגיד</strong>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{x.ph}}" as="p" hint-placeholder-count="2">
+<span style="background: #FFFFFF; border-radius: 22px 22px 6px 22px; padding: 9px 16px; font-size: 17px; line-height: 1.4">״{{p.v}}״</span>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{x.hasWords}}" hint-placeholder-val="{{ false }}">
+<div style="background: #DDF0FB; border-radius: 30px 30px 30px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+<strong style="font-size: 16px">מילים מהבנק בפעילות הזאת</strong>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{x.words}}" as="wd" hint-placeholder-count="3">
+<span style="background: #FFFFFF; border-radius: 999px; padding: 6px 14px; font-size: 16px; font-weight: 700">{{wd.w}}</span>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<div style="background: #FFE7D1; border-radius: 30px 30px 30px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px">
+<strong style="font-size: 16px">בקבוצה</strong>
+<p style="margin: 0; font-size: 16px; line-height: 1.55">{{x.b}}</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" onClick="{{x.toggleFav}}" aria-pressed="{{x.favStr}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 8px; background: {{x.favBg}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{x.starFill}}" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>{{x.favLabel}}</button>
+<a href="{{x.wa}}" target="_blank" rel="noopener" onClick="{{x.share}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; background: #D8F3EA; color: #23223A; font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px; text-decoration: none; box-sizing: border-box"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v12M7 8l5-5 5 5"></path></svg>שיתוף בוואטסאפ</a>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: #FDF6EE; border-radius: 999px; padding: 8px 10px 8px 18px">
+<strong style="font-size: 16px; margin-inline-end: auto">איך הלך?</strong>
+<button type="button" aria-pressed="{{x.goodStr}}" onClick="{{x.good}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #0B6E73; cursor: pointer; font-size: 16px; font-weight: 800; color: {{x.goodColor}}; background: {{x.goodBg}}">עבד מעולה</button>
+<button type="button" aria-pressed="{{x.badStr}}" onClick="{{x.bad}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #9A3B10; cursor: pointer; font-size: 16px; font-weight: 800; color: {{x.badColor}}; background: {{x.badBg}}">פחות עבד</button>
+</div>
+<sc-if value="{{x.fbGood}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; font-weight: 700; color: #0B6E73">מעולה! זה נרשם במסע שלך.</p></sc-if>
+<sc-if value="{{x.fbBad}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; color: #4A4960">תודה. הפעילות לא תוצע שוב ברענון. לחיצה נוספת מבטלת.</p></sc-if>
+</div>
+</sc-if>
+</li>
+</sc-for>
+</ol>
+
+<sc-if value="{{vResults}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding-top: 4px">
+<button type="button" class="squish" onClick="{{more}}" style="min-height: 62px; padding: 0 32px; border-radius: 999px; border: none; background: #FFC93C; color: #23223A; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 12px 26px rgba(255,201,60,0.45)"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"></path><path d="M20 4v7h-7"></path></svg>עוד 5 פעילויות</button>
+<span style="font-size: 15px; color: #55546B">סבב {{roundNo}} מתוך {{rounds}} · {{total}} פעילויות למרחב ולגיל האלה</span>
+</div>
+</sc-if>
+
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{vWordsHead}}" hint-placeholder-val="{{ false }}">
+<div class="pop" style="display: flex; flex-direction: column; gap: 14px">
+<section style="background: #DDF0FB; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">בנק מילים</h1>
+<p style="margin: 0; font-size: 17px; color: #3A3950">מילים שכדאי שהילדים ישמעו שוב ושוב במרחב. סמני מילה כשהשתמשת בה.</p>
+</section>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<section aria-label="שכבת גיל" style="background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 22px rgba(35,34,58,0.07)">
+<h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 34px; height: 34px; background: #FFC93C; display: inline-flex; align-items: center; justify-content: center; font-size: 16px">1</span>שכבת גיל</h2>
+<div class="age-grid">
+<sc-for list="{{ages}}" as="a" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{a.pressed}}" onClick="{{a.pickW}}" class="squish" style="width: 100%; min-height: 48px; padding: 0 18px; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{a.bg}}; border: {{a.border}}">{{a.label}}</button>
+</sc-for>
+</div>
+</section>
+<section aria-label="מרחב" style="background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 22px rgba(35,34,58,0.07)">
+<h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 34px; height: 34px; background: #6FC3E8; display: inline-flex; align-items: center; justify-content: center; font-size: 16px">2</span>מרחב</h2>
+<div class="sp-grid">
+<sc-for list="{{spaces}}" as="s" hint-placeholder-count="8">
+<button type="button" aria-pressed="{{s.pressed}}" onClick="{{s.pickW}}" class="squish" style="width: 100%; justify-content: center; min-height: 48px; padding: 0 12px; border-radius: 999px; cursor: pointer; font-size: 15px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 6px; background: {{s.bg}}; border: {{s.border}}"><img src="{{s.icon}}" alt="" width="24" height="24">{{s.label}}</button>
+</sc-for>
+</div>
+</section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{showBank}}" hint-placeholder-val="{{ false }}">
+<div class="pop" style="display: flex; flex-direction: column; gap: 12px">
+<sc-if value="{{bankReady}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; background: #FFFFFF; border-radius: 999px; padding: 12px 20px">
+<span style="font-size: 16px; font-weight: 700">{{bankTitle}}</span>
+<span style="font-size: 15px; font-weight: 800; background: #D8F3EA; border-radius: 14px; padding: 4px 12px">סימנת {{usedCount}} מתוך {{bankTotal}}</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px">
+<sc-for list="{{bank}}" as="c" hint-placeholder-count="4">
+<section style="border-radius: 36px; padding: 20px; display: flex; flex-direction: column; gap: 10px; background: {{c.bg}}">
+<h3 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">{{c.label}}</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{c.words}}" as="w" hint-placeholder-count="5">
+<button type="button" class="squish" aria-pressed="{{w.pressed}}" onClick="{{w.toggle}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; cursor: pointer; font-size: 17px; font-weight: 800; display: flex; align-items: center; gap: 6px; color: {{w.color}}; background: {{w.bg}}; border: none; box-shadow: 0 3px 8px rgba(35,34,58,0.08)">{{w.mark}}{{w.w}}</button>
+</sc-for>
+</div>
+</section>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 15px; color: #55546B; line-height: 1.55">טיפ: בחרי 3 מילים לשבוע והשתמשי בהן בכל פעם שאת במרחב. החזרה היא מה שמאפשר לילדים לזהות את המילה ולהשתמש בה.</p>
+</sc-if>
+<sc-if value="{{bankNotReady}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; background: #FFFFFF; border-radius: 999px; padding: 16px 22px; font-size: 17px">בחרי שכבת גיל ומרחב כדי לראות את בנק המילים.</p>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{vJourney}}" hint-placeholder-val="{{ false }}">
+<div class="pop" style="display: flex; flex-direction: column; gap: 16px">
+<section style="background: #FFE0D6; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+<img src="/_blob/55a5ba60b8c3fe4146b54f13b98b97ec" alt="" width="100" height="91" style="flex: none">
+<div style="flex: 999 1 220px; display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">המסע שלי</h1>
+<span style="align-self: flex-start; background: #23223A; color: #FFFFFF; border-radius: 14px; padding: 4px 12px; font-size: 15px; font-weight: 800">{{levelName}}</span>
+<div style="height: 12px; border-radius: 6px; background: rgba(35,34,58,0.12); overflow: hidden"><div style="height: 100%; border-radius: 6px; background: #FF6B57; width: {{levelPct}}%"></div></div>
+<span style="font-size: 15px; color: #3A3950">{{levelHint}}</span>
+</div>
+</section>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+<sc-for list="{{stats}}" as="k" hint-placeholder-count="4">
+<div style="border-radius: 36px; padding: 20px; display: flex; flex-direction: column; gap: 4px; background: {{k.bg}}">
+<span style="font-family: Rubik, Arial, sans-serif; font-size: 34px; font-weight: 800; line-height: 1">{{k.v}}</span>
+<span style="font-size: 15px; font-weight: 700">{{k.label}}</span>
+</div>
+</sc-for>
+</div>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">פעילויות שניסית בכל מרחב</h2>
+<sc-for list="{{spaceProg}}" as="sp" hint-placeholder-count="8">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="{{sp.icon}}" alt="" width="30" height="30" style="flex: none">
+<span style="flex: 0 0 140px; font-size: 15px; font-weight: 700">{{sp.label}}</span>
+<div style="flex: 1 1 auto; height: 14px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{sp.pct}}%; background: {{sp.color}}"></div></div>
+<span style="flex: none; min-width: 48px; text-align: left; font-size: 14px; font-weight: 800">{{sp.count}}/{{sp.max}}</span>
+</div>
+</sc-for>
+</section>
+<section style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">תגים</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+<sc-for list="{{badges}}" as="bd" hint-placeholder-count="4">
+<div style="border-radius: 36px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; background: {{bd.bg}}; opacity: {{bd.op}}">
+<span aria-hidden="true" class="morph" style="width: 58px; height: 58px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 800">{{bd.mark}}</span>
+<strong style="font-size: 16px">{{bd.name}}</strong>
+<span style="font-size: 14px; color: #3A3950">{{bd.hint}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{vTips}}" hint-placeholder-val="{{ false }}">
+<div class="pop" style="display: flex; flex-direction: column; gap: 14px">
+<section style="background: #D8F3EA; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">עקרונות וטיפים</h1>
+<p style="margin: 0; font-size: 17px; color: #3A3950">ארבעה הרגלים שהופכים כל רגע במעון לשיחה. הם מלווים את כל הפעילויות.</p>
+</section>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px">
+<sc-for list="{{tips}}" as="tp" hint-placeholder-count="4">
+<section style="border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px; background: {{tp.bg}}">
+<div style="display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 46px; height: 46px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">{{tp.n}}</span><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">{{tp.t}}</h2></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.6">{{tp.d}}</p>
+<p style="margin: 0; background: #FFFFFF; border-radius: 24px 24px 24px 8px; padding: 12px 16px; font-size: 16px; line-height: 1.5"><strong>לדוגמה: </strong>{{tp.e}}</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #3A3950"><strong>למה זה חשוב: </strong>{{tp.w}}</p>
+</section>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{vAccess}}" hint-placeholder-val="{{ false }}">
+<div class="pop" style="display: flex; flex-direction: column; gap: 14px">
+<section style="background: #E7DEFF; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">נגישות ותצוגה</h1>
+<p style="margin: 0; font-size: 17px; color: #3A3950">התאימי את התצוגה לנוחות שלך. ההגדרות נשמרות בדפדפן הזה.</p>
+</section>
+<sc-for list="{{settings}}" as="o" hint-placeholder-count="2">
+<div style="background: #FFFFFF; border-radius: 999px; padding: 14px 18px 14px 26px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 18px">{{o.t}}</strong><span style="font-size: 15px; color: #55546B">{{o.d}}</span></div>
+<button type="button" role="switch" aria-checked="{{o.onStr}}" aria-label="{{o.t}}" onClick="{{o.toggle}}" style="flex: none; width: 64px; height: 36px; border-radius: 18px; border: none; cursor: pointer; padding: 4px; display: flex; justify-content: {{o.justify}}; background: {{o.bg}}"><span style="width: 28px; height: 28px; border-radius: 14px; background: #FFFFFF; display: block"></span></button>
+</div>
+</sc-for>
+<p style="margin: 0; font-size: 15px; color: #55546B; line-height: 1.6">הממשק בנוי לניווט במקלדת, עם ניגודיות צבעים גבוהה, כפתורים גדולים ותיאורים לקוראי מסך. נתקלת בבעיה? כדאי לדווח למי שהפנה אותך לכלי.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{vAbout}}" hint-placeholder-val="{{ false }}">
+<div class="pop" style="display: flex; flex-direction: column; gap: 14px">
+<section style="background: #FFE0D6; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+<img src="/_blob/cf6ba380f849ea66cc5408e188dde6cf" alt="" width="72" height="72" style="flex: none">
+<div style="flex: 999 1 220px; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">על פטפוט</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3A3950">פטפוט הוא מאגר פעילויות קצרות להעשרה שפתית בשגרת המעון: בהחתלה, בארוחות, ביצירה, במשחק, בבנייה, בספר ובחצר. הפעילויות מותאמות לשלוש שכבות גיל ולגודל הקבוצה.</p>
+</div>
+</section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">חשוב לדעת</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6">הפעילויות נכתבו על בסיס העקרונות במקורות המקצועיים שבהמשך, ואינן מחליפות הדרכה מקצועית. לכל ילד קצב התפתחות משלו. אם יש חשש לעיכוב שפתי, מומלץ לשתף את ההורים ולהפנות לטיפת חלב או לקלינאית תקשורת.</p>
+<p style="margin: 0; font-size: 16px; line-height: 1.6">בפעילויות עם חפצים קטנים, מזון או מים נדרשת השגחה צמודה, בהתאם להנחיות הבטיחות של המעון.</p>
+</section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">מקורות</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.7; color: #3A3950">משרד החינוך, האגף לחינוך הגיל הרך · The Hanen Centre · Head Start · Anita Zucker Center, University of Florida · Juniper Gardens Children׳s Project · ZERO TO THREE · Whitehurst, קריאה דיאלוגית</p>
+</section>
+<p style="margin: 0; text-align: center; font-size: 14px; font-weight: 700; color: #4A4960">© 2026 כל הזכויות שמורות ל-SuperFace, שמי אוסטרובסקי</p>
+</div>
+</sc-if>
+
+<div aria-hidden="true" style="height: 90px; position: relative; overflow: hidden; margin: 0 -16px -72px">
+<svg class="drift2" width="200%" height="90" viewBox="0 0 1200 90" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 45c100 0 100-30 200-30s100 30 200 30 100-30 200-30 100 30 200 30 100-30 200-30 100 30 200 30v45H0z" fill="#FFE3EC"></path></svg>
+<svg class="drift" width="200%" height="60" viewBox="0 0 1200 60" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 30c75 0 75-20 150-20s75 20 150 20 75-20 150-20 75 20 150 20 75-20 150-20 75 20 150 20 75-20 150-20 75 20 150 20v30H0z" fill="#FFE0D6"></path></svg>
+</div>
+<div aria-hidden="true" class="bspace"></div>
+</main>
+
+<sc-if value="{{vLogin}}" hint-placeholder-val="{{ false }}">
+<div style="position: fixed; inset: 0; z-index: 100; overflow-y: auto; background: #FFE0D6">
+<div aria-hidden="true" style="position: fixed; inset: 0; pointer-events: none; overflow: hidden">
+<div class="floaty morph" style="position: absolute; top: -60px; right: -80px; width: 280px; height: 280px; background: #FFF1C2; opacity: 0.85"></div>
+<div class="floaty2 morph" style="position: absolute; bottom: 80px; left: -90px; width: 260px; height: 260px; background: #DDF0FB; opacity: 0.85"></div>
+<div class="floaty morph" style="position: absolute; top: 40%; left: 60%; width: 120px; height: 120px; background: #FFE3EC; opacity: 0.9"></div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 110px; overflow: hidden">
+<svg class="drift2" width="200%" height="110" viewBox="0 0 1200 110" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 55c100 0 100-36 200-36s100 36 200 36 100-36 200-36 100 36 200 36 100-36 200-36 100 36 200 36v55H0z" fill="#FFE3EC"></path></svg>
+<svg class="drift" width="200%" height="70" viewBox="0 0 1200 70" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 35c75 0 75-24 150-24s75 24 150 24 75-24 150-24 75 24 150 24 75-24 150-24 75 24 150 24 75-24 150-24 75 24 150 24v35H0z" fill="#FDF6EE"></path></svg>
+</div>
+</div>
+<div style="position: relative; min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 32px 16px 120px; box-sizing: border-box">
+<div class="pop" style="width: min(460px, 100%); display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<div style="position: relative; width: 170px; height: 160px; display: flex; align-items: center; justify-content: center"><div aria-hidden="true" class="morph" style="position: absolute; inset: 0; background: #FFFFFF"></div><img class="bob" src="/_blob/55a5ba60b8c3fe4146b54f13b98b97ec" alt="פטפוט, דמות של בועת דיבור מחייכת" width="130" height="118" style="position: relative"></div>
+<h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 44px; font-weight: 800; line-height: 1">פטפוט</h1>
+<p style="margin: 0; font-size: 18px; font-weight: 700; color: #3A3950">מילים קטנות בכל פינה במעון</p>
+</div>
+<div style="background: #FFFFFF; border-radius: 44px 44px 44px 16px; padding: 22px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 18px 40px rgba(255,107,87,0.18)">
+<div role="tablist" aria-label="סוג כניסה" style="display: flex; gap: 4px; background: #FDF6EE; border-radius: 999px; padding: 5px">
+<sc-for list="{{loginTabs}}" as="lt" hint-placeholder-count="3">
+<button type="button" role="tab" aria-selected="{{lt.sel}}" onClick="{{lt.pick}}" class="squish" style="flex: 1 1 0; min-height: 46px; border: none; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{lt.bg}}">{{lt.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{tabOrg}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<label for="l-code" style="font-size: 15px; font-weight: 800">סמל מעון או שם המעון</label>
+<div style="position: relative">
+<input id="l-code" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="l-list" aria-expanded="{{listStr}}" placeholder="לדוגמה: 75531 או שביל הילדות" onChange="{{onCode}}" onInput="{{onCode}}" onFocus="{{openList}}" onKeyDown="{{codeKey}}" style="width: 100%; min-height: 54px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 20px 0 60px; font-size: 18px; font-family: inherit; color: #23223A; box-sizing: border-box">
+<button type="button" aria-label="הצגת רשימת המעונות" onClick="{{toggleList}}" style="position: absolute; left: 6px; top: 5px; width: 44px; height: 44px; border-radius: 50%; border: none; background: #FFE0D6; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></button>
+</div>
+<sc-if value="{{showList}}" hint-placeholder-val="{{ false }}">
+<ul id="l-list" role="listbox" aria-label="מעונות" style="list-style: none; margin: 0; padding: 6px; background: #FFFFFF; border: 2px solid #F0E3D3; border-radius: 26px; display: flex; flex-direction: column; gap: 4px; max-height: 230px; overflow-y: auto">
+<sc-for list="{{orgList}}" as="og" hint-placeholder-count="2"><li><button type="button" role="option" aria-selected="{{og.sel}}" onClick="{{og.pick}}" style="width: 100%; min-height: 50px; border: none; border-radius: 999px; cursor: pointer; padding: 0 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 17px; font-weight: 800; color: #23223A; background: {{og.bg}}"><span>{{og.name}}</span><span style="font-size: 14px; font-weight: 700; color: #4A4960">סמל {{og.id}}</span></button></li></sc-for>
+<sc-if value="{{noOrgMatch}}" hint-placeholder-val="{{ false }}"><li style="padding: 10px 16px; font-size: 15px; color: #4A4960">לא נמצא מעון כזה. בדקי את הסמל או השם.</li></sc-if>
+</ul>
+</sc-if>
+<label for="l-pw" style="font-size: 15px; font-weight: 800">סיסמה</label>
+<input id="l-pw" type="password" autocomplete="current-password" onChange="{{onPw}}" onInput="{{onPw}}" onKeyDown="{{pwKey}}" onFocus="{{closeList}}" style="min-height: 54px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 20px; font-size: 18px; font-family: inherit; color: #23223A; box-sizing: border-box">
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A">{{err}}</p></sc-if>
+<button type="button" onClick="{{loginOrg}}" class="squish" style="min-height: 58px; border-radius: 999px; border: none; background: #FF6B57; color: #23223A; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; cursor: pointer; box-shadow: 0 10px 22px rgba(255,107,87,0.32)">כניסה</button>
+<p style="margin: 0; font-size: 14px; color: #55546B; text-align: center">את הסיסמה מקבלים מהנהלת הכלי.</p>
+</div>
+</sc-if>
+<sc-if value="{{tabGuest}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 17px; line-height: 1.6">אפשר להשתמש בכל הפעילויות, בבנק המילים ובמסע גם בלי שם. השמירות והסימונים נשמרים במכשיר הזה.</p>
+<button type="button" class="squish" onClick="{{loginGuest}}" style="min-height: 58px; border-radius: 999px; border: none; background: #FFC93C; color: #23223A; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; cursor: pointer; box-shadow: 0 10px 22px rgba(255,201,60,0.4)">כניסה בלי שם</button>
+</div>
+</sc-if>
+<sc-if value="{{tabAdmin}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<label for="l-apw" style="font-size: 15px; font-weight: 800">סיסמת מנהל</label>
+<input id="l-apw" type="password" autocomplete="current-password" onChange="{{onPw}}" onInput="{{onPw}}" onKeyDown="{{adminKey}}" style="min-height: 54px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 20px; font-size: 18px; font-family: inherit; color: #23223A; box-sizing: border-box">
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A">{{err}}</p></sc-if>
+<button type="button" onClick="{{loginAdmin}}" class="squish" style="min-height: 58px; border-radius: 999px; border: none; background: #23223A; color: #FFFFFF; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; cursor: pointer">כניסה ללוח הבקרה</button>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{vAdmin}}" hint-placeholder-val="{{ false }}">
+<div style="position: fixed; inset: 0; z-index: 90; overflow-y: auto; background: #FDF6EE">
+<div style="position: sticky; top: 0; z-index: 5; background: #23223A; color: #FFFFFF">
+<div style="max-width: 1120px; margin: 0 auto; padding: 12px 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px">
+<div style="display: flex; align-items: center; gap: 10px"><img src="/_blob/cf6ba380f849ea66cc5408e188dde6cf" alt="" width="40" height="40"><span style="display: flex; flex-direction: column; line-height: 1.1"><strong style="font-family: Rubik, Arial, sans-serif; font-size: 22px">לוח בקרה</strong><span style="font-size: 13px; opacity: 0.85">פטפוט · מנהל</span></span></div>
+<div style="display: flex; gap: 8px">
+<button type="button" class="squish" onClick="{{goHome}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; background: #FFC93C; color: #23223A; font-size: 15px; font-weight: 800; cursor: pointer">מעבר לממשק</button>
+<button type="button" class="squish" onClick="{{logout}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; background: #FFFFFF; color: #23223A; font-size: 15px; font-weight: 800; cursor: pointer">התנתקות</button>
+</div>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -18px; height: 20px; overflow: hidden; pointer-events: none"><svg class="drift" width="200%" height="20" viewBox="0 0 1200 20" preserveAspectRatio="none" style="position: absolute; right: 0; display: block"><path d="M0 0h1200v6c-50 0-50 12-100 12S1050 6 1000 6s-50 12-100 12S850 6 800 6s-50 12-100 12S650 6 600 6s-50 12-100 12S450 6 400 6s-50 12-100 12S250 6 200 6s-50 12-100 12S50 6 0 6z" fill="#23223A"></path></svg></div>
+</div>
+<div style="max-width: 1120px; margin: 0 auto; padding: 36px 16px 64px; display: flex; flex-direction: column; gap: 18px">
+<p role="note" style="margin: 0; background: #FFF1C2; border-radius: 999px; padding: 12px 20px; font-size: 15px; font-weight: 700">גרסת הדגמה: הנתונים נאספים בדפדפן של המכשיר הזה בלבד. כדי לרכז נתונים מכל המעונות צריך לחבר מסד נתונים משותף.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<sc-for list="{{admOrgs}}" as="o" hint-placeholder-count="4"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
+<span aria-hidden="true" style="width: 2px; height: 28px; background: #F0E3D3; margin: 0 6px"></span>
+<sc-for list="{{admRanges}}" as="o" hint-placeholder-count="3"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 16px 20px; box-shadow: 0 6px 16px rgba(35,34,58,0.06)">
+<span aria-hidden="true" class="morph" style="flex: none; width: 48px; height: 48px; background: #DDF0FB; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="4" fill="#FFFFFF"></rect><path d="M3 10h18M8 3v4M16 3v4"></path><circle cx="8" cy="14.5" r="1" fill="#FF6B57" stroke="none"></circle><circle cx="12" cy="14.5" r="1" fill="#FF6B57" stroke="none"></circle></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><label for="d-from" style="font-size: 14px; font-weight: 800">מתאריך</label><input id="d-from" type="date" onChange="{{onFrom}}" onInput="{{onFrom}}" style="min-height: 46px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 16px; font-size: 16px; font-family: inherit; color: #23223A; box-sizing: border-box"></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><label for="d-to" style="font-size: 14px; font-weight: 800">עד תאריך</label><input id="d-to" type="date" onChange="{{onTo}}" onInput="{{onTo}}" style="min-height: 46px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 16px; font-size: 16px; font-family: inherit; color: #23223A; box-sizing: border-box"></div>
+<button type="button" class="squish" onClick="{{clearDatesBtn}}" style="min-height: 46px; padding: 0 18px; border-radius: 999px; border: none; background: #F3E9DC; color: #23223A; font-size: 15px; font-weight: 800; cursor: pointer">ניקוי תאריכים</button>
+<span aria-live="polite" style="flex: 1 1 220px; align-self: center; font-size: 15px; font-weight: 700; color: #3A3950">{{rangeText}}</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
+<sc-for list="{{dash.kpis}}" as="k" hint-placeholder-count="8"><div class="pop" style="border-radius: 36px 36px 36px 12px; padding: 18px; display: flex; flex-direction: column; gap: 4px; background: {{k.bg}}"><span style="font-family: Rubik, Arial, sans-serif; font-size: 34px; font-weight: 800; line-height: 1">{{k.v}}</span><span style="font-size: 15px; font-weight: 700">{{k.label}}</span></div></sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px">
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">כניסות לפי מעון</h2>
+<sc-for list="{{dash.byOrg}}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 130px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 36px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for>
+<span style="font-size: 13px; color: #55546B">לא מושפע מסינון המעון.</span></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי שכבת גיל</h2>
+<sc-for list="{{dash.byAge}}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 130px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 36px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי מרחב פעילות</h2>
+<sc-for list="{{dash.bySpace}}" as="r" hint-placeholder-count="8"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 130px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 36px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי גודל קבוצה</h2>
+<sc-for list="{{dash.byN}}" as="r" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 130px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 36px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></section>
+</div>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">אחוז הצלחה לפי פעילות</h2>
+<span style="font-size: 14px; color: #55546B">לפי הסימון האחרון של כל משתמשת: עבד מעולה מול פחות עבד. ירוק 70% ומעלה, כתום 40% עד 69%, אדום מתחת ל-40%.</span>
+<sc-if value="{{dash.noRows}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; background: #FDF6EE; border-radius: 999px; padding: 12px 18px; font-size: 15px">עוד אין משובים על פעילויות.</p></sc-if>
+<sc-if value="{{dash.hasRows}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{dash.rows}}" as="r" hint-placeholder-count="5"><div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #FDF6EE; border-radius: 999px; padding: 10px 18px"><span style="flex: 999 1 260px; min-width: 0; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 140px; height: 14px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.bar}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 48px; text-align: left; font-family: Rubik, Arial, sans-serif; font-size: 17px; font-weight: 800">{{r.pct}}%</span><span style="flex: none; font-size: 13px; color: #3A3950">עבד {{r.g}} · לא עבד {{r.b}}</span></div></sc-for>
+</div>
+</sc-if>
+</section>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px">
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">באילו שעות מפיקים פעילויות</h2>
+<div style="height: 140px; display: flex; align-items: flex-end; gap: 4px"><sc-for list="{{dash.hours}}" as="h" hint-placeholder-count="14"><div style="flex: 1 1 0; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px"><div style="width: 100%; border-radius: 999px 999px 6px 6px; min-height: 4px; height: {{h.pct}}%; background: {{h.color}}"></div><span style="font-size: 11px; font-weight: 700">{{h.label}}</span></div></sc-for></div></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">באילו ימים בשבוע</h2>
+<div style="height: 140px; display: flex; align-items: flex-end; gap: 8px"><sc-for list="{{dash.days}}" as="h" hint-placeholder-count="7"><div style="flex: 1 1 0; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px"><div style="width: 100%; border-radius: 999px 999px 6px 6px; min-height: 4px; height: {{h.pct}}%; background: {{h.color}}"></div><span style="font-size: 13px; font-weight: 800">{{h.label}}</span></div></sc-for></div></section>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px">
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">פעילויות שנשמרו הכי הרבה</h2>
+<sc-if value="{{dash.noFav}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד אין שמירות.</p></sc-if>
+<sc-for list="{{dash.topFav}}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 1 1 auto; min-width: 0; font-size: 14px; font-weight: 700">{{r.label}}</span><span style="flex: none; background: #FFF1C2; border-radius: 999px; padding: 2px 10px; font-weight: 800">{{r.v}}</span></div></sc-for></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">מילים שסומנו הכי הרבה</h2>
+<sc-if value="{{dash.noWords}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד לא סומנו מילים.</p></sc-if>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{dash.topWords}}" as="r" hint-placeholder-count="5"><span style="background: #DDF0FB; border-radius: 999px; padding: 6px 14px; font-size: 15px; font-weight: 800">{{r.label}} · {{r.v}}</span></sc-for></div></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">מסכים שנפתחו</h2>
+<sc-if value="{{dash.noViews}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד אין מעברים בין מסכים.</p></sc-if>
+<sc-for list="{{dash.topViews}}" as="r" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 120px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 14px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 30px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></section>
+</div>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">פעילות אחרונה</h2>
+<sc-if value="{{dash.noFeed}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד אין פעילות.</p></sc-if>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px"><sc-for list="{{dash.feed}}" as="e" hint-placeholder-count="5"><li style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #FDF6EE; border-radius: 999px; padding: 8px 16px"><span style="flex: none; background: #FFFFFF; border-radius: 999px; padding: 2px 10px; font-size: 13px; font-weight: 800">{{e.who}}</span><span style="flex: 1 1 200px; font-size: 15px">{{e.text}}</span><span style="flex: none; font-size: 13px; color: #55546B">{{e.time}}</span></li></sc-for></ul></section>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2400}}'>
+var D = {
+a1: {
+change: [
+['שיחת תורות פנים מול פנים', 'תורות בשיח: התינוק לומד שקול שלו מקבל תשובה', ['התכופפי לגובה הפנים, במרחק של 20 עד 30 ס״מ.', 'השמיעי צליל או מילה, עצרי וחכי עד 10 שניות.', 'כל ציוץ, חיוך או תנועה הם תור: חקי אותם והוסיפי מילה אחת.'], ['אָה? את אומרת אָה! אָה, טיטול נקי.', 'חיכיתי לך. עכשיו תורך.'], 'בהחתלה העבודה היא אחד על אחד. שמרי על אותו דפוס תורות עם כל תינוק שמגיע.'],
+['מספרת מה אני עושה', 'חשיפה למילות פעולה בהקשר קבוע', ['תארי כל שלב במשפט קצר: מורידים, מנגבים, שמים, סוגרים.', 'השתמשי באותן מילים ובאותו סדר בכל החתלה.', 'האטי והדגישי את מילת הפעולה.'], ['עכשיו אני מורידה את המכנסיים.', 'מנגבים... ועוד מנגבים. נקי!'], 'כל המחנכות בצוות יכולות להסכים על אותן מילים קבועות, כך שהתינוק שומע אותן מכל מבוגר.'],
+['איפה הרגליים?', 'הבנת שמות של חלקי גוף', ['געי בעדינות בחלק גוף ושיימי אותו.', 'אצל תינוקות קרובים לשנה, שאלי ״איפה הבטן?״ וחכי למבט או להצבעה.', 'בחרי 2 עד 3 חלקי גוף קבועים לשבוע ואל תוסיפי יותר.'], ['הנה הבטן. בטן!', 'איפה הרגל? הנה הרגל!'], 'תינוקות שממתינים בסמוך יכולים לשמוע את השמות. פני גם אליהם במבט ובשם.'],
+['דקלום קבוע להחתלה', 'קשב לצלילים וצפייה לרצף מוכר', ['בחרי דקלום קצר אחד שמלווה תמיד את ההחתלה.', 'אמרי אותו לאט, עם הבעות פנים ומגע ברגליים בקצב.', 'אחרי כמה שבועות, עצרי לפני המילה האחרונה וחכי לתנועה או לצליל.'], ['רגל אחת, רגל שתיים, מנגבים ושוב נקיים.', 'אחת, שתיים... ו...הופ!'], 'אפשר לחזור על אותו דקלום בתחילת מפגש קבוצתי, כדי שהמילים יתחברו לשגרה גם מחוץ להחתלה.'],
+['שני חפצים לבחירה', 'תקשורת מכוונת: מבט, הושטת יד והצבעה', ['החזיקי שני חפצים מוכרים, אחד בכל צד.', 'שאלי ״מה תרצה?״ וחכי למבט או לתנועת יד.', 'שיימי את הבחירה ומסרי את החפץ.'], ['רעשן או ברווז? ...ברווז! הנה הברווז.', 'הסתכלת על הרעשן. רוצה רעשן.'], 'החזיקי ליד משטח ההחתלה סל קטן עם 4 עד 5 חפצים קבועים כדי שלכל תינוק תהיה בחירה.']
+],
+breakfast: [
+['שם לכל ביס', 'שיום מאכלים: שמיעת המילה מול החפץ', ['לפני כל ביס שיימי את המאכל במילה אחת.', 'הראי את האוכל בכף לפני שהוא מגיע לפה.', 'חזרי על השם 2 עד 3 פעמים לאורך הארוחה.'], ['בננה. רוצה בננה?', 'עוד בננה. בננה רכה.'], 'בשולחן משותף, שיימי את המאכל בקול לכל הקבוצה ואז פני לכל תינוק בשמו.'],
+['עוד?', 'בקשה ראשונה: מחווה, צליל ואחר כך מילה', ['הגישי כמות קטנה.', 'כשנגמר, שאלי ״עוד?״ עם מחווה קבועה (הצמדת קצות אצבעות).', 'חכי לתנועה, צליל או מבט, ואז אמרי ״עוד!״ והגישי.'], ['עוד? את רוצה עוד.', 'נגמר. אין עוד.'], 'אצל כמה תינוקות במקביל, עברי ביניהם לפי הסדר ותני לכל אחד הזדמנות לבקש ״עוד״.'],
+['טעם חדש, מילה חדשה', 'מילות תחושה: קר, רך, חמוץ, מתוק', ['הציעי טעם חדש או מוכר בשינוי קטן (פרי, יוגורט).', 'תארי את התגובה שאת רואה בפנים.', 'בחרי מילת תחושה אחת וחזרי עליה.'], ['אוי, עשית פרצוף. חמוץ!', 'היוגורט קר. בררר, קר.'], 'כשכולם טועמים יחד, תארי את התגובות של כמה תינוקות זה אחרי זה: ״גם לנועם חמוץ!״'],
+['בוקר טוב לכל אחד', 'זיהוי שם עצמי ופנייה אישית', ['בתחילת הארוחה פני לכל תינוק בשמו עם ברכה.', 'חכי למבט או לחיוך והגיבי עליהם.', 'הוסיפי מחווה קבועה, למשל נפנוף.'], ['בוקר טוב, נועה!', 'גם את מחייכת אליי.'], 'בקבוצה גדולה זה סבב של דקה. כדאי לעשות אותו באותו סדר כל יום.'],
+['סיימנו, מנגבים', 'מילות סיום ומילות גוף בשגרה', ['הכריזי על סיום במילה קבועה ובמחווה.', 'תארי את הניקוי: ידיים, פה, סינר.', 'הזמיני את התינוק להושיט יד וחכי.'], ['נגמר! מנגבים ידיים.', 'איפה היד? הנה היד.'], 'בזמן שתינוק אחד מנוגב, האחרים יכולים להחזיק מגבון יבש ולחקות.']
+],
+lunch: [
+['מה בכף?', 'מילות תיאור: צבע ומרקם', ['לפני ביס, תני לתינוק להסתכל על הכף.', 'אמרי את שם המאכל ומילת תיאור אחת.', 'הצביעי על מאכל דומה בצלחת של חבר.'], ['צהוב. תירס צהוב.', 'פירה רך. רך-רך.'], 'בקבוצה, בחרי מאכל אחד ליום ותארי אותו לכולם, כך שהמילה חוזרת הרבה פעמים.'],
+['דקלום לפני הארוחה', 'קשב, קצב ומעבר בין פעילויות', ['פתחי כל ארוחה באותו דקלום קצר עם תנועות ידיים.', 'דקלמי לאט ובקול שמח.', 'עצרי לפני מילה וחכי לתנועה או צליל.'], ['ידיים על השולחן, אוכל טעים מוכן.', 'מי רעב? ...אני!'], 'הדקלום מתאים במיוחד לקבוצה. הוא מסמן לכולם יחד שהארוחה מתחילה.'],
+['צלילים של אוכל', 'צלילים חוזרים כמילים ראשונות', ['צרפי צליל קבוע לכל פעולה: ״אָאָם״ לביס, ״מממ״ לטעים, ״גלוּג״ לשתייה.', 'הגזימי מעט בהבעת הפנים.', 'חכי שהתינוק יחקה, וחזרי על הצליל שלו.'], ['אָאָם! אכלת.', 'מממ, טעים.'], 'צלילים קלים לחיקוי ולכן מתאימים לכמה תינוקות יחד. תני לכל אחד לחקות בתורו.'],
+['מה עושה החבר?', 'קשב משותף לדבר שאחר עושה', ['הפני את מבט התינוק לחבר שאוכל או שותה.', 'תארי במשפט קצר מה החבר עושה.', 'החזירי את המבט אל התינוק עם אותה פעולה.'], ['תראה, יואב שותה מים.', 'גם אתה שותה. שותים!'], 'השולחן המשותף הוא היתרון כאן. ככל שיש יותר תינוקות, יש יותר פעולות לתאר.'],
+['כף, כוס, צלחת', 'שמות כלים ופעולות שלהם', ['הניחי ליד התינוק כף וכוס ושיימי כל אחת.', 'תני לו להחזיק ולחקור.', 'כשהוא משתמש בכלי, שיימי את הפעולה.'], ['זאת כף. כף שלך.', 'שמת את הכף בפה.'], 'וודאי שלכל תינוק כלי משלו, כדי שלא יצטרכו לחכות לתור כדי לחקור.']
+],
+art: [
+['נייר מרשרש', 'מילות צליל ופעולה', ['תני לתינוק דף נייר עבה או נייר משי גדול.', 'מעכי ורשרשי יחד, ותני שם לצליל.', 'עצרי, חכי שהתינוק ירשרש, וחקי אותו.'], ['רששש... הנייר מרשרש.', 'מעכת את הנייר. עוד פעם?'], 'קל להפעיל עם כמה תינוקות על שטיח, לכל אחד דף. תארי בקול את מה שכל אחד עושה.'],
+['צבע על הידיים', 'מילות תחושה וצבע', ['השתמשי בצבע בטוח לפה (למשל יוגורט עם צבע מאכל) על משטח או נייר גדול.', 'תארי את התחושה ואת הצבע.', 'שיימי את הפעולה: מורחים, טופחים.'], ['רטוב. היד ירוקה!', 'טופחים, טופחים, טוּף!'], 'בקבוצה של יותר משלושה, הפעילי שניים או שלושה בכל סבב והשאר בהשגחה צמודה.'],
+['שקית חושית', 'הצבעה ושיום חפצים', ['הכיני שקית סגורה היטב עם ג׳ל או שמן ובתוכה צורות גדולות.', 'הניחי על הרצפה בזמן שכיבה על הבטן או בישיבה.', 'כשהתינוק נוגע בצורה, שיימי אותה.'], ['הנה הכוכב. כוכב!', 'הזזת את העיגול.'], 'אפשר להכין 2 עד 3 שקיות ולהניח אותן במעגל, כך שכמה תינוקות חוקרים במקביל.'],
+['רך וקשה', 'זוגות הפכים במגע', ['הכיני לוח עם חומרים: צמר, ספוג, מברשת, קרטון.', 'העבירי את היד של התינוק בעדינות ושיימי.', 'חזרי על זוג הפכים אחד בכל פעם.'], ['הצמר רך. רך.', 'המברשת דוקרת. אאוץ׳, קשה.'], 'לוח גדול על הקיר מאפשר לכמה תינוקות לגעת יחד. תארי מה כל אחד מרגיש.'],
+['מכחול מים', 'מילות פעולה ושינוי: רטוב, נעלם', ['תני מכחול רחב וקערה עם מים, וצבעו על לוח או על בלטה.', 'תארי את הקו שנוצר.', 'חכו יחד שהמים יתייבשו ושיימי את השינוי.'], ['רטוב! עשית קו.', 'הקו נעלם. איפה הוא?'], 'מתאים לקבוצה בחוץ או ליד שולחן נמוך. לכל תינוק מכחול ושטח משלו.']
+],
+socio: [
+['קוקו! איפה?', 'מילת שאלה ראשונה ומשחק תורות', ['כסי את הפנים או צעצוע במטפחת.', 'שאלי ״איפה?״ בקול צפייה וחכי.', 'הורידי את המטפחת ואמרי ״הנה!״ בשמחה.'], ['איפה הדובי? ...הנה!', 'קוקו! מצאת אותי.'], 'משחק טוב לקבוצה קטנה על השטיח. כל פעם מסתתר ילד אחר מאחורי מטפחת.'],
+['בובה הולכת לישון', 'מילים של שגרה: לישון, שמיכה, שקט', ['הראי בובה ושמיכה קטנה.', 'כסי את הבובה ותארי בקול שקט.', 'תני לתינוק לכסות, ושיימי את מה שעשה.'], ['הבובה עייפה. שששש.', 'כיסית את הבובה. לילה טוב.'], 'לכמה תינוקות, הכיני כמה בובות ושמיכות, ותני לכל אחד להשכיב בובה משלו.'],
+['הלו? מי שם?', 'תורות שיחה וחיקוי מנגינת דיבור', ['קחי טלפון צעצוע ואמרי ״הלו״.', 'הגישי לתינוק וחכי לפטפוט.', 'עני לפטפוט כאילו זו שיחה אמיתית.'], ['הלו? מי מדבר? זאת אמא?', 'באמת? וואו! ביי ביי.'], 'שני טלפונים מאפשרים לשני תינוקות ״לדבר״ זה עם זה כשאת מתווכת.'],
+['מי במראה?', 'שם עצמי, חלקי פנים ורגשות', ['שבי עם התינוק מול מראה בטוחה.', 'הצביעי על הפנים שלו ושיימי.', 'עשי פרצוף שמח או מופתע ותני לו שם.'], ['מי זה? זאת את, מאיה!', 'הנה האף. אף של מאיה.'], 'מראה ארוכה בגובה הרצפה מאפשרת לכמה תינוקות יחד. שיימי כל אחד בשמו.'],
+['כובע על הראש', 'מילות מיקום ופעולה', ['הכיני כמה כובעים או סלסלות קלות.', 'שימי על הראש ואמרי לאן.', 'כשהכובע נופל, תני לזה מילה.'], ['על הראש!', 'אוֹפּס, נפל.'], 'סל כובעים במרכז מאפשר לכמה תינוקות לחקור. תארי מה קורה עם כל ראש.']
+],
+build: [
+['מגדל ובום', 'צפייה מילולית ומילת קריאה', ['בני מגדל של 3 קוביות רכות.', 'הוסיפי קובייה ואמרי ״עוד״ בכל פעם.', 'חכי שהתינוק יפיל, ואמרי ״בום!״.'], ['עוד אחת... ועוד אחת...', 'בום! נפל!'], 'מתאים מאוד לקבוצה קטנה. כל ילד מפיל בתורו, וכולם אומרים ״בום״ יחד.'],
+['פנימה והחוצה', 'מילות מיקום ראשונות', ['תני קופסה וכמה קוביות גדולות.', 'שיימי כל הכנסה וכל הוצאה.', 'נערי את הקופסה ושאלי מה יש בפנים.'], ['בפנים. הקובייה בפנים.', 'יצאה! הקובייה בחוץ.'], 'אפשר קופסה אחת גדולה במרכז וכל תינוק מכניס בתורו, או קופסה לכל אחד.'],
+['גדול וקטן', 'חשיפה להשוואות', ['הניחי קובייה גדולה וקובייה קטנה זו ליד זו.', 'שיימי את הגודל בקול שונה: נמוך לגדול, דק לקטן.', 'תני לתינוק להחזיק כל אחת.'], ['גדולה! הקובייה גדולה.', 'וזאת קטנטנה.'], 'בקבוצה, כל תינוק מקבל זוג כזה ואת מתארת את מה שכל אחד מחזיק.'],
+['המכונית נוסעת', 'צלילים ומילות פעולה', ['גלגלי מכונית קדימה ואחורה מול התינוק.', 'צרפי צליל ומילה לכל תנועה.', 'עצרי את המכונית וחכי שהתינוק ידחוף.'], ['בררררום! נוסעת.', 'עצרה. עוד פעם?'], 'שני תינוקות יכולים לגלגל את המכונית זה לזה, ואת משיימת ״אליך״ ו״אליי״.'],
+['טוק טוק', 'קצב, חיקוי ותורות', ['הקישי שתי קוביות זו בזו בקצב.', 'עצרי וחכי שהתינוק יקיש.', 'חזרי על הקצב שלו ושיימי את הצליל.'], ['טוק, טוק, טוק.', 'עשית טוק! עכשיו אני.'], 'משחק תורות טוב לכמה תינוקות במעגל: כל אחד מקיש ואחר כך כולם יחד.']
+],
+book: [
+['תמונה אחת, מילה אחת', 'שיום תמונות', ['בחרי ספר קרטון עם תמונה אחת גדולה בכל עמוד.', 'הצביעי על התמונה ואמרי את המילה.', 'חכי לתגובה לפני שאת מדפדפת.'], ['כלב. הנה הכלב.', 'ועכשיו... כדור!'], 'עם יותר משני תינוקות, החזיקי את הספר בגובה העיניים של כולם או חלקי ספרים זהים.'],
+['ספר מישוש', 'מילות תחושה מתוך הספר', ['בחרי ספר עם חומרים למישוש.', 'הניחי את היד של התינוק על החומר ושיימי.', 'חזרי על אותה מילה בכל קריאה.'], ['האוזן של הארנב רכה.', 'נגעת. רך-רך.'], 'בקבוצה, העבירי את הספר מיד ליד ותארי מה כל תינוק מרגיש.'],
+['אלבום פרצופים', 'שמות של ילדים ומבוגרים מוכרים', ['הכיני אלבום עם תמונות של הילדים, הצוות ובני משפחה (באישור ההורים).', 'הצביעי ושיימי.', 'שאלי ״איפה אמא?״ אצל תינוקות קרובים לשנה.'], ['מי זאת? זאת אמא של עידו.', 'הנה אתה!'], 'תינוקות אוהבים לראות את החברים בתמונות. זו הזדמנות לשיים את כל הקבוצה.'],
+['מה אומרת הפרה?', 'צלילי חיות כמילים ראשונות', ['בחרי ספר עם חיות מוכרות.', 'אמרי את שם החיה ואת הצליל שלה.', 'אחרי כמה קריאות, עצרי לפני הצליל וחכי.'], ['פרה. הפרה אומרת מוּ.', 'והחתול אומר...?'], 'צלילי חיות מתאימים לקבוצה: כולם יכולים לחקות יחד.'],
+['התינוק מדפדף', 'הובלה של הילד והתגובה של המבוגר', ['תני לתינוק להחזיק ולדפדף בספר קרטון.', 'עצרי בכל עמוד שהוא בוחר ושיימי את מה שמסתכל עליו.', 'קראי את אותו ספר כמה ימים ברציפות.'], ['עצרת בעמוד של הברווז. ברווז!', 'דפדפת. מה יש כאן?'], 'בקבוצה, סל ספרי קרטון בהישג יד מאפשר לכל תינוק לבחור, ואת עוברת ביניהם.']
+],
+yard: [
+['מה שומעים?', 'קשב לקולות ושיום המקור', ['עצרי כששומעים קול: ציפור, מטוס, כלב.', 'הצביעי לכיוון ושאלי ״מה זה?״.', 'שיימי את המקור והוסיפי את הצליל.'], ['שומעים? ציפור. ציף ציף.', 'מטוס! הוא עף למעלה.'], 'בחצר עם כמה תינוקות, אמרי ״שששש״ לכולם יחד ואז תני לקול שם.'],
+['עלה ביד', 'מילות תחושה וצליל', ['אספי עלים יבשים ותני לתינוק להחזיק.', 'מעכי יחד ושיימי את הצליל.', 'השווי לעלה ירוק ורך.'], ['העלה מרשרש. קְרַשׁ!', 'העלה הזה ירוק ורך.'], 'פזרי ערמת עלים על שמיכה וכמה תינוקות יחקרו יחד. השגיחי שלא יכניסו לפה.'],
+['נדנדה', 'צפייה למילה ומילות כיוון', ['דחפי בעדינות ואמרי מילה קבועה בכל דחיפה.', 'עצרי את הנדנדה וחכי לסימן (צליל, תנועה).', 'המשיכי ואמרי ״עוד״.'], ['קדימה... ואחורה.', 'עצרנו. עוד? הוּפּ!'], 'כשיש תור לנדנדה, כל מי שמחכה יכול להגיד ״הופ״ יחד איתך.'],
+['בועות', 'בקשה: מבט, צליל, ״עוד״', ['המבוגרת מנשפת בועות.', 'שיימי את הבועות ואת ההתפקעות.', 'עצרי וחכי לבקשה לפני שאת מנשפת שוב.'], ['בועה! פּוֹף, התפוצצה.', 'עוד בועות? עוד!'], 'פעילות קבוצתית מצוינת. אחרי כל עצירה, חכי לסימן מכמה תינוקות.'],
+['טיול מצביעים', 'קשב משותף לפי המבט של התינוק', ['טיילי עם התינוק בחצר בקצב איטי.', 'עקבי אחרי המבט או ההצבעה שלו.', 'שיימי את מה שהוא מסתכל עליו.'], ['הסתכלת על העץ. עץ גדול.', 'הצבעת! זה כדור אדום.'], 'בעגלה רבת מושבים אפשר לטייל עם כמה תינוקות ולשיים בכל פעם את מה שתינוק אחר מסתכל עליו.']
+]
+},
+a2: {
+change: [
+['מה עכשיו?', 'רצף פעולות ומילות זמן', ['תארי שלבים קבועים: קודם מורידים, אחר כך מנגבים.', 'אחרי כמה ימים, עצרי ושאלי ״ועכשיו?״.', 'קבלי הצבעה או מילה, והשלימי במשפט.'], ['קודם מורידים... ואחר כך?', 'כן, שמים טיטול נקי.'], 'בהחתלה העבודה היא אחד על אחד. הפעוטות שממתינים יכולים לשמוע את הרצף ולענות מרחוק.'],
+['פיל או דוב?', 'בחירה מילולית בין שתי אפשרויות', ['הציגי שתי אפשרויות ממשיות: שני טיטולים, שני צעצועים.', 'שאלי ״זה או זה?״ וחכי.', 'אם הפעוט מצביע, אמרי את המילה בשבילו והציעי לו לחזור.'], ['פיל או דוב?', 'אמרת דוב. הנה הדוב.'], 'בחירה קבועה בכל החתלה נותנת לכל פעוט רגע שבו הוא מוביל.'],
+['הוראה קטנה', 'הבנת הוראות של שלב אחד', ['בקשי בקשה פשוטה: תרים רגל, תני מגבון.', 'הדגימי בתנועה אם צריך.', 'שיימי את מה שהפעוט עשה.'], ['תרים רגל. יופי, הרמת!', 'תני לי את המגבון.'], 'הוראות קבועות חוזרות בכל החתלה. כך כל פעוט בקבוצה לומד אותן.'],
+['אצבע קטנה, רגל גדולה', 'חלקי גוף ומילת תיאור', ['שיימי חלק גוף ומילת תיאור.', 'שאלי ״איפה...?״ וחכי שהפעוט יראה.', 'כשהוא אומר מילה, הוסיפי לה מילה.'], ['הנה הבטן. בטן עגולה.', 'אמרת ״רגל״. רגל גדולה!'], 'אפשר לחזור על המשחק אחר כך בשיר תנועה עם כל הקבוצה.'],
+['ממילה אחת לשתיים', 'הרחבה של מילה בודדת לצירוף', ['הקשיבי למילה שהפעוט אומר.', 'חזרי עליה והוסיפי מילה אחת.', 'אל תבקשי ממנו לחזור, רק הדגימי.'], ['טיטול! כן, טיטול נקי.', 'קר? קר ברגליים.'], 'כדאי לתאם בצוות שכולן מרחיבות באותה דרך, בלי תיקון ובלי ״תגיד...״.']
+],
+breakfast: [
+['מחכים לבקשה', 'יוזמה: הפעוט מבקש במילה', ['הניחי את הכוס או הלחם בטווח הראייה אבל מחוץ להישג יד.', 'הסתכלי בציפייה וחכי עד 10 שניות.', 'כשיש מילה, הצבעה או צליל, אמרי את המילה והגישי.'], ['מים? את רוצה מים.', 'אמרת ״לחם״. הנה לחם.'], 'בשולחן של כמה פעוטות, עברי לפי הסדר. כל אחד מקבל רגע המתנה משלו.'],
+['מה על הלחם?', 'שמות מאכלים ומילות תיאור', ['תארי את מה שמורחים.', 'שאלי ״גבינה או חומוס?״ וחכי.', 'הרחיבי כל תשובה למשפט של שתי מילים.'], ['גבינה לבנה. רכה.', 'חומוס! לחם עם חומוס.'], 'בקבוצה, הציגי את שתי האפשרויות לכולם ותני לכל אחד לבחור בתורו.'],
+['מי אוכל מה?', 'שמות חברים ומשפטים של שתי מילים', ['הצביעי על חבר ותארי מה הוא אוכל.', 'שאלי את הפעוט ״ואתה?״.', 'הרחיבי את התשובה.'], ['דנה אוכלת מלפפון.', 'ואתה? אתה אוכל ביצה.'], 'הפעילות מתאימה לשולחן מלא: ככל שיש יותר ילדים, יש יותר מה לתאר.'],
+['חם וקר', 'מילות הפכים', ['הגישי מאכל חם ומאכל קר.', 'תני לגעת בצלחת ושיימי.', 'השתמשי בהבעה ובקול שמבדילים בין השניים.'], ['החביתה חמה. פוּ, נושפים.', 'היוגורט קר. בררר.'], 'כולם יכולים לנשוף ״פוּ״ יחד. זה הופך את המילה למשחק קבוצתי.'],
+['עוזרים להגיש', 'הבנת הוראה עם שם וחפץ', ['תני לפעוט כוס ובקשי ״תן לעומר״.', 'הצביעי אם צריך.', 'תארי את מה שעשה.'], ['תן כוס לעומר.', 'נתת! עומר אומר תודה.'], 'בכל ארוחה פעוט אחר עוזר. אפשר לסמן תור בתמונה על הקיר.']
+],
+lunch: [
+['נושפים על המרק', 'מילות פעולה וצליל', ['הגישי מרק חם ונשפי יחד.', 'שיימי את הפעולה ואת התחושה.', 'שאלי ״עדיין חם?״ וחכי.'], ['פוּוּוּ. נושפים.', 'עכשיו לא חם. אפשר לאכול.'], 'נשיפה יחד היא פעילות קבוצתית שקל להצטרף אליה.'],
+['אחת, שתיים, שלוש', 'מילות מספר בהקשר', ['ספרי בקול חתיכות בצלחת.', 'הצביעי על כל אחת.', 'אחרי כמה ימים, עצרי לפני ״שלוש״ וחכי.'], ['אחת, שתיים, שלוש קציצות.', 'אכלת אחת. נשארו שתיים.'], 'אפשר לספור יחד את הכוסות על השולחן או את הילדים.'],
+['צבעים בצלחת', 'חשיפה למילות צבע', ['בחרי צבע אחד ליום.', 'הצביעי על המאכל ושיימי אותו עם הצבע.', 'חפשו את הצבע גם בבגדים.'], ['גזר כתום.', 'גם החולצה שלך כתומה!'], 'בקבוצה, בקשי מכל פעוט להראות משהו בצבע של היום.'],
+['מה טעים לך?', 'בחירה ושאלה פשוטה', ['שאלי שאלת בחירה: ״אורז או עוף?״.', 'חכי לתשובה.', 'הרחיבי במשפט.'], ['אורז או עוף?', 'אהבת אורז. אורז טעים.'], 'עברי בסבב קצר על השולחן. גם הצבעה היא תשובה.'],
+['חתיכה גדולה, חתיכה קטנה', 'מילות השוואה', ['חתכי לשתי חתיכות בגודל שונה.', 'שיימי את הגודל.', 'שאלי ״איזו?״ וחכי.'], ['חתיכה גדולה, חתיכה קטנה.', 'בחרת קטנה.'], 'כדאי להכין זוגות חתיכות לכל ילד מראש כדי לקצר המתנה.']
+],
+art: [
+['מה אתה עושה?', 'דיבור מקביל בזמן קשקוש', ['שבי ליד הפעוט שמקשקש.', 'תארי בקול את מה שהוא עושה, בלי לשאול.', 'הוסיפי מילות צורה וכיוון.'], ['אתה עושה קו ארוך.', 'עיגול! מסובב ומסובב.'], 'בשולחן של כמה ילדים, עברי בין הדפים ותארי כל אחד במשפט.'],
+['קורעים ומדביקים', 'מילות פעולה', ['תני נייר צבעוני לקריעה.', 'שיימי כל פעולה בזמן שהיא קורית.', 'הדביקו את הקרעים על דף מודבק.'], ['קורעים... קְרְרְרַע!', 'הדבקת את האדום.'], 'פעילות שמתאימה גם לקבוצה. הצליל של הקריעה מושך את כולם.'],
+['בצק: מועכים ומגלגלים', 'מילות פעולה ותחושה', ['תני בצק רך ובטוח.', 'הדגימי פעולה ושיימי אותה.', 'הוסיפו עלים או קליפות ותארו מה נוצר.'], ['מועכים... שטוח!', 'גלגלת נחש ארוך.'], 'לכל ילד כדור בצק משלו. תארי לסירוגין מה כל אחד עושה.'],
+['מה קרה לצבע?', 'שינוי ומילות צבע', ['תני שני צבעים בלבד.', 'ערבבו יחד ותארי.', 'שאלי ״מה קרה?״ וחכי.'], ['צהוב ועוד כחול...', 'ירוק! הצבע השתנה.'], 'בקבוצה, אפשר שכל זוג ילדים יערבב בקערה משותפת.'],
+['קופסת חומרים', 'שמות חומרים ותיאור', ['הכיני קופסה עם נוצה, אבן גדולה, ספוג, פקק גדול.', 'הפעוט שולף ואת משיימת ומתארת.', 'שאלי ״רך או קשה?״.'], ['נוצה. הנוצה רכה.', 'אבן כבדה!'], 'כל ילד שולף בתורו. וודאי שאין חפצים קטנים שאפשר לבלוע.']
+],
+socio: [
+['מכינים אוכל לבובה', 'שמות ופעולות במשחק דמיון', ['הכיני סיר, כף, צלחת ובובה.', 'הצטרפי למשחק ותארי מה הפעוט עושה.', 'הדגימי משפט של שתי מילים.'], ['מערבבים במרק.', 'הבובה אוכלת. ממממ.'], 'בקבוצה, תני לכל ילד תפקיד: מבשל, מגיש, אוכל.'],
+['רופא לדובי', 'חלקי גוף ומילות רגש', ['הכיני מכשיר רופא צעצוע ודובי.', 'שאלי ״מה כואב לדובי?״.', 'שיימי את חלק הגוף ואת הרגש.'], ['לדובי כואב באוזן.', 'עכשיו הוא מרגיש טוב.'], 'בקבוצה, כל ילד ״מטפל״ בתורו ואחרים מחזיקים את הבובה.'],
+['קניות בסל', 'שמות מוצרים ומילות שייכות', ['הכיני סל וקופסאות מזון ריקות.', 'שיימי כל מוצר שנכנס לסל.', 'השתמשי ב״שלי״ ו״שלך״.'], ['לקחת חלב.', 'זה שלך, וזה שלי.'], 'מתאים לקבוצה: מוכר אחד וכמה קונים.'],
+['שיחה לאמא', 'ברכות ומבנה שיחה', ['קחי טלפון ואמרי ״הלו, שלום״.', 'הגישי לפעוט ושאלי ״מה אמרה אמא?״.', 'סיימי עם ״ביי״.'], ['הלו? שלום אמא!', 'מה אמרה? ביי ביי.'], 'שני טלפונים, שני ילדים, ואת מתווכת בין השיחות.'],
+['הדובי עצוב', 'מילות רגש', ['הציגי בובה עם הבעה (בקול ובתנועה).', 'שיימי את הרגש.', 'שאלי ״מה נעשה?״ וחכי לרעיון.'], ['הדובי עצוב. הוא בוכה.', 'חיבקת אותו. עכשיו שמח.'], 'הצגה קצרה של בובה מתאימה גם לקבוצה של 5 עד 6 ילדים.']
+],
+build: [
+['למעלה, למעלה', 'מילות כיוון', ['בנו מגדל יחד.', 'שיימי כל קובייה שעולה.', 'כשהמגדל נופל, תארי.'], ['עוד אחת למעלה.', 'נפל! למטה.'], 'בקבוצה, כל ילד מוסיף קובייה בתורו לאותו מגדל.'],
+['רכבת קוביות', 'אורך, רצף וצלילים', ['חברו קוביות לשורה.', 'הוסיפי ״עוד קרון״ בכל פעם.', 'גררו ותנו צליל.'], ['קרון ועוד קרון.', 'צ׳וּ צ׳וּ, רכבת ארוכה.'], 'רכבת אחת ארוכה לכל הקבוצה. כל ילד מוסיף קרון.'],
+['בית לחיה', 'מילות מיקום', ['בנו גדר לחיה צעצוע.', 'שאלי ״איפה הפרה?״.', 'שיימי את המיקום.'], ['הפרה בפנים.', 'הסוס יצא החוצה!'], 'לכל ילד חיה משלו ובית משותף. תארי איפה כל חיה.'],
+['גדול וקטן', 'מיון ומילות השוואה', ['הכיני קוביות בשני גדלים ושתי קופסאות.', 'שיימי את הגודל לפני שממיינים.', 'שאלי ״לאיזו קופסה?״.'], ['הקובייה הזאת גדולה.', 'שמת אותה בקופסה של הקטנות.'], 'מיון יחד מתאים לקבוצה. כל ילד ממיין קובייה ומקבל תיאור.'],
+['מה בנית?', 'שאלה פתוחה והרחבה', ['שאלי את הפעוט מה בנה.', 'קבלי כל תשובה, גם מילה אחת.', 'הרחיבי במשפט.'], ['מה בנית?', 'בית! בנית בית גבוה.'], 'בסוף הפעילות, סבב קצר: כל ילד מראה ואת מתארת.']
+],
+book: [
+['איפה ה...?', 'הבנה ושיום של תמונות', ['שאלי ״איפה הכלב?״ וחכי להצבעה.', 'אחרי הצבעה, שאלי ״מה זה?״.', 'הרחיבי כל מילה.'], ['איפה הכלב? הנה!', 'אמרת ״כלב״. כלב גדול.'], 'בקבוצה, שאלי כל פעם ילד אחר בשמו.'],
+['מה הוא עושה?', 'מילות פעולה', ['הצביעי על דמות ותארי את הפעולה.', 'הדגימי את הפעולה בגוף.', 'שאלי ״מה עושה?״.'], ['הילד קופץ. הופ!', 'הדובי ישן.'], 'כולם יכולים לחקות את הפעולה יחד. זה שומר על קשב.'],
+['מה המילה?', 'השלמת מילה מוכרת', ['קראי ספר שהילדים מכירים.', 'עצרי לפני מילה חוזרת.', 'חכי, ואם אין תשובה, אמרי אותה בעצמך.'], ['והכלב אמר... ?', 'הַב! נכון!'], 'בקבוצה, ההשלמה יכולה להיות משותפת. זה מגביר השתתפות.'],
+['מהספר לחפץ', 'חיבור בין תמונה לחפץ אמיתי', ['קראי ספר עם חפץ מוכר (כוס, כובע, כף).', 'הביאי את החפץ האמיתי.', 'השוו ושיימו חלקים.'], ['הנה הכובע בספר.', 'והנה כובע אמיתי. שמים על הראש.'], 'העבירו את החפץ מיד ליד ותני לכל אחד לשיים.'],
+['ספר של המעון', 'אוצר מילים של שגרה', ['הכיני ספר תמונות של המעון: כיור, מיטה, חצר.', 'הצביעי ושיימי.', 'שאלי ״מה עושים כאן?״.'], ['הנה הכיור. רוחצים ידיים.', 'זאת המיטה שלך.'], 'ספר מוכר מתאים לקבוצה, כולם מזהים את המקומות.']
+],
+yard: [
+['ציד אוצרות', 'שיום ותיאור', ['בחרי דבר אחד לחפש: עלה, אבן.', 'כשמוצאים, שיימי ותארי.', 'שאלי ״עוד אחד?״.'], ['מצאת עלה. עלה צהוב.', 'עוד אבן? הנה!'], 'כל ילד מחפש ואת מתארת את מה שכל אחד מצא.'],
+['משקים את הגינה', 'מילות פעולה וכלים', ['תני משפך קטן.', 'שיימי את הפעולות: ממלאים, שופכים.', 'תארי את התוצאה.'], ['ממלאים מים.', 'שפכת. האדמה רטובה.'], 'בקבוצה, כל ילד משקה בתורו או שיש כמה משפכים.'],
+['איפה הכדור?', 'מילות מיקום', ['גלגלי כדור מהמגלשה.', 'שיימי את המיקום.', 'שאלי ״איפה הכדור?״.'], ['הכדור למעלה.', 'גלגל... למטה!'], 'כל ילד מגלגל בתורו וכולם אומרים ״למטה!״.'],
+['קולות בחצר', 'קשב וחיקוי', ['עצרו להקשיב.', 'שיימי את הקול.', 'חקו יחד.'], ['שומעים? ציפור.', 'האוטו עושה בִּיפּ.'], 'פעילות שמתאימה לכל הקבוצה: עוצרים יחד ומקשיבים.'],
+['רצים ועוצרים', 'הבנת הוראות פעולה', ['אמרי פעולה והדגימי.', 'אמרי ״עוצרים!״.', 'החליפי פעולות: הולכים, קופצים.'], ['רצים... ועוצרים!', 'עכשיו קופצים.'], 'משחק קבוצתי מעולה. כולם שומעים את ההוראה ומגיבים.']
+]
+},
+a3: {
+change: [
+['מה עשית בחצר?', 'דיבור על מה שלא נמצא כאן ועכשיו', ['שאלי על משהו שקרה לפני ההחתלה.', 'חכי וקבלי כל תשובה.', 'הרחיבי את התשובה למשפט בזמן עבר.'], ['מה עשית בחצר?', 'גלשת! גלשת מהר במגלשה.'], 'בהחתלה העבודה היא אחד על אחד, וזה זמן טוב לשיחה אישית שלא מתאפשרת בקבוצה.'],
+['ספר לי מה אתה עושה', 'תיאור עצמי של פעולות', ['תני לפעוט לבצע חלק מהשלבים לבד.', 'בקשי ממנו לספר מה הוא עושה.', 'הרחיבי.'], ['ספר לי, מה אתה עושה?', 'אתה מוריד את המכנסיים לבד.'], 'שגרה קבועה מאפשרת לכל ילד לספר את אותו רצף. זה מחזק עצמאות.'],
+['איפה שמנו?', 'שאלות איפה ומילות מיקום', ['שאלי ״איפה המגבונים?״.', 'חכי לתשובה מילולית.', 'הוסיפי מיקום מדויק.'], ['איפה המגבונים?', 'כן, במגירה למעלה.'], 'גם בבית שימוש אפשר לשאול כל ילד שאלה אחת קבועה.'],
+['מה אתה מרגיש?', 'מילות רגש ותחושה', ['שאלי על תחושה: קר, נעים, דוחק.', 'הציעי שתי מילים לבחירה.', 'אשרי את הבחירה.'], ['קר לך או נעים?', 'נעים לך. טוב.'], 'מילות רגש שחוזרות באותה שגרה עוזרות לילד להשתמש בהן גם עם חברים.'],
+['שיר עם השם שלי', 'מודעות לחרוז ולשם', ['דקלמי חרוז קצר עם שם הילד.', 'החליפי את חלק הגוף בכל בית.', 'עצרי לפני החרוז וחכי.'], ['נועה נועה, רגל על הרצפה, יד על הקופסה.', 'דני דני, שם יד... על ה...?'], 'אפשר לדקלם את אותו חרוז אחר כך במעגל ולהחליף שם של כל ילד.']
+],
+breakfast: [
+['שיחת בוקר', 'סיפור על אירוע מהבית', ['שאלי שאלה פתוחה על אתמול או על הבוקר.', 'חכי וקבלי כל תשובה.', 'שאלי שאלה נוספת על מה שאמר.'], ['מה עשית אתמול אחרי המעון?', 'הלכת לסבתא? מה עשיתם שם?'], 'בקבוצה, בחרי 2 עד 3 ילדים לשיחה בכל בוקר, כדי שלכל אחד יהיה זמן אמיתי.'],
+['סוחטים מיץ', 'רצף פעולות ומילות תיאור', ['הביאי תפוזים ומסחטה ידנית.', 'תארו יחד כל שלב: חותכים, סוחטים, מוזגים.', 'שאלי ״מה עשינו קודם?״.'], ['סוחטים חזק. המיץ נוזל!', 'מה עשינו קודם? חתכנו.'], 'כל ילד סוחט חצי תפוז בתורו, וכולם מתארים יחד את השלבים.'],
+['מה חסר?', 'פתרון בעיה במילים', ['הגישי בלי כף או בלי כוס.', 'חכי שהילד ישים לב.', 'עודדי אותו לבקש במשפט.'], ['אוי, מה חסר לך?', 'חסרה כף. בבקשה, הנה כף.'], 'אצל כמה ילדים, ״שכחי״ פריט שונה אצל כל אחד.'],
+['פירות או ירקות?', 'קטגוריות', ['הניחי על מגש פירות וירקות.', 'שאלי ״זה פרי או ירק?״.', 'מיינו יחד לשתי קערות.'], ['המלפפון הוא ירק.', 'ובננה? פרי!'], 'המיון מתאים לקבוצה. כל ילד ממיין פריט אחד ומסביר.'],
+['אפשר בבקשה', 'משפט בקשה שלם', ['כשהילד מבקש במילה, הדגימי משפט מלא.', 'אל תתני את המשפט כתנאי, רק הדגימי.', 'הגישי מיד.'], ['מים! ״אפשר מים, בבקשה?״ הנה.', 'רוצה עוד לחם. בבקשה.'], 'בקבוצה, הדגימי את המשפט שוב ושוב לכל ילד. הילדים לומדים גם זה מזה.']
+],
+lunch: [
+['מה יש במרק?', 'שמות רכיבים ומילות תיאור', ['שאלי מה רואים במרק.', 'הרחיבי כל תשובה עם תיאור.', 'השוו בין שני ירקות.'], ['מה יש במרק?', 'גזר. גזר כתום ורך.'], 'סבב בשולחן: כל ילד מוצא רכיב אחר.'],
+['תורנים', 'הוראות לחברים', ['תני לילד תפקיד: מחלק כפות, מחלק מפיות.', 'עודדי אותו לפנות לחבר בשם.', 'תארי את מה שעשה.'], ['דני, הנה כף.', 'חילקת לכולם. תודה!'], 'כל יום שני תורנים. כדאי לתלות לוח תורות עם תמונות.'],
+['מה אוכלים בבית?', 'שיחה על הבית והמשפחה', ['שאלי שאלה פתוחה על אוכל בבית.', 'קשרי לתשובות של חברים.', 'הרחיבי.'], ['מה אוכלים אצלכם בשבת?', 'גם אצל רוני אוכלים עוף!'], 'בקבוצה גדולה, שאלי את השאלה בשולחן אחד והמשיכי בשולחן אחר למחרת.'],
+['מתוק, מלוח, חמוץ', 'מילות טעם והשוואה', ['הציעי שני טעמים שונים.', 'שאלי ״איך זה?״.', 'השוו.'], ['המלפפון החמוץ חמוץ!', 'הענב מתוק. מה עוד מתוק?'], 'כל ילד טועם ומתאר, ואת אוספת את המילים של כולם.'],
+['קודם ואחר כך', 'רצף ומילות זמן', ['תארי את שלבי הארוחה.', 'שאלי ״מה אחר כך?״.', 'אשרי ותקני בעדינות בהדגמה.'], ['קודם רוחצים ידיים.', 'ואחר כך? אוכלים!'], 'סדר קבוע לכל הקבוצה. כולם יכולים לענות יחד.']
+],
+art: [
+['ספר לי על הציור', 'תיאור ויצירת קשר בין מילה מדוברת לכתובה', ['שאלי ״ספר לי על הציור״.', 'כתבי את המילים של הילד על הדף.', 'קראי לו בחזרה.'], ['ספר לי על הציור שלך.', 'כתבתי: ״זה אבא בים״.'], 'בקבוצה, הכתיבה לוקחת זמן. עברי בין 2 עד 3 ילדים בכל פעם.'],
+['מתבוננים ביצירה', 'שמות של חלקים ומילות מיקום', ['הציגי תמונה של יצירת אמנות עם עץ או נוף.', 'שיימו חלקים: גזע, ענף, פרח.', 'שאלי ״מה באמצע? מה בצד?״.'], ['מה יש באמצע?', 'העץ באמצע, והשמש בצד.'], 'תמונה גדולה מתאימה לכל הקבוצה. כל ילד מראה חלק.'],
+['הוראות בשני שלבים', 'הבנת הוראה מורכבת', ['תני הוראה: ״קח מכחול ותטבול בכחול״.', 'אם צריך, פרקי לשלבים.', 'תארי את מה שעשה.'], ['קח מכחול ותטבול בכחול.', 'לקחת וטבלת. מצוין.'], 'בקבוצה, תני הוראה לכולם ואז בדקי עם כל אחד.'],
+['קולאז׳ טבע', 'מילות תיאור', ['אספו עלים, ענפים וקליפות.', 'שאלי איך כל חומר מרגיש.', 'הדביקו ותארו יחד.'], ['הקליפה מחוספסת.', 'העלה הזה חלק.'], 'כל ילד מביא פריט אחד ומתאר אותו, ואת משלבת בקולאז׳ קבוצתי.'],
+['מה דומה, מה שונה', 'השוואה ותיאור', ['הניחי שתי יצירות זו ליד זו.', 'שאלי ״מה דומה?״.', 'שאלי ״מה שונה?״.'], ['בשתיהן יש אדום.', 'אצל מאיה יש עיגולים, ואצלך קווים.'], 'מתאים לסיכום בקבוצה קטנה.']
+],
+socio: [
+['ממחיזים ספר', 'שחזור עלילה ותפקידים', ['קראי ספר מוכר.', 'חלקי תפקידים עם בובות.', 'עזרי בשאלות ״ומה קרה אז?״.'], ['ומה עשה הדב?', 'עכשיו אתה הדב.'], 'בקבוצה גדולה, חלקי תפקידים לחלק מהילדים והשאר ״קהל״ שעונה על שאלות.'],
+['מסעדה', 'דיאלוג בתפקידים', ['הכיני תפריט עם תמונות.', 'מלצר וסועד.', 'הדגימי שאלות ותשובות.'], ['מה תרצה להזמין?', 'אני רוצה פיצה, בבקשה.'], 'מסעדה מתאימה ל-3 עד 5 ילדים: מלצר, טבח ושניים-שלושה סועדים.'],
+['תחפושות ודמויות', 'משחק תפקידים ומילות תפקיד', ['הכיני תחפושות של דמויות מספר או ממקצועות.', 'שאלי ״מי אתה?״.', 'תארי את מה שהדמות עושה.'], ['מי אתה היום?', 'אתה כבאי. מה כבאי עושה?'], 'בקבוצה, כל ילד בוחר דמות ומציג אותה בשתי מילים.'],
+['הדובי בבעיה', 'פתרון בעיות במילים', ['הציגי בעיה: הדובי נפל, הבובה רעבה.', 'שאלי ״מה נעשה?״.', 'הרחיבי כל הצעה.'], ['הדובי נפל. מה נעשה?', 'לשים פלסטר. רעיון טוב!'], 'בקבוצה, אספי כמה הצעות ובחרו יחד.'],
+['מרפאה', 'אוצר מילים מקצועי', ['הכיני מדחום, תחבושת, כרטיס.', 'הדגימי מילים: תור, מדחום, תרופה.', 'החליפו תפקידים.'], ['יש לך תור לרופאה?', 'נמדוד חום במדחום.'], 'מתאים ל-3 עד 4 ילדים: רופאה, מזכירה ומטופלים.']
+],
+build: [
+['מתכננים', 'תכנון במילים', ['שאלי לפני הבנייה ״מה תבנה?״.', 'שאלי ״איך?״.', 'השווי בסוף לתוכנית.'], ['מה תבנה היום?', 'אמרת גשר. בנית גשר ארוך.'], 'בקבוצה, כל ילד אומר מה יבנה לפני שמתחילים.'],
+['גשר וכביש', 'מילות מיקום מורכבות', ['בנו גשר עם קוביות.', 'העבירו מכוניות.', 'שיימי: מעל, מתחת, ליד.'], ['המכונית נוסעת מתחת לגשר.', 'הרכבת מעל.'], 'בנייה משותפת לקבוצה, כל ילד מעביר כלי רכב.'],
+['תאר לחבר', 'תיאור מדויק לשומע', ['בקשי מהילד לתאר לחבר מה בנה.', 'עזרי בשאלות: ״איזה צבע? כמה קומות?״.', 'הרחיבי.'], ['ספר לרוני מה בנית.', 'בנית מגדל אדום עם שלוש קומות.'], 'בזוגות. כל ילד מתאר והחבר מקשיב.'],
+['בונים עיר', 'שמות מקומות ושלטים', ['בנו יחד שכונה.', 'הכינו שלטים: גן, חנות, בית.', 'ספרו סיפור על העיר.'], ['איפה הגן בעיר שלנו?', 'החנות ליד הבית.'], 'פרויקט ארוך לקבוצה. כל ילד אחראי על בניין.'],
+['למה נפל?', 'שאלות למה ואיך', ['כשמגדל נופל, שאלי ״למה?״.', 'קבלי השערות.', 'נסו שוב.'], ['למה המגדל נפל?', 'כי היה עקום? ננסה ישר.'], 'בקבוצה, אספי את ההשערות של כמה ילדים.']
+],
+book: [
+['קריאה דיאלוגית', 'שיח פעיל סביב ספר', ['שאלי שאלה על תמונה.', 'שבחי והרחיבי את התשובה.', 'חזרי על השאלה כדי שהילד יחזור על המילה החדשה.'], ['מה זה? ...נכון, מטריה.', 'מטריה פתוחה. מה עושים עם מטריה?'], 'בקבוצה קטנה של 3 עד 4. בקבוצה גדולה הילדים מחכים יותר מדי לתור.'],
+['חרוזים ועצירה', 'מודעות לחרוז', ['קראי ספר בחרוזים.', 'עצרי לפני מילת החרוז.', 'חכי לתשובה.'], ['הדג שוחה בים, והחתול... ?', 'ישן! נכון!'], 'הקבוצה כולה יכולה להשלים יחד.'],
+['מה יקרה עכשיו?', 'ניבוי ודמיון', ['לפני שמדפדפים, שאלי ״מה יקרה?״.', 'קבלי כל רעיון.', 'דפדפי ובדקו.'], ['מה יקרה עכשיו?', 'חשבת שהוא יברח? בואו נראה.'], 'אספי כמה ניחושים מילדים שונים.'],
+['מספרים מחדש', 'שחזור סיפור', ['אחרי כמה קריאות, תני לילדים לספר.', 'השתמשי בתמונות מהספר.', 'שאלי ״ואז?״.'], ['מה קרה בהתחלה?', 'ואז? ואז הוא מצא את אמא.'], 'כל ילד מספר חלק, כמו שרשרת.'],
+['גם לי יש', 'קשר בין הספר לחיים', ['שאלי שאלה שמחברת לחוויה אישית.', 'הקשיבי.', 'חזרי לספר.'], ['גם לך יש כלב?', 'גם את הלכת לים?'], 'בקבוצה, שאלי 2 עד 3 ילדים כדי לא לאבד את הקשב.']
+],
+yard: [
+['חוקרים נמלים', 'תיאור במשפטים מלאים', ['מצאו שביל נמלים.', 'תארי במשפט מה רואים.', 'שאלי ״לאן הן הולכות?״.'], ['הנמלה סוחבת פירור.', 'לאן היא הולכת? לקן.'], 'קבוצה של 3 עד 5 ילדים מסביב לשביל אחד.'],
+['שותלים', 'כלי עבודה ופעולות', ['שיימי כלים: מגרפה, משפך, את.', 'תארי כל פעולה.', 'שאלי מה עשינו קודם.'], ['חופרים עם את.', 'עכשיו משקים.'], 'כל ילד אחראי על שלב.'],
+['העץ שלנו', 'שינויים לאורך זמן', ['בחרו עץ בחצר.', 'בקרו בו כל שבוע.', 'תארו מה השתנה.'], ['מה השתנה בעץ?', 'נפלו עלים. הוא בלי עלים.'], 'מתאים לכל הקבוצה. אפשר לצלם ולהכין ספר.'],
+['החצר אומרת', 'הבנת הוראות של שני שלבים', ['תני הוראה כפולה.', 'הדגימי.', 'התחלפו בתפקידים.'], ['גע בעץ וחזור אליי.', 'קפוץ פעמיים ושב.'], 'משחק קבוצתי, אבל עם הוראות קצרות.'],
+['אוספים וממיינים', 'קטגוריות ותיאור', ['אספו אבנים, עלים, מקלות.', 'מיינו לפי צבע או גודל.', 'שאלי איך מיינו.'], ['שמנו את הגדולים כאן.', 'למה האבן הזאת כאן?'], 'כל ילד מביא שלושה פריטים ומסביר.']
+]
+}
+};
+
+var D2 = {};
+D2.a1 = {
+change: [
+['שם בשיר', 'זיהוי השם העצמי', ['שירי את שם התינוק במנגינה קבועה.', 'הוסיפי בכל פעם מילה על מה שקורה.', 'חכי לחיוך או לצליל וחזרי על השם.'], ['עידו, עידו, עידו פה.', 'עידו נקי, עידו שמח.'], 'כל תינוק מקבל את השיר שלו בתורו, באותה מנגינה.'],
+['פרצופים מצחיקים', 'חיקוי תנועות פה, בסיס להגיית צלילים', ['עשי תנועת פה ברורה: ״או״, ״אה״, לשון בחוץ.', 'חכי שהתינוק יחקה.', 'חקי את מה שהוא עשה והוסיפי צליל.'], ['אוֹוֹוֹ. עשית או!', 'אַה! פה גדול.'], 'אחד על אחד. התינוקות שמחכים יכולים לראות ולנסות גם הם.'],
+['מה מעלינו?', 'שיום תמונות מוכרות', ['תלי מעל משטח ההחתלה 3 תמונות גדולות.', 'הצביעי ושיימי.', 'החליפי תמונה אחת בכל שבוע.'], ['תראה, ברווז למעלה.', 'איפה החתול? הנה.'], 'אותן תמונות משמשות את כל התינוקות. השבוע כולם שומעים את אותן מילים.'],
+['חולצה וגרב', 'שמות בגדים', ['בזמן הלבשה, שיימי כל פריט.', 'הראי את הפריט לפני שאת מלבישה.', 'שאלי ״איפה הגרב?״ אצל הגדולים בשכבה.'], ['זאת גרב. גרב על הרגל.', 'חולצה... ראש בחוץ!'], 'מתאים לכל החלפת בגדים, גם אחרי ארוחה.'],
+['הנה באה היד', 'צפייה למילה ולפעולה', ['הזיזי את היד לאט לעבר הבטן.', 'אמרי ״הנה באה...״ ועצרי רגע.', 'דגדגי בעדינות ואמרי ״היד!״.'], ['הנה באה... היד!', 'עוד פעם? הנה באה...'], 'משחק קצר שאפשר לחזור עליו עם כל תינוק בסוף ההחתלה.'],
+['קול שקט, קול רם', 'קשב למנגינת דיבור', ['אמרי מילה בלחישה ואז בקול רגיל.', 'שימי לב לתגובה.', 'חזרי על המילה שהתינוק הגיב אליה.'], ['שששש, בלחישה: טיטול.', 'ועכשיו בקול: טיטול!'], 'לחישה מושכת קשב גם אצל תינוקות סמוכים.'],
+['מילה לרגש', 'שיום רגשות', ['כשהתינוק מתלונן, תני לרגש שם.', 'תארי גם את הסיבה.', 'הרגיעי במילים קבועות.'], ['קשה לך. את רוצה לקום.', 'עוד רגע. כמעט סיימנו.'], 'אותן מילות הרגעה לכל התינוקות, מכל אנשי הצוות.'],
+['מים בכיור', 'מילות צליל ותחושה', ['רחצי ידיים לתינוק אחרי ההחתלה.', 'שיימי את המים ואת התחושה.', 'עצרי את הזרם ושאלי ״עוד?״.'], ['מים. פְּשְׁשְׁ.', 'רטוב. עוד מים?'], 'רחיצה היא רגע אישי. אפשר להוסיף אותו לכל החתלה.']
+],
+breakfast: [
+['מצביעים על הכוס', 'הצבעה כתקשורת', ['הניחי כוס בטווח ראייה.', 'הצביעי עליה ואמרי את שמה.', 'כשהתינוק מצביע, הגיבי מיד במילה.'], ['כוס. שם, הכוס.', 'הצבעת! רוצה כוס.'], 'בשולחן משותף, הגיבי לכל הצבעה של כל תינוק.'],
+['פתוח וסגור', 'מילות הפכים', ['פתחי וסגרי קופסת אוכל.', 'שיימי כל פעולה.', 'תני לתינוק לנסות.'], ['פתוח! יש בפנים לחם.', 'סגור. אין.'], 'לכל תינוק קופסה קטנה משלו, בהשגחה.'],
+['בַּ-בַּ-בַּנָנָה', 'חיקוי הברות', ['חזרי על הברה מתוך שם המאכל.', 'חכי לפטפוט.', 'עני להברה של התינוק והשלימי את המילה.'], ['בַּ-בַּ... בננה!', 'אמרת בַּה. בננה.'], 'הברות חוזרות קל לחקות. אפשר עם כמה תינוקות יחד.'],
+['נפל!', 'מילת קריאה ושאלת איפה', ['כשכף או חתיכה נופלת, אמרי ״נפל!״.', 'שאלי ״איפה?״ והסתכלו יחד.', 'הרימי ושיימי.'], ['אוי, נפל!', 'איפה הכף? הנה, למטה.'], 'זה קורה הרבה בשולחן. כל פעם היא הזדמנות למילה.'],
+['לועסים ובולעים', 'מילות פעולה של אכילה', ['תארי בזמן האכילה.', 'הדגימי לעיסה בפה.', 'חזרי על אותן מילים.'], ['לועסים, לועסים.', 'בלעת. אָאָם.'], 'מתאים לכל השולחן. כולם לועסים יחד.'],
+['תפוח אדום', 'חשיפה לצבע עם שם', ['הראי פרי ושיימי צבע ושם.', 'חזרי פעמיים.', 'הראי פרי בצבע אחר.'], ['תפוח אדום.', 'ובננה צהובה.'], 'מגש פירות אחד במרכז, ואת משיימת לכל הקבוצה.'],
+['מי רוצה?', 'מחווה של בקשה בקבוצה', ['שאלי ״מי רוצה?״ והרימי יד.', 'עודדי תינוקות להרים יד.', 'שיימי כל מי שהרים.'], ['מי רוצה? אני!', 'נועם הרים יד. הנה.'], 'מתאים לקבוצה. מלמד שבקבוצה מבקשים בסימן.'],
+['שואלים בעיניים', 'בחירה במבט', ['הציגי שני מאכלים, אחד בכל יד.', 'שאלי ״זה או זה?״.', 'עקבי אחר המבט ושיימי.'], ['לחם או גבינה?', 'הסתכלת על הגבינה.'], 'סבב קצר בין התינוקות, כל אחד בוחר.']
+],
+lunch: [
+['חם! פוּ', 'מילת תחושה ונשיפה', ['כשהאוכל חם, אמרי ״חם״.', 'נשפי.', 'חכי שהתינוק ינסה.'], ['חם! פוּוּ.', 'עכשיו לא חם.'], 'נשיפה יחד מתאימה לכל השולחן.'],
+['הכף טסה', 'צפייה וצלילים', ['הזיזי את הכף כמו מטוס.', 'צרפי צליל.', 'עצרי לפני הפה וחכי לפה פתוח.'], ['בְּזְזְז... הנה באה!', 'פתחת פה. אָאָם.'], 'עם תינוק אחד בכל פעם. השאר צופים ונהנים.'],
+['ריק ומלא', 'מילות כמות ראשונות', ['הראי כוס מלאה ואחר כך ריקה.', 'שיימי.', 'הפכי את הכוס הריקה.'], ['מלא. יש מים.', 'ריק! אין.'], 'כל תינוק עם כוס משלו.'],
+['לא רוצה', 'מילה לסירוב', ['כשהתינוק דוחה אוכל, תני לזה מילה.', 'כבדי את הסירוב.', 'הציעי אפשרות אחרת.'], ['לא רוצה. את אומרת לא.', 'אולי אורז?'], 'תגובה עקבית מכל הצוות.'],
+['פירורים קטנים', 'מילות גודל', ['אספו יחד פירורים.', 'שיימי ״קטן״.', 'השווי לפרוסה.'], ['פירור קטנטן.', 'הפרוסה גדולה.'], 'כל תינוק אוסף ליד הצלחת שלו.'],
+['תודה על האוכל', 'מילת נימוס בשגרה', ['סיימו באמירה קבועה.', 'הוסיפי מחווה.', 'חזרי בכל ארוחה.'], ['תודה על האוכל.', 'סיימנו. תודה.'], 'שגרה קבוצתית שמסמנת סוף.'],
+['אחרי הארוחה ישנים', 'מילות זמן', ['הראי תמונה של מיטה.', 'אמרי ״אחרי האוכל ישנים״.', 'חזרי כשקמים.'], ['אחרי האוכל, לישון.', 'הנה המיטה.'], 'כרטיס תמונה אחד לכל הקבוצה.'],
+['מה על השולחן?', 'שיום חפצים', ['הצביעי על חפץ.', 'שיימי.', 'תני לגעת אם בטוח.'], ['מפית.', 'צלחת שלך.'], 'סבב קצר בין כולם.']
+],
+art: [
+['כדור מתגלגל בצבע', 'מילות תנועה', ['שימי כדור בצבע בתוך קופסה עם נייר.', 'הטו יחד.', 'שיימי את התנועה.'], ['מתגלגל...', 'עצר! קו ארוך.'], 'שני תינוקות מחזיקים את הקופסה יחד.'],
+['נדבק!', 'מילת פעולה ותחושה', ['הדביקי ניילון דביק על השולחן, הצד הדביק למעלה.', 'תני פיסות בד.', 'שיימי.'], ['נדבק!', 'משכת. דביק.'], 'משטח אחד גדול לכל הקבוצה.'],
+['הדפס יד', 'חלקי יד וצבע', ['מרחי צבע בטוח על כף היד.', 'הדפיסו.', 'שיימי אצבעות.'], ['היד שלך.', 'אחת, שתיים... חמש אצבעות.'], 'אחד בכל פעם. השאר צופים בחותמות.'],
+['ספוג במים', 'מילות פעולה', ['תני ספוג וקערת מים.', 'לחצו יחד.', 'שיימי.'], ['לוחצים... מים!', 'הספוג רטוב.'], 'קערה לכל זוג תינוקות.'],
+['גיר עבה', 'מילות סימון', ['תני גיר עבה ודף גדול.', 'תארי כל סימן.', 'הוסיפי סימן משלך ליד.'], ['עשית קו.', 'עוד קו!'], 'דף גדול על הרצפה לכמה תינוקות.'],
+['אור צבעוני', 'מילות צבע ואור', ['הדליקי פנס דרך ניילון צבעוני.', 'שיימי את הצבע.', 'הזיזי את האור לאט.'], ['אור כחול!', 'איפה האור? הנה.'], 'בפינה מוחשכת, לכמה תינוקות יחד.'],
+['בקבוק רעשן', 'מילות צליל', ['הכיני בקבוק סגור היטב עם אורז.', 'נערו ושיימי.', 'עצרי וחכי.'], ['שַׁק שַׁק.', 'שקט. עוד?'], 'בקבוק לכל תינוק, בדיקת סגירה לפני.'],
+['נכנס ויצא', 'מילות מיקום', ['השחילי צעיף לתוך גליל קרטון.', 'משכו מהצד השני.', 'שיימי.'], ['נכנס...', 'יצא!'], 'גליל אחד, כל תינוק מושך בתורו.']
+],
+socio: [
+['מאכילים את הבובה', 'מילות אכילה במשחק', ['תני בובה וכף.', 'הדגימי.', 'שיימי מה התינוק עושה.'], ['הבובה אוכלת.', 'אָאָם!'], 'כמה בובות, כל תינוק מאכיל אחת.'],
+['ביי ביי, נוסעים', 'מילות פרידה', ['הושיבי בובה במכונית.', 'נופפו.', 'אמרי ״ביי״.'], ['ביי ביי בובה!', 'חזרה! שלום.'], 'כולם מנופפים יחד.'],
+['שיר אצבעות', 'קצב, חרוז ותנועה', ['דקלמי דקלום אצבעות קצר.', 'געי בכל אצבע.', 'חזרי כל יום.'], ['אצבע קטנה, אצבע גדולה, כולן ביחד במחיאה.', 'ועוד פעם!'], 'מתאים לכל הקבוצה במעגל.'],
+['סיר ומכסה', 'מילות פעולה של בישול', ['תני סיר, מכסה וכף.', 'הדגימי ערבוב.', 'שיימי.'], ['מערבבים.', 'מכסה! סגור.'], 'כמה סירים לכמה תינוקות.'],
+['קופסת הפתעה', 'שאלה וגילוי', ['שימי חפץ מוכר בקופסה.', 'שאלי ״מה יש?״.', 'פתחו ושיימי.'], ['מה יש בקופסה?', 'כדור!'], 'כל תינוק פותח בתורו.'],
+['הבובה בוכה', 'מילות רגש וניחום', ['השמיעי בכי של בובה.', 'שיימי.', 'נחמו יחד.'], ['הבובה בוכה.', 'ליטוף. עכשיו שמחה.'], 'כולם יכולים ללטף.'],
+['שמים בתיק', 'מילות פעולה ויציאה', ['תני תיק וחפצים.', 'שיימי כל חפץ שנכנס.', 'אמרי ״ביי, הולכים״.'], ['שמים בקבוק.', 'הולכים. ביי!'], 'תיק לכל אחד או תיק משותף.'],
+['ריקוד צעיף', 'מילות כיוון', ['תני צעיף ושימי מוזיקה רגועה.', 'הניפו ושיימי.', 'עצרי את המוזיקה ואמרי ״עוצרים״.'], ['למעלה... למטה.', 'מסתובבים!'], 'מתאים לכל הקבוצה.']
+],
+build: [
+['קטנה בתוך גדולה', 'מילות גודל ומיקום', ['תני כוסות מקוננות.', 'הכניסו יחד.', 'שיימי.'], ['קטנה בפנים.', 'גדולה!'], 'סט לכל זוג.'],
+['דוחפים', 'מילות פעולה', ['תני עגלת דחיפה.', 'שיימי.', 'עצרי ואמרי ״עוצרים״.'], ['דוחפים!', 'עצרנו.'], 'תור לעגלה, כולם אומרים יחד.'],
+['קובייה בצבע', 'חשיפה לצבע', ['הרימי קובייה ושיימי צבע.', 'תני לתינוק.', 'בחרי צבע אחד ליום.'], ['קובייה אדומה.', 'עוד אדומה.'], 'מכל הסל, חפשו את הצבע.'],
+['מגדל כוסות', 'מילת המשך', ['ערמו כוסות.', 'אמרי ״עוד״.', 'הפילו.'], ['עוד כוס.', 'גבוה! בום.'], 'כל תינוק מוסיף כוס.'],
+['כדור בצינור', 'שאלת איפה', ['הכניסי כדור לצינור.', 'שאלי ״איפה?״.', 'שמחו כשיוצא.'], ['איפה הכדור?', 'יצא!'], 'צינור אחד, תור לכל תינוק.'],
+['פירקת!', 'מילות פירוק וחיבור', ['תני שתי קוביות מחוברות.', 'משכו.', 'שיימי.'], ['פירקת!', 'שתיים.'], 'זוג קוביות לכל אחד.'],
+['בתוך הארגז', 'מילות מיקום בגוף', ['שימי ארגז גדול נמוך.', 'עזרי לתינוק להיכנס.', 'שיימי.'], ['בפנים!', 'יצאת.'], 'תור לארגז.'],
+['קוביות מצלצלות', 'צלילים ותורות', ['טלטלי קובייה עם פעמון.', 'שיימי צליל.', 'חכי.'], ['דינג.', 'עכשיו את.'], 'כמה קוביות במעגל.']
+],
+book: [
+['ספר שר', 'קצב ומנגינה', ['שירי את הטקסט בלחן פשוט.', 'הצביעי בזמן השירה.', 'חזרי כל יום.'], ['הנה הכלב, הב הב הב.', 'ועכשיו החתול.'], 'מתאים לקבוצה.'],
+['תמונות אמיתיות', 'חיבור בין תמונה לחפץ', ['בחרי ספר עם צילומים.', 'הצביעי ושיימי.', 'הראי את החפץ האמיתי.'], ['כוס בספר.', 'והנה כוס אמיתית.'], 'העבירי את החפץ בין כולם.'],
+['מי מתחבא?', 'צפייה ושאלת מי', ['הרימי דש בספר.', 'שאלי ״מי שם?״.', 'שיימי.'], ['מי שם?', 'כלב!'], 'כל תינוק מרים דש בתורו.'],
+['ספר לפני מנוחה', 'קול רך ומילים קבועות', ['קראי ספר שקט לפני שינה.', 'הנמיכי קול.', 'אותו ספר כל יום.'], ['לילה טוב, ירח.', 'שקט, ישנים.'], 'לכל הקבוצה ליד המזרנים.'],
+['חיה מהספר ביד', 'חיבור תמונה לצעצוע', ['החזיקי פרה צעצוע.', 'הראי בספר.', 'אמרי את הצליל.'], ['הנה הפרה.', 'מוּ.'], 'צעצוע לכל ילד.'],
+['פרצופים', 'מילות רגש', ['ספר עם פני תינוקות.', 'שיימי רגש.', 'חקי את הפרצוף.'], ['שמח!', 'בוכה. עצוב.'], 'כולם מחקים יחד.'],
+['ספר הדברים שלי', 'שמות חפצים אישיים', ['צלמי חפצים של התינוק.', 'הכיני ספרון.', 'דפדפו יחד.'], ['השמיכה שלך.', 'הבקבוק שלך.'], 'ספר לכל תינוק.'],
+['ספר על הבטן', 'קשב משותף בשכיבה', ['הניחי ספר פתוח מול תינוק בשכיבה על הבטן.', 'שכבי מולו.', 'שיימי.'], ['הנה הברווז.', 'הרמת ראש!'], 'כמה ספרים פתוחים, כמה תינוקות.']
+],
+yard: [
+['שופכים חול', 'מילות פעולה וצליל', ['תני כוס וחול.', 'שפכו.', 'שיימי.'], ['שופכים... ששש.', 'הרבה חול.'], 'כל תינוק עם כוס.'],
+['הרוח נושבת', 'מילות טבע', ['עצרי כשיש רוח.', 'הרימו עלה.', 'שיימי.'], ['רוח!', 'העלה עף.'], 'רגע לכל הקבוצה.'],
+['כדור אליך', 'מילות כיוון ותורות', ['גלגלי כדור לתינוק.', 'אמרי ״אליך״.', 'חכי שידחוף.'], ['אליך.', 'ואליי!'], 'כמה תינוקות במעגל.'],
+['שפריץ', 'מילות צליל ומים', ['קערת מים רדודה.', 'טפחו.', 'שיימי.'], ['שפריץ!', 'רטוב.'], 'קערה לכל זוג, השגחה צמודה.'],
+['עוצרים ונוסעים', 'הבנת מילים מנוגדות', ['בטיול עגלה, עצרי ואמרי ״עוצרים״.', 'חכי.', 'אמרי ״נוסעים״.'], ['עוצרים.', 'נוסעים!'], 'עגלה רבת מושבים.'],
+['למעלה בשמיים', 'מילות כיוון', ['הצביעי למעלה.', 'שיימי מה רואים.', 'חכי למבט.'], ['ציפור למעלה.', 'מטוס!'], 'כולם מסתכלים יחד.'],
+['דשא', 'מילות מגע', ['הניחי יד על הדשא.', 'שיימי.', 'השווי לשמיכה.'], ['דוקר.', 'השמיכה רכה.'], 'על שמיכה גדולה לכולם.'],
+['שלום חתול', 'ברכות', ['כשרואים חיה או אדם, נופפו.', 'אמרי ״שלום״.', 'שיימי.'], ['שלום חתול!', 'ביי ביי.'], 'כל הקבוצה מנופפת.']
+]
+};
+
+D2.a2 = {
+change: [
+['מה לבשת היום?', 'שמות בגדים וצבעים', ['שאלי על בגד אחד.', 'שיימי צבע.', 'הרחיבי.'], ['מה יש לך ברגליים?', 'גרביים אדומות!'], 'שאלה אחת לכל פעוט בתורו.'],
+['רטוב? כן!', 'תשובות כן ולא', ['שאלי שאלות כן או לא.', 'חכי לתשובה או להנהון.', 'אשרי במילה.'], ['רטוב?', 'כן, רטוב. נחליף.'], 'שגרה שחוזרת עם כל פעוט.'],
+['איפה הדובי מחכה?', 'מילות מיקום', ['הניחי דובי על מדף ליד.', 'שאלי ״איפה?״.', 'שיימי.'], ['איפה הדובי?', 'על המדף, למעלה.'], 'הזיזי את הדובי בין פעוט לפעוט.'],
+['תמונות של המשפחה', 'שמות בני משפחה', ['תלי תמונות משפחתיות ליד משטח ההחתלה (באישור).', 'הצביעי ושאלי ״מי זה?״.', 'הרחיבי.'], ['מי זה?', 'אבא! אבא שלך.'], 'כל פעוט מוצא את המשפחה שלו.'],
+['אני לבד', 'מילות עצמאות', ['תני לפעוט לעשות שלב אחד לבד.', 'שיימי ״לבד״.', 'הציעי ״עזרה?״.'], ['לבד! הורדת לבד.', 'צריך עזרה?'], 'מילים קבועות לכל הצוות.'],
+['מה שומעים?', 'קשב לצלילים', ['עצרי כשנשמע קול.', 'שאלי מה זה.', 'שיימי.'], ['מה שומעים?', 'מים בכיור.'], 'רגע אישי בכל החתלה.'],
+['שמח או כועס', 'מילות רגש', ['שיימי את הרגש שאת רואה.', 'הציעי שתי מילים.', 'אשרי.'], ['את כועסת?', 'כועסת. לא רוצה לשכב.'], 'אותן מילים לכל הצוות.'],
+['מה בכיס?', 'שאלות וחפצים', ['שימי חפץ קטן ובטוח בכיס הסינר.', 'שאלי ״מה יש?״.', 'שיימי כשמוציאים.'], ['מה יש בכיס?', 'מפתח! מפתח של בית.'], 'חפץ אחר לכל פעוט.']
+],
+breakfast: [
+['מה בצלחת?', 'שיום וספירה', ['שאלי מה יש בצלחת.', 'שיימי כל פריט.', 'ספרו יחד.'], ['מה יש פה?', 'שתי עגבניות!'], 'סבב קצר בשולחן.'],
+['פותחים קופסה', 'מילת בקשה לעזרה', ['תני קופסה קשה לפתיחה.', 'חכי לבקשה.', 'שיימי ״עזרה״.'], ['קשה? עזרה?', 'פתחנו!'], 'כל פעוט מקבל קופסה בתורו.'],
+['כוס ליד צלחת', 'מילות מיקום', ['ערכו שולחן יחד.', 'שיימי מיקום.', 'בקשי הוראה.'], ['שימי כוס ליד הצלחת.', 'הכף על הצלחת.'], 'כל פעוט עורך את המקום שלו.'],
+['יד למעלה', 'בקשה בקבוצה', ['שאלי ״מי רוצה עוד?״.', 'הרימי יד.', 'קראי בשם למי שהרים.'], ['מי רוצה עוד?', 'מאיה רוצה.'], 'מתאים לכל השולחן.'],
+['מה בחלון?', 'מילות מזג אוויר', ['הסתכלו בחלון.', 'שיימי.', 'שאלי שאלת בחירה.'], ['שמש או גשם?', 'יש שמש!'], 'כל השולחן מסתכל יחד.'],
+['קְרַנְץ׳', 'מילות מרקם', ['הגישי מאכל פריך ומאכל רך.', 'שיימי.', 'השוו.'], ['המלפפון עושה קְרַנְץ׳.', 'הבננה רכה.'], 'כולם טועמים יחד.'],
+['מורחים', 'מילת פעולה', ['תני סכין פלסטיק קהה וממרח.', 'הדגימי.', 'תארי.'], ['מורחים גבינה.', 'מרחת לבד!'], 'כל אחד עם פרוסה.'],
+['מה אכלת?', 'זיכרון מיידי', ['בסוף הארוחה שאלי.', 'עזרי בהצבעה.', 'הרחיבי.'], ['מה אכלת?', 'אכלת ביצה ולחם.'], 'סבב קצר.']
+],
+lunch: [
+['הבובה אוכלת איתנו', 'משחק דמיון בשולחן', ['הושיבי בובה בשולחן.', 'שאלי ״מה הבובה אוכלת?״.', 'הרחיבי.'], ['מה הבובה אוכלת?', 'הבובה אוכלת אורז.'], 'כל פעוט מאכיל בתורו.'],
+['עגול וארוך', 'מילות צורה', ['שיימי צורות במאכלים.', 'הצביעי.', 'השוו.'], ['האפונה עגולה.', 'הגזר ארוך.'], 'לכל השולחן.'],
+['רוצה ולא רוצה', 'הבעת רצון במילה', ['הציעי מאכל.', 'קבלי ״כן״ או ״לא״.', 'הדגימי ״רוצה״ ו״לא רוצה״.'], ['רוצה אורז?', 'לא רוצה. בסדר.'], 'כל פעוט עונה בתורו.'],
+['גמרתי!', 'מילות סיום', ['כשהצלחת ריקה, שיימי.', 'הדגימי ״גמרתי״.', 'חכי שיגיד.'], ['הצלחת ריקה.', 'גמרת! הכול.'], 'כל ילד מכריז כשסיים.'],
+['מי בישל?', 'שמות אנשים ותפקידים', ['ספרי מי בישל.', 'לכו להגיד תודה.', 'שיימי.'], ['מי בישל?', 'הטבחית בישלה. תודה!'], 'כל הקבוצה אומרת תודה.'],
+['מוזגים לבד', 'מילות פעולה וכמות', ['תני קנקן קטן.', 'שיימי.', 'עצרי כשמלא.'], ['מוזגים.', 'מלא! עוצרים.'], 'כל אחד מוזג בתורו.'],
+['שם במחיאות', 'הברות בקצב', ['מחאו כפיים לפי הברות של שם.', 'חזרו יחד.', 'עברו לשם הבא.'], ['נו-עה. שתי מחיאות.', 'א-ו-רי.'], 'מתאים לסוף ארוחה בקבוצה.'],
+['תפריט בתמונות', 'שיום מנות', ['תלי תמונה של מנת היום.', 'הצביעו.', 'השוו לצלחת.'], ['היום יש עוף.', 'הנה העוף בצלחת.'], 'לוח אחד לכולם.']
+],
+art: [
+['מדבקות', 'מילות מיקום', ['תני מדבקות גדולות.', 'שאלי איפה להדביק.', 'שיימי.'], ['איפה תדביקי?', 'למעלה!'], 'לכל אחד דף.'],
+['קצף על השולחן', 'מילות תחושה', ['פזרי קצף בטוח על השולחן.', 'שיימי.', 'ציירו.'], ['רך ולבן.', 'עשית עיגול.'], 'משטח לכל אחד.'],
+['חותמות', 'מילות פעולה', ['תני חותמת וצבע.', 'שיימי.', 'השוו צורות.'], ['לוחצים... מרימים.', 'עיגול!'], 'כמה חותמות לכולם.'],
+['ציור קבוצתי על הרצפה', 'שיח על מה שאחרים עושים', ['פרשי נייר גדול.', 'תארי מה כל אחד עושה.', 'הפני תשומת לב.'], ['תראו מה נועם עושה.', 'קו כחול ארוך.'], 'מתאים לכל הקבוצה.'],
+['שקית צבע', 'שינוי צבע', ['שימי שני צבעים בשקית סגורה.', 'מעכו.', 'שאלי מה קרה.'], ['מועכים...', 'נהיה כתום!'], 'שקית לכל אחד.'],
+['ציד צבע', 'מילות צבע', ['בחרי צבע אחד.', 'חפשו בחדר.', 'שיימי.'], ['מה עוד כחול?', 'הכיסא כחול.'], 'כל הקבוצה מחפשת.'],
+['חיות על הדף', 'שמות וקולות', ['תני תמונות חיות להדבקה.', 'שיימי.', 'עשו קולות.'], ['הנה כלב.', 'הב!'], 'סבב בשולחן.'],
+['תלינו ציור', 'תיאור קצר', ['תלו את היצירה.', 'שאלי ״מה עשית?״.', 'הרחיבי.'], ['מה עשית?', 'צבעת הרבה צהוב.'], 'כל פעוט מציג בתורו.']
+],
+socio: [
+['רוחצים את הבובה', 'חלקי גוף ומילות פעולה', ['תני גיגית, בובה וספוג.', 'שיימי.', 'בקשי הוראה.'], ['רוחצים רגליים.', 'הבובה נקייה.'], 'בובה לכל זוג.'],
+['תה לחברים', 'מילות שולחן', ['תני כוסות וקומקום.', 'הדגימי.', 'הזמיני חבר.'], ['מוזגים תה.', 'בבקשה, דנה.'], 'קבוצה של 3 עד 4.'],
+['אוטובוס כיסאות', 'מילות נסיעה', ['סדרו כיסאות בשורה.', 'נהג ונוסעים.', 'שירו ושיימו.'], ['נוסעים לגן חיות!', 'עוצרים. יורדים.'], 'מתאים לכל הקבוצה.'],
+['מלבישים את הבובה', 'שמות בגדים', ['תני בגדי בובה.', 'שיימי.', 'בקשי בגד מסוים.'], ['תני כובע.', 'שמת כובע לבובה.'], 'בובה לכל פעוט.'],
+['חותכים ירקות', 'מילות מטבח', ['תני ירקות צעצוע עם סקוטש.', 'חתכו.', 'שיימי.'], ['חותכים עגבנייה.', 'חצי וחצי.'], 'לכל זוג סט.'],
+['משפחת בובות', 'שמות בני משפחה', ['הציגי בובות משפחה.', 'שיימי.', 'שאלי מי זה.'], ['זאת אמא.', 'והתינוק ישן.'], 'כל פעוט בוחר דמות.'],
+['בוקר טוב, קמים', 'מילות שגרה', ['השכיבו בובה.', 'העירו.', 'שיימי.'], ['לילה טוב.', 'בוקר טוב! קמים.'], 'כל הקבוצה ״מעירה״ יחד.'],
+['יום הולדת לדובי', 'מילות חגיגה', ['הכיני עוגה צעצוע.', 'שרו.', 'נשפו.'], ['יום הולדת לדובי!', 'נושפים... פוּ.'], 'מתאים לכל הקבוצה.']
+],
+build: [
+['כביש מקוביות', 'מילות תנועה', ['בנו כביש ישר.', 'הסיעו מכונית.', 'שיימי.'], ['נוסעים על הכביש.', 'הכביש נגמר!'], 'מכונית לכל אחד.'],
+['מגדל של צבע', 'מיון ושיום צבע', ['בחרו צבע.', 'בנו רק ממנו.', 'שיימי.'], ['רק אדומות.', 'מגדל אדום.'], 'מגדל לכל ילד.'],
+['מוסך', 'מילות מיקום', ['בנו מוסך.', 'הכניסו מכוניות.', 'שיימי.'], ['המכונית נכנסה.', 'חונה בפנים.'], 'מוסך משותף.'],
+['מיטה לבובה', 'פונקציה ומילים', ['בנו מיטה מקוביות.', 'השכיבו בובה.', 'שיימי.'], ['בנינו מיטה.', 'הבובה ישנה.'], 'זוגות.'],
+['סופרים קוביות', 'מילות מספר', ['ספרו בזמן הבנייה.', 'הצביעו.', 'עצרי לפני מספר.'], ['אחת, שתיים...', 'שלוש!'], 'כל ילד סופר את המגדל שלו.'],
+['רמזור', 'מילות עצירה', ['הכיני עיגול אדום וירוק.', 'הראי.', 'שיימי.'], ['אדום, עוצרים.', 'ירוק, נוסעים!'], 'משחק קבוצתי עם מכוניות.'],
+['מחברים', 'מילות חיבור', ['תני לגו גדול.', 'חברו.', 'שיימי.'], ['מחברים.', 'מפרקים!'], 'סט לכל ילד.'],
+['מנהרה', 'מילת מעבר', ['בנו מנהרה.', 'העבירו מכונית.', 'שיימי.'], ['נכנסת למנהרה.', 'יצאה מהצד השני.'], 'תור לכל ילד.']
+],
+book: [
+['מי זה?', 'שאלת מי', ['הצביעי על דמות.', 'שאלי ״מי זה?״.', 'הרחיבי.'], ['מי זה?', 'סבתא. סבתא אופה.'], 'שאלי ילד אחר בכל עמוד.'],
+['פרט קטן', 'חיפוש ושיום', ['שאלי על פרט קטן בתמונה.', 'חכו למציאה.', 'שיימי.'], ['איפה הציפור הקטנה?', 'מצאת! על העץ.'], 'כל ילד מחפש בתורו.'],
+['קולות מהספר', 'חיקוי', ['כשיש חיה או כלי רכב, עשי קול.', 'חכי לחיקוי.', 'שיימי.'], ['האוטובוס עושה...', 'טוּט!'], 'כולם יחד.'],
+['פרצופים בספר', 'מילות רגש', ['הצביעי על פרצוף.', 'שיימי רגש.', 'חקו.'], ['הילד עצוב.', 'תראו פרצוף עצוב.'], 'כולם מחקים.'],
+['איזה ספר?', 'בחירה', ['הציגי שני ספרים.', 'שאלי ״איזה?״.', 'קראי את הנבחר.'], ['חתול או אוטו?', 'בחרת אוטו.'], 'ילד אחר בוחר כל יום.'],
+['שקית מהספר', 'חיבור חפצים לסיפור', ['הכיני שקית עם חפצים מהספר.', 'שלפו בזמן הקריאה.', 'שיימי.'], ['הנה הכובע מהספר.', 'מה עוד בשקית?'], 'כל ילד שולף.'],
+['ספר בתנועה', 'מילות פעולה בגוף', ['קראי ספר עם פעולות.', 'עשו את הפעולות.', 'שיימי.'], ['הארנב קופץ.', 'כולם קופצים!'], 'מתאים לקבוצה.'],
+['ספר שירים', 'קצב ושירה', ['בחרי ספר עם שירי ילדים.', 'שירו.', 'עצרי לפני מילה.'], ['ובסוף השיר...', 'נכון!'], 'כולם שרים.']
+],
+yard: [
+['חופרים בור', 'מילות פעולה', ['תני את חפירה.', 'חפרו.', 'שיימי.'], ['חופרים.', 'בור עמוק!'], 'כל ילד עם את.'],
+['רוצו לעץ', 'הבנת הוראה עם יעד', ['אמרי יעד.', 'רוצו יחד.', 'החליפי יעד.'], ['רוצו לעץ!', 'עכשיו לנדנדה.'], 'משחק לכל הקבוצה.'],
+['תופסים בועות', 'מילות פעולה', ['נשפי בועות.', 'שיימי.', 'עצרי לפני ״עוד״.'], ['תופסים!', 'פוּף, התפוצצה.'], 'כל הקבוצה.'],
+['חלק ומחוספס', 'מילות מגע', ['געו בעץ ובמגלשה.', 'שיימי.', 'השוו.'], ['העץ מחוספס.', 'המגלשה חלקה.'], 'סבב בחצר.'],
+['זורקים ותופסים', 'מילות פעולה', ['זרקי כדור רך.', 'שיימי.', 'החליפו תורות.'], ['זורקת!', 'תפסת!'], 'במעגל.'],
+['הצל שלי', 'מילות שייכות', ['הראי צל.', 'זוזו.', 'שיימי.'], ['הצל שלך.', 'הצל זז!'], 'ביום שמש, כולם.'],
+['אוספים לסל', 'מילות כמות', ['תני סל.', 'אספו.', 'שיימי.'], ['שמנו בסל.', 'הרבה אבנים.'], 'סל לכל ילד.'],
+['בוץ', 'מילות תחושה', ['ערבבו מים וחול.', 'געו.', 'שיימי.'], ['בוץ!', 'דביק ורטוב.'], 'קבוצה קטנה בכל פעם.']
+]
+};
+D2.a3 = {
+change: [
+['מי יאסוף אותך?', 'שיחה על המשפחה והזמן', ['שאלי מי יבוא היום.', 'הקשיבי.', 'הרחיבי במשפט עם ״אחרי״.'], ['מי יאסוף אותך היום?', 'אמא תבוא אחרי המנוחה.'], 'שיחה אישית בכל החלפה.'],
+['למה מחליפים?', 'הסבר בסיבה ותוצאה', ['שאלי ״למה?״.', 'חכי.', 'השלימי הסבר קצר.'], ['למה מחליפים מכנסיים?', 'כי הן רטובות.'], 'שאלה אחת לכל ילד.'],
+['נקי ומלוכלך', 'הפכים', ['שיימי זוגות הפכים בזמן הפעולה.', 'שאלי ״מה ההפך?״.', 'אשרי.'], ['הידיים מלוכלכות.', 'עכשיו נקיות.'], 'אותם זוגות כל השבוע.'],
+['סיפור קטן על הדובי', 'האזנה לסיפור קצר', ['ספרי סיפור של 3 משפטים על צעצוע.', 'שאלי שאלה.', 'הרחיבי.'], ['הדובי הלך לגן ונפל.', 'מה קרה לדובי?'], 'סיפור שונה לכל ילד.'],
+['קודם ואז', 'רצף בשני שלבים', ['אמרי הוראה כפולה.', 'חכי לביצוע.', 'שיימי.'], ['קודם מורידים, ואז זורקים לפח.', 'עשית את שניהם.'], 'אותו רצף לכל ילד.'],
+['חידה במים', 'הקשבה לתיאור', ['תני חידה קצרה.', 'חכי לניחוש.', 'גלי.'], ['מה עושה בועות ומריח טוב?', 'סבון!'], 'חידה אחרת לכל ילד.'],
+['מרפק וברך', 'אוצר מילים של גוף', ['שיימי חלק גוף חדש.', 'געו.', 'חזרו.'], ['זה המרפק.', 'איפה הברך שלך?'], 'מילה אחת חדשה לשבוע.'],
+['שלבי רחיצה', 'תיאור רצף', ['בקשי מהילד לספר מה עושים קודם.', 'עזרי.', 'בצעו.'], ['מה קודם?', 'פותחים מים, ואז סבון.'], 'כל ילד מספר לעצמו.']
+],
+breakfast: [
+['מה בתפריט?', 'קריאת תמונות', ['תלי תפריט בתמונות.', 'שאלי מה יש היום.', 'הרחיבי.'], ['מה יש היום?', 'יש ביצה וסלט.'], 'ילד אחד ״מקריא״ לכולם.'],
+['מה חלמת?', 'סיפור אישי', ['שאלי על חלום או על הלילה.', 'הקשיבי.', 'שאלי עוד שאלה.'], ['מה חלמת בלילה?', 'חלמת על כלב? מה הוא עשה?'], '2 עד 3 ילדים בכל בוקר.'],
+['מכינים כריך', 'הוראות בשלבים', ['הכינו יחד כריך.', 'תני הוראות.', 'בקשי מהילד לתת הוראה.'], ['קודם לחם, אחר כך גבינה.', 'מה עכשיו?'], 'כל ילד מכין לעצמו.'],
+['מה יקרה אם?', 'חשיבה היפותטית', ['שאלי שאלת ״מה יקרה אם״.', 'קבלי השערות.', 'נסו.'], ['מה יקרה לקרח בשמש?', 'הוא ימס!'], 'שאלה לכל השולחן.'],
+['הרבה ומעט', 'מילות כמות', ['השווי כמויות.', 'שיימי.', 'שאלי.'], ['למי יש הרבה זיתים?', 'לי יש מעט.'], 'השוואה בין שכנים לשולחן.'],
+['נחשו מה זה', 'הבנת תיאור', ['תארי מאכל בלי לומר שמו.', 'חכי לניחוש.', 'גלי.'], ['זה עגול, אדום ומתוק.', 'תפוח!'], 'כל השולחן מנחש.'],
+['בקשה מחבר', 'שיח בין ילדים', ['עודדי ילד לבקש מחבר.', 'הדגימי משפט.', 'שבחי.'], ['תגיד לדני: ״תעביר את הלחם, בבקשה״.', 'דני העביר. תודה!'], 'מתאים לכל השולחן.'],
+['מה נעשה היום?', 'תכנון ומילות עתיד', ['ספרי מה מתוכנן.', 'שאלי מה הם רוצים.', 'הרחיבי.'], ['היום נלך לחצר.', 'מה תרצה לעשות בחצר?'], 'שיחה קבוצתית קצרה.']
+],
+lunch: [
+['מאיפה זה בא?', 'ידע עולם', ['שאלי מאיפה מאכל מגיע.', 'הסבירי קצר.', 'קשרי לחצר.'], ['מאיפה באה העגבנייה?', 'היא גדלה בשדה.'], 'נושא אחד לכל השולחן.'],
+['נושא לשולחן', 'שיחה סביב נושא', ['בחרי נושא יומי: חיות, ים.', 'שאלי שאלה פתוחה.', 'קשרי בין תשובות.'], ['איזו חיה אתם אוהבים?', 'גם רוני אוהב פילים.'], 'שולחן של 4 עד 5.'],
+['אני רואה', 'תיאור וניחוש', ['אמרי ״אני רואה משהו ירוק״.', 'חכי לניחושים.', 'החליפו תפקיד.'], ['אני רואה משהו ירוק.', 'המלפפון!'], 'כל השולחן.'],
+['מה אכלנו אתמול?', 'זיכרון וזמן עבר', ['שאלי על אתמול.', 'עזרי בזיכרון.', 'השוו להיום.'], ['מה אכלנו אתמול?', 'אתמול פסטה, היום אורז.'], 'שאלה לכל השולחן.'],
+['למי יותר?', 'השוואה', ['השוו כמויות או גדלים.', 'שאלי.', 'שיימי.'], ['למי יותר מרק?', 'לנועה יותר.'], 'בין שכנים.'],
+['חרוז של אוכל', 'מודעות לחרוז', ['אמרי צמד מילים מתחרזות.', 'בקשי מילה מתחרזת.', 'קבלי גם מילים מומצאות.'], ['פיתה, מיטה! מה עוד מתחרז?', 'אורז, בורז! גם מילה מומצאת טובה.'], 'משחק לכל השולחן.'],
+['מזמינים', 'משפט בקשה', ['שחקו מסעדה בזמן הגשה.', 'הילד מזמין.', 'הדגימי.'], ['מה תרצה להזמין?', 'אני רוצה אורז, בבקשה.'], 'כל ילד מזמין בתורו.'],
+['מה היה טעים?', 'הבעת דעה', ['בסוף הארוחה שאלי.', 'בקשי סיבה.', 'הרחיבי.'], ['מה היה הכי טעים?', 'הקציצה, כי היא רכה.'], 'סבב קצר.']
+],
+art: [
+['ציור שמספר', 'סיפור בעקבות ציור', ['בקשי לצייר משהו שקרה.', 'שאלי שאלות.', 'כתבי משפט.'], ['מה ציירת?', 'ציירת את הים. מי היה איתך?'], '2 עד 3 ילדים בסבב.'],
+['חיה מבצק', 'תיאור יצירה', ['בקשי להכין חיה.', 'שאלי עליה.', 'הרחיבי.'], ['איזו חיה הכנת?', 'נחש ארוך שאוכל תפוחים.'], 'כל ילד מספר על החיה.'],
+['מה עוד באותו צבע?', 'קטגוריות', ['בחרי צבע מהיצירה.', 'שאלי מה עוד בצבע הזה.', 'אספו.'], ['מה עוד צהוב?', 'בננה, שמש!'], 'כל הקבוצה.'],
+['גוזרים מעיתון', 'שיום ותיאור', ['תני מספריים בטיחותיים ועיתונים.', 'גזרו תמונות.', 'תארו.'], ['מה גזרת?', 'מכונית אדומה גדולה.'], 'קבוצה קטנה, השגחה.'],
+['תערוכה', 'הצגה מול קבוצה', ['תלו יצירות.', 'כל ילד מציג.', 'שאלי שאלה אחת.'], ['ספר לנו על היצירה.', 'למה בחרת כחול?'], 'כל הקבוצה, ילד בכל פעם.'],
+['ישר ועקום', 'אוצר מילים של קווים', ['שיימי סוגי קווים.', 'ציירו לפי הוראה.', 'השוו.'], ['קו ישר.', 'עכשיו קו עקום.'], 'כל ילד בדף שלו.'],
+['מצייר מוזיקה', 'מילות קצב', ['שימי מוזיקה מהירה ואיטית.', 'ציירו לפי הקצב.', 'שיימי.'], ['המוזיקה מהירה!', 'עכשיו לאט.'], 'מתאים לקבוצה.'],
+['מבקשים חומר', 'בקשה בשם מדויק', ['שימי חומרים מחוץ להישג יד.', 'חכי לבקשה בשם.', 'הרחיבי.'], ['מה צריך?', 'דבק? הנה הדבק.'], 'כל ילד מבקש בתורו.']
+],
+socio: [
+['חנות ירקות', 'דיאלוג קנייה', ['הכיני ירקות וקופה.', 'מוכר וקונה.', 'הדגימי.'], ['כמה עולה?', 'אפשר שלוש עגבניות?'], '3 עד 4 ילדים.'],
+['גן חיות', 'שמות חיות ופעולות', ['הכיני חיות וכלובים מקוביות.', 'שומר ומבקרים.', 'שאלי על כל חיה.'], ['מה הפיל אוכל?', 'הקוף מטפס.'], 'קבוצה קטנה.'],
+['מוסך מכונאי', 'מילות כלים', ['כלי עבודה צעצוע ומכונית.', 'שיימי כלים.', 'הדגימי תיקון.'], ['צריך מפתח.', 'תיקנו את הגלגל.'], '2 עד 3 ילדים.'],
+['מסיבת יום הולדת', 'תסריט חגיגה', ['הכיני עוגה ומתנות.', 'חלקו תפקידים.', 'הדגימי ברכות.'], ['מזל טוב!', 'מה קיבלת במתנה?'], 'מתאים לקבוצה.'],
+['נסיעה ברכבת', 'דיאלוג כרטיסן', ['סדרו כיסאות.', 'כרטיסן ונוסעים.', 'הדגימי שאלות.'], ['לאן אתם נוסעים?', 'לים, בבקשה.'], 'כל הקבוצה.'],
+['מספרה', 'מילים של מספרה', ['מסרק, מראה, ספריי מים.', 'ספר ולקוח.', 'שיימי.'], ['איך לסדר?', 'קצר מאחורה.'], 'זוגות.'],
+['דואר', 'מילות דואר', ['מעטפות ותיבה.', 'דוור ומקבלים.', 'כתבו שמות.'], ['יש מכתב לנועה!', 'ממי המכתב?'], 'כל הקבוצה.'],
+['משחקים גננת', 'הוראות ותפקיד', ['ילד אחד גננת.', 'הוא נותן הוראות.', 'עזרי בניסוח.'], ['שבו במעגל, בבקשה.', 'עכשיו שירה!'], 'מתחלפים.']
+],
+build: [
+['בונים לפי תמונה', 'הבנת תיאור חזותי', ['הראי תמונה של מבנה.', 'בנו יחד.', 'שיימי מה דומה.'], ['מה יש בתמונה?', 'גם לנו יש גג.'], 'זוגות.'],
+['בונים מהספר', 'חיבור סיפור ובנייה', ['קראו ספר.', 'בנו משהו ממנו.', 'ספרו מחדש.'], ['בנינו את הבית של החזיר.', 'מה קרה לבית?'], 'קבוצה קטנה.'],
+['גבוה, נמוך, ארוך', 'השוואה ומידה', ['בנו שני מגדלים.', 'השוו.', 'שיימי.'], ['שלך גבוה יותר.', 'שלי ארוך.'], 'זוגות.'],
+['מכונית מקרטון', 'תכנון ותיאור', ['קופסה, פקקים.', 'תכננו בקול.', 'שיימי.'], ['מה חסר? גלגלים.', 'שמנו ארבעה.'], 'קבוצה קטנה.'],
+['מבצר משותף', 'משא ומתן במילים', ['בנו מבצר יחד.', 'עודדי בקשות.', 'הדגימי משפטים.'], ['אפשר את הקובייה?', 'בוא נבנה יחד.'], '3 עד 5 ילדים.'],
+['מה חסר בבית?', 'חלקי בית', ['בנו בית.', 'שאלי מה חסר.', 'הוסיפו.'], ['מה חסר?', 'דלת וחלון.'], 'זוגות.'],
+['צילום וכיתוב', 'תיאור לכתיבה', ['צלמי מבנה.', 'בקשי משפט.', 'כתבי מתחת.'], ['מה נכתוב?', '״המגדל של עומר״.'], 'כל ילד.'],
+['רמפה', 'מהר ולאט', ['בנו רמפה.', 'שחררו מכוניות.', 'השוו.'], ['איזו נסעה מהר?', 'האדומה מהר יותר.'], 'כמה ילדים.']
+],
+book: [
+['ספר בלי מילים', 'סיפור בעקבות תמונות', ['בחרי ספר תמונות.', 'בקשי לספר.', 'עזרי בשאלות.'], ['מה קורה פה?', 'ואז?'], 'קבוצה קטנה.'],
+['שני ספרים', 'השוואה', ['קראו שני ספרים באותו נושא.', 'השוו.', 'שאלי מה אהבו.'], ['במה הם דומים?', 'בשניהם יש כלב.'], 'קבוצה קטנה.'],
+['מה הדמות מרגישה?', 'מילות רגש', ['עצרי ושאלי.', 'הציעי מילים.', 'שאלי למה.'], ['מה הוא מרגיש?', 'הוא כועס, כי לקחו לו.'], 'קבוצה קטנה.'],
+['מילה של היום', 'מילה חדשה', ['בחרי מילה מהספר.', 'הסבירי.', 'השתמשו בה כל היום.'], ['המילה היום: ענק.', 'מה עוד ענק?'], 'כל הקבוצה.'],
+['סוף אחר', 'דמיון ושפה', ['אחרי הקריאה שאלי.', 'קבלי רעיונות.', 'ספרי מחדש.'], ['ומה אם הוא לא היה מוצא?', 'רעיון!'], 'קבוצה קטנה.'],
+['ספר שלנו', 'סיפור קבוצתי', ['כל ילד מוסיף משפט.', 'כתבי.', 'ציירו.'], ['מה קרה אחר כך?', 'נכתוב את זה.'], 'כל הקבוצה בסבב.'],
+['בובת יד מספרת', 'שיח עם דמות', ['בובת יד מספרת סיפור.', 'הבובה שואלת.', 'הילדים עונים.'], ['שלום! אתם יודעים מה קרה לי?', 'מה אתם הייתם עושים?'], 'כל הקבוצה.'],
+['קוראים לחבר', 'סיפור מחדש לחבר', ['ילד ״מקריא״ לחבר.', 'עודדי.', 'הקשיבי.'], ['תקריא לנו.', 'וואו, זכרת!'], 'זוגות.']
+],
+yard: [
+['מזג אוויר', 'מילות מזג אוויר', ['צאו ובדקו.', 'שיימי.', 'שאלי מה לובשים.'], ['קר היום או חם?', 'רוח! צריך מעיל.'], 'כל הקבוצה.'],
+['חיפוש לפי תיאור', 'הבנת תיאור כפול', ['תארי פריט בשתי תכונות.', 'חפשו.', 'שיימי.'], ['מצאו משהו רך וירוק.', 'עלה!'], 'כל הקבוצה.'],
+['מסלול מכשולים', 'מילות מיקום', ['בנו מסלול.', 'הוראות.', 'שיימי.'], ['מעל הקורה.', 'מתחת לחבל.'], 'בתורות.'],
+['הד', 'חיקוי וקשב', ['אמרי מילה בקצב.', 'הילדים חוזרים.', 'החליפו.'], ['בננה!', 'בַּ-נָ-נָה!'], 'כל הקבוצה.'],
+['סיפור בחצר', 'סיפור במקום', ['ספרי סיפור תוך הליכה.', 'עצרו במקומות.', 'שאלי.'], ['פה גר הארנב.', 'לאן הוא הלך?'], 'קבוצה קטנה.'],
+['מטבח חול', 'משחק תפקידים', ['כלים בארגז החול.', 'שאלי מה מבשלים.', 'הזמיני.'], ['מה בישלת?', 'עוגת חול!'], '3 עד 4 ילדים.'],
+['רטוב ויבש', 'השוואה', ['השוו חול רטוב ויבש.', 'בנו.', 'שיימי.'], ['החול היבש נופל.', 'הרטוב מחזיק.'], 'כמה ילדים.'],
+['מה השתנה?', 'זיכרון ותיאור', ['סדרי 3 חפצים.', 'הזיזי אחד.', 'שאלי.'], ['מה השתנה?', 'הכדור זז!'], 'קבוצה קטנה.']
+]
+};
+
+
+/* בנק מילים לכל שכבה ומרחב: n שמות עצם, v פעלים, d תיאורים ורגשות, s צלילים ומילים קטנות */
+var W = {
+a1: {
+change: { n: ['טיטול', 'מגבון', 'בטן', 'רגל', 'יד', 'אף'], v: ['מורידים', 'מנגבים', 'שמים', 'סוגרים', 'מרימים'], d: ['נקי', 'רטוב', 'קר', 'נעים', 'רך'], s: ['אוֹפּ', 'הנה', 'נגמר', 'קוקו'] },
+breakfast: { n: ['בננה', 'לחם', 'כוס', 'כף', 'מים', 'יוגורט'], v: ['אוכלים', 'שותים', 'נותנים', 'לועסים'], d: ['טעים', 'קר', 'חמוץ', 'מתוק', 'רך'], s: ['עוד', 'נגמר', 'אָאָם', 'מממ'] },
+lunch: { n: ['צלחת', 'כף', 'אורז', 'תירס', 'מרק', 'מפית'], v: ['אוכלים', 'נושפים', 'שותים', 'מנגבים'], d: ['חם', 'צהוב', 'רך', 'ריק', 'מלא'], s: ['פוּ', 'אָאָם', 'עוד', 'גלוּג'] },
+art: { n: ['נייר', 'צבע', 'מכחול', 'יד', 'מים', 'ספוג'], v: ['מרשרשים', 'טופחים', 'מורחים', 'מועכים'], d: ['רטוב', 'רך', 'דביק', 'ירוק', 'אדום'], s: ['רששש', 'טוּף', 'הנה', 'נעלם'] },
+socio: { n: ['בובה', 'שמיכה', 'טלפון', 'מראה', 'כובע', 'צעיף'], v: ['ישנה', 'מכסים', 'מדברים', 'מסתתרים'], d: ['עייפה', 'שמח', 'בוכה', 'שקט'], s: ['קוקו', 'הלו', 'ביי', 'שששש'] },
+build: { n: ['קובייה', 'מגדל', 'קופסה', 'מכונית', 'כדור', 'כוס'], v: ['בונים', 'מפילים', 'מכניסים', 'נוסעת'], d: ['גדול', 'קטן', 'גבוה', 'בפנים', 'בחוץ'], s: ['בום', 'בררררום', 'טוק', 'עוד'] },
+book: { n: ['ספר', 'כלב', 'חתול', 'פרה', 'ברווז', 'אמא'], v: ['מדפדפים', 'מסתכלים', 'מצביעים'], d: ['רך', 'שמח', 'עצוב', 'קטן'], s: ['מוּ', 'הַב', 'מיאו', 'הנה'] },
+yard: { n: ['עץ', 'עלה', 'ציפור', 'חול', 'נדנדה', 'בועה'], v: ['מנדנדים', 'נושפים', 'שופכים', 'עף'], d: ['רוח', 'דוקר', 'רטוב', 'למעלה'], s: ['ציף ציף', 'פּוֹף', 'הוּפּ', 'שלום'] }
+},
+a2: {
+change: { n: ['טיטול', 'גרביים', 'מכנסיים', 'ברך', 'בטן', 'מגבון'], v: ['מורידים', 'מחליפים', 'מרימים', 'נותנים', 'מלבישים'], d: ['נקי', 'רטוב', 'לבד', 'שמח', 'כועס'], s: ['כן', 'לא', 'עזרה', 'לבד'] },
+breakfast: { n: ['לחם', 'גבינה', 'חביתה', 'מלפפון', 'כוס', 'קופסה'], v: ['מורחים', 'מוזגים', 'פותחים', 'מבקשים', 'מגישים'], d: ['חם', 'קר', 'פריך', 'רך', 'מתוק'], s: ['עוד', 'תודה', 'בבקשה', 'גמרתי'] },
+lunch: { n: ['מרק', 'אורז', 'עוף', 'אפונה', 'קנקן', 'תפריט'], v: ['נושפים', 'מוזגים', 'סופרים', 'חותכים'], d: ['חם', 'עגול', 'ארוך', 'גדולה', 'קטנה'], s: ['פוּ', 'אחת', 'גמרתי', 'טעים'] },
+art: { n: ['צבע', 'מכחול', 'בצק', 'מדבקה', 'חותמת', 'נוצה'], v: ['מקשקש', 'קורעים', 'מדביקים', 'מערבבים', 'מועכים'], d: ['כחול', 'צהוב', 'ירוק', 'רכה', 'ארוך'], s: ['קְרַע', 'וואו', 'הנה'] },
+socio: { n: ['בובה', 'סיר', 'דובי', 'רופא', 'סל', 'טלפון'], v: ['מבשלים', 'אוכלת', 'רוחצים', 'מלבישים', 'מערבבים'], d: ['עצוב', 'שמח', 'כואב', 'שלי', 'שלך'], s: ['הלו', 'ביי', 'מזל טוב', 'אוי'] },
+build: { n: ['קובייה', 'רכבת', 'כביש', 'גשר', 'מוסך', 'מנהרה'], v: ['בונים', 'מחברים', 'מפרקים', 'נוסעים', 'חונה'], d: ['למעלה', 'למטה', 'ארוכה', 'בפנים', 'בחוץ'], s: ['צ׳וּ צ׳וּ', 'נפל', 'עוצרים'] },
+book: { n: ['ספר', 'כלב', 'ציפור', 'כובע', 'אוטובוס', 'דובי'], v: ['קופץ', 'ישן', 'מחפשים', 'מצאת'], d: ['שמח', 'עצוב', 'קטנה', 'גדול'], s: ['איפה', 'הנה', 'טוּט', 'מי זה'] },
+yard: { n: ['מגלשה', 'משפך', 'חול', 'כדור', 'צל', 'בוץ'], v: ['רצים', 'עוצרים', 'חופרים', 'משקים', 'זורקת'], d: ['רטוב', 'דביק', 'חלקה', 'מחוספס', 'למעלה'], s: ['הופ', 'פוּף', 'שומעים', 'הנה'] }
+},
+a3: {
+change: { n: ['סבון', 'מרפק', 'ברך', 'מגבונים', 'מים', 'ידיים'], v: ['רוחצים', 'מנגבים', 'מחליפים', 'מורידים'], d: ['נקיות', 'מלוכלכות', 'רטובות', 'נעים', 'קר'], s: ['קודם', 'ואז', 'כי', 'למה'] },
+breakfast: { n: ['תפריט', 'מסחטה', 'תפוז', 'כריך', 'ירק', 'פרי'], v: ['סוחטים', 'חתכנו', 'מכינים', 'חלמת', 'נלך'], d: ['הרבה', 'מעט', 'מתוק', 'אדום', 'עגול'], s: ['בבקשה', 'תודה', 'אתמול', 'היום'] },
+lunch: { n: ['עגבנייה', 'שדה', 'טבחית', 'מרק', 'גזר', 'מסעדה'], v: ['מגישים', 'להזמין', 'חילקת', 'אוכלים'], d: ['מתוק', 'חמוץ', 'יותר', 'טעים', 'רכה'], s: ['אתמול', 'היום', 'הכי', 'כי'] },
+art: { n: ['ציור', 'יצירה', 'קולאז׳', 'קו', 'מכחול', 'עלה'], v: ['ציירת', 'כתבתי', 'גזרת', 'בחרת'], d: ['ישר', 'עקום', 'מחוספסת', 'באמצע', 'בצד'], s: ['ספר לי', 'מה', 'למה'] },
+socio: { n: ['מלצר', 'תפריט', 'מדחום', 'כרטיס', 'מכתב', 'תור'], v: ['להזמין', 'נמדוד', 'נוסעים', 'עולה'], d: ['עצוב', 'שמח', 'נחמד', 'חולה'], s: ['בבקשה', 'מזל טוב', 'שלום'] },
+build: { n: ['גשר', 'עיר', 'רמפה', 'מגדל', 'חנות', 'מבצר'], v: ['בנית', 'נבנה', 'ננסה', 'נוסעת'], d: ['מעל', 'מתחת', 'ליד', 'גבוה', 'מהר'], s: ['למה', 'איך', 'מה חסר'] },
+book: { n: ['ספר', 'דמות', 'כלב', 'מטריה', 'בית', 'חתול'], v: ['מצא', 'ישן', 'יקרה', 'מספרים'], d: ['כועס', 'עצוב', 'ענק', 'פתוחה'], s: ['ואז', 'מה', 'גם לך'] },
+yard: { n: ['נמלה', 'קן', 'עץ', 'עלים', 'אבן', 'חול'], v: ['חופרים', 'משקים', 'הולכת', 'שמנו'], d: ['רטוב', 'יבש', 'קר', 'חם', 'גדולים'], s: ['לאן', 'מה השתנה', 'מצאו'] }
+}
+};
+
+var LOGO = '/_blob/cf6ba380f849ea66cc5408e188dde6cf';
+var AGES = [
+  { id: 'a1', num: '1', label: 'תינוקות', range: '4 חודשים עד שנה וחודשיים', bg: '#FFF1C2' },
+  { id: 'a2', num: '2', label: 'פעוטות צעירים', range: 'שנה ושלושה חודשים עד שנתיים', bg: '#FFE0E6' },
+  { id: 'a3', num: '3', label: 'פעוטות בוגרים', range: 'שנתיים עד שלוש', bg: '#D9F0FB' }
+];
+var SPACES = [
+  { id: 'change', label: 'פינת החתלה', icon: '/_blob/354c98f3e60473883735b64c8ba73392', bg: '#FFE3EC', color: '#FF8FAA' },
+  { id: 'breakfast', label: 'ארוחת בוקר', icon: '/_blob/76317235b2d777be072194dcca732552', bg: '#FFF1C2', color: '#FFC93C' },
+  { id: 'lunch', label: 'ארוחת צהריים', icon: '/_blob/aebf80e80c2250811bfc06cb720e5abc', bg: '#FFE1CC', color: '#FF9D5C' },
+  { id: 'art', label: 'מרחב יצירה', icon: '/_blob/a86281ecdadf6518f512c141098011a7', bg: '#ECE4FF', color: '#B49CFF' },
+  { id: 'socio', label: 'מרחב סוציו-דרמטי', icon: '/_blob/317406de48312a4ef0c0c4b7436c8dbe', bg: '#D8F3EA', color: '#5FCBA3' },
+  { id: 'build', label: 'מרחב בנייה', icon: '/_blob/cb157eb671f02d51afefe2601ba92a76', bg: '#DDF0FB', color: '#6FC3E8' },
+  { id: 'book', label: 'קריאת ספר', icon: '/_blob/c2afdd090610df5a838cb0373e5caf1b', bg: '#FCE9D6', color: '#F4B07A' },
+  { id: 'yard', label: 'חצר', icon: '/_blob/6fcbcaeb90e701c39a036db30b1db984', bg: '#E4F6D8', color: '#8FD46B' }
+];
+var CATS = [
+  { k: 'n', label: 'שמות עצם', bg: '#DDF0FB' },
+  { k: 'v', label: 'פעלים', bg: '#FFE1D9' },
+  { k: 'd', label: 'תיאורים ורגשות', bg: '#FFE3EC' },
+  { k: 's', label: 'צלילים ומילים קטנות', bg: '#FFF1C2' }
+];
+var NUMC = ['#FFB3A6', '#FFE08A', '#A9DCF2', '#D2C3FF', '#A8E6CF'];
+var LIM = { a1: [2, 4], a2: [3, 5], a3: [4, 7] };
+var TIPS = [
+  { n: '1', t: 'מתבוננים, מחכים, מקשיבים', bg: '#FFF1C2', d: 'יורדים לגובה העיניים, שמים לב במה הילד מתעניין, ואחרי שאלה או צליל עוצרים ומחכים עד 10 שניות לתגובה.', e: 'הילד מצביע על ציפור. מחכים בשקט, ואז: ״כן, ציפור! היא עפה.״', w: 'כשהילד מוביל, המילים שהוא שומע קשורות בדיוק למה שמעניין אותו, וכך קל לו יותר ללמוד אותן.' },
+  { n: '2', t: 'מספרים בקול', bg: '#DDF0FB', d: 'מתארים את מה שאני עושה (דיבור עצמי) ואת מה שהילד עושה (דיבור מקביל), במשפטים קצרים ומלאים.', e: '״אני מנגבת את הידיים. ואתה מרים את הכוס.״', w: 'הילד שומע את המילה בדיוק ברגע שהיא מתרחשת, וזה מחבר בין המילה לפעולה.' },
+  { n: '3', t: 'מרחיבים בלי לתקן', bg: '#D8F3EA', d: 'חוזרים על מה שהילד אמר בצורה הנכונה ומוסיפים מילה אחת. לא מבקשים ממנו לחזור.', e: 'הילד: ״בוּבָּה״. המחנכת: ״כן, הבובה ישנה.״', w: 'הילד מקבל דוגמה לשלב הבא בלי תחושת כישלון, ושומר על המוטיבציה לדבר.' },
+  { n: '4', t: 'חוזרים על אותן מילים', bg: '#FFE3EC', d: 'אותו שיר, אותו ספר, אותן מילות פעולה באותה שגרה, ימים ושבועות ברציפות.', e: 'בכל החתלה: ״מורידים, מנגבים, שמים, סוגרים.״', w: 'החזרה מאפשרת לילד לצפות למילה, לזהות אותה ובסוף גם להשתמש בה.' }
+];
+var STORE = 'patput-v1';
+var EDGE = { a1: '#E9C45E', a2: '#EFA0B4', a3: '#8FC6E4', change: '#EFA0B4', breakfast: '#E9C45E', lunch: '#F0AE80', art: '#BBA6F2', socio: '#86D2B4', build: '#93C8EA', book: '#E5B886', yard: '#A6D686' };
+var LOGKEY = 'patput-log';
+var SESSKEY = 'patput-session';
+var ORGS = [{ id: '75531', name: 'שביל הילדות' }, { id: '90852', name: 'גן אנגלית' }];
+var SB_URL = 'https://twpptxxesvjidnaeldqe.supabase.co';
+var SB_KEY = 'sb_publishable_8WYlm3FQo8iXPz98v3gh9w_C2UuqEuX';
+var TOKKEY = 'patpot-auth';
+var QKEY = 'patpot-queue';
+function sbLoadTok() { try { return JSON.parse(window.localStorage.getItem(TOKKEY) || 'null'); } catch (e) { return null; } }
+function sbSaveTok(t) { try { if (t) window.localStorage.setItem(TOKKEY, JSON.stringify(t)); else window.localStorage.removeItem(TOKKEY); } catch (e) {} }
+function sbKeep(j) { var t = { a: j.access_token, r: j.refresh_token, x: Date.now() + ((j.expires_in || 3600) - 60) * 1000 }; sbSaveTok(t); return t; }
+function sbAuth(email, pw) {
+  return fetch(SB_URL + '/auth/v1/token?grant_type=password', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SB_KEY }, body: JSON.stringify({ email: email, password: pw }) })
+    .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; }); })
+    .then(function (x) { if (!x.ok || !x.j.access_token) { var e = new Error('auth'); e.status = x.status; throw e; } return sbKeep(x.j); });
+}
+function sbToken() {
+  var t = sbLoadTok();
+  if (!t || !t.r) return Promise.resolve(null);
+  if (t.a && t.x > Date.now()) return Promise.resolve(t.a);
+  return fetch(SB_URL + '/auth/v1/token?grant_type=refresh_token', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: SB_KEY }, body: JSON.stringify({ refresh_token: t.r }) })
+    .then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.access_token) { if (r.status >= 400 && r.status < 500) sbSaveTok(null); return null; } return sbKeep(j).a; }); })
+    .catch(function () { return null; });
+}
+function sbRpc(name, body, tok, keep) {
+  var h = { 'Content-Type': 'application/json', apikey: SB_KEY };
+  if (tok) h.Authorization = 'Bearer ' + tok;
+  return fetch(SB_URL + '/rest/v1/rpc/' + name, { method: 'POST', headers: h, body: JSON.stringify(body || {}), keepalive: !!keep })
+    .then(function (r) { return r.text().then(function (txt) { var j = null; try { j = txt ? JSON.parse(txt) : null; } catch (e) {} if (!r.ok) { var er = new Error((j && j.message) || ('HTTP ' + r.status)); er.status = r.status; throw er; } return j; }); });
+}
+function qLoad() { try { return JSON.parse(window.localStorage.getItem(QKEY) || '[]') || []; } catch (e) { return []; } }
+function qSave(a) { try { window.localStorage.setItem(QKEY, JSON.stringify(a.slice(-500))); } catch (e) {} }
+var PAL = ['#FF6B57', '#FFC93C', '#6FC3E8', '#B49CFF', '#7ED9B8', '#FF9D5C', '#FF8FAA', '#8FD46B'];
+var VLAB = { home: 'בית', saved: 'הפעילויות שלי', words: 'בנק מילים', journey: 'המסע שלי', tips: 'עקרונות וטיפים', access: 'נגישות', about: 'אודות', admin: 'לוח בקרה' };
+var DAYS = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
+function readLog() { try { return JSON.parse(window.localStorage.getItem(LOGKEY) || '[]') || []; } catch (e) { return []; } }
+function inc(m, k, d) { m[k] = (m[k] || 0) + (d == null ? 1 : d); }
+function bars(map, keys, labels, colors) {
+  var max = 1; keys.forEach(function (k) { if ((map[k] || 0) > max) max = map[k]; });
+  return keys.map(function (k, i) { var v = map[k] || 0; return { label: labels[i], v: v, pct: v ? Math.max(5, Math.round(100 * v / max)) : 0, color: colors[i % colors.length] }; });
+}
+function topList(map, n, labelFn) {
+  var ks = Object.keys(map).filter(function (k) { return map[k] > 0; }).sort(function (a, b) { return map[b] - map[a]; }).slice(0, n);
+  var max = ks.length ? map[ks[0]] : 1;
+  return ks.map(function (k, i) { return { label: labelFn ? labelFn(k) : k, v: map[k], pct: Math.max(6, Math.round(100 * map[k] / max)), color: PAL[i % PAL.length] }; });
+}
+function actLabel(k) { var p = k.split('|'); var a = byId(AGES, p[0]), s = byId(SPACES, p[1]); return p.slice(2).join('|') + ' · ' + (s ? s.label : '') + ' · ' + (a ? a.label : ''); }
+function evText(e) {
+  var a = byId(AGES, e.age), s = byId(SPACES, e.space);
+  var where = (s ? s.label : '') + (a ? ' · ' + a.label : '');
+  if (e.type === 'login') return 'כניסה למערכת';
+  if (e.type === 'gen') return 'הפקת פעילויות: ' + where + ' · ' + e.n + ' ילדים';
+  if (e.type === 'more') return 'רענון הצעות: ' + where;
+  if (e.type === 'fb') return (e.v === 'good' ? 'עבד מעולה: ' : (e.v === 'bad' ? 'פחות עבד: ' : 'ביטול משוב: ')) + e.act;
+  if (e.type === 'fav') return (e.on ? 'שמירה: ' : 'הסרה מהשמורות: ') + e.act;
+  if (e.type === 'share') return 'שיתוף בוואטסאפ: ' + e.act;
+  if (e.type === 'word') return (e.on ? 'סימון מילה: ' : 'ביטול סימון: ') + e.w;
+  if (e.type === 'view') return 'מעבר למסך: ' + (VLAB[e.view] || e.view);
+  return e.type;
+}
+function buildDash(log, f, r, from, to) {
+  var now = Date.now(), since = r === '7' ? now - 7 * 864e5 : (r === '30' ? now - 30 * 864e5 : 0), until = Infinity;
+  if (r === 'custom') { since = from ? new Date(from + 'T00:00:00').getTime() : 0; until = to ? new Date(to + 'T23:59:59').getTime() : Infinity; }
+  var L = log.filter(function (e) { return e && e.t >= since && e.t <= until; });
+  var F = f === 'all' ? L : L.filter(function (e) { return e.u === f; });
+  var lo = {}; L.forEach(function (e) { if (e.type === 'login') inc(lo, e.u); });
+  var c = {}, age = {}, sp = {}, nb = {}, hrs = {}, days = {}, favs = {}, words = {}, views = {}, last = {}, daySet = {};
+  F.forEach(function (e) {
+    inc(c, e.type);
+    var d = new Date(e.t); daySet[d.toDateString()] = 1;
+    if (e.type === 'gen') { inc(age, e.age); inc(sp, e.space); var n = e.n || 0; inc(nb, n <= 3 ? 'b1' : (n <= 6 ? 'b2' : (n <= 10 ? 'b3' : 'b4'))); inc(hrs, d.getHours()); inc(days, d.getDay()); }
+    if (e.type === 'fb') last[e.u + '#' + e.age + '|' + e.space + '|' + e.act] = e.v;
+    if (e.type === 'fav') inc(favs, e.age + '|' + e.space + '|' + e.act, e.on ? 1 : -1);
+    if (e.type === 'word') inc(words, e.w, e.on ? 1 : -1);
+    if (e.type === 'view') inc(views, e.view);
+  });
+  var acts = {}, good = 0, bad = 0;
+  Object.keys(last).forEach(function (k) { var v = last[k]; if (v !== 'good' && v !== 'bad') return; var a = k.split('#').slice(1).join('#'); if (!acts[a]) acts[a] = { g: 0, b: 0 }; if (v === 'good') { acts[a].g++; good++; } else { acts[a].b++; bad++; } });
+  var rows = Object.keys(acts).map(function (k) { var x = acts[k], t = x.g + x.b, pct = Math.round(100 * x.g / t); return { label: actLabel(k), g: x.g, b: x.b, total: t, pct: pct, bar: Math.max(4, pct), color: pct >= 70 ? '#0B6E73' : (pct >= 40 ? '#F4B07A' : '#C2410C') }; }).sort(function (a, b) { return b.total - a.total || b.pct - a.pct; }).slice(0, 30);
+  var hk = [], hl = []; for (var h = 6; h <= 19; h++) { hk.push(h); hl.push(String(h)); }
+  var feed = F.slice(-15).reverse().map(function (e) { var tm = ''; try { tm = new Date(e.t).toLocaleString('he-IL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); } catch (x) {} return { text: evText(e), who: e.u === 'guest' ? 'אורחת' : (e.u === '75531' ? 'שביל הילדות' : (e.u === '90852' ? 'גן אנגלית' : e.u)), time: tm }; });
+  var topFav = topList(favs, 8, actLabel), topWords = topList(words, 12), topViews = topList(views, 8, function (k) { return VLAB[k] || k; });
+  return {
+    kpis: [
+      { v: c.login || 0, label: 'כניסות', bg: '#FFE0D6' },
+      { v: c.gen || 0, label: 'הפקות פעילויות', bg: '#FFF1C2' },
+      { v: c.more || 0, label: 'רענוני הצעות', bg: '#DDF0FB' },
+      { v: (good + bad) ? Math.round(100 * good / (good + bad)) + '%' : '-', label: 'אחוז הצלחה כללי', bg: '#D8F3EA' },
+      { v: (good + bad), label: 'משובים על פעילויות', bg: '#ECE4FF' },
+      { v: c.share || 0, label: 'שיתופים בוואטסאפ', bg: '#FFE3EC' },
+      { v: Object.keys(daySet).length, label: 'ימי שימוש', bg: '#FCE9D6' },
+      { v: c.gen ? (Math.round(10 * (c.more || 0) / c.gen) / 10) : 0, label: 'רענונים בממוצע להפקה', bg: '#E4F6D8' }
+    ],
+    byOrg: bars(lo, ['75531', '90852', 'guest'], ['שביל הילדות', 'גן אנגלית', 'אורחות (בלי שם)'], ['#FF6B57', '#6FC3E8', '#B49CFF']),
+    byAge: bars(age, AGES.map(function (a) { return a.id; }), AGES.map(function (a) { return a.label; }), ['#FFC93C', '#FF8FAA', '#6FC3E8']),
+    bySpace: bars(sp, SPACES.map(function (s) { return s.id; }), SPACES.map(function (s) { return s.label; }), SPACES.map(function (s) { return s.color; })),
+    byN: bars(nb, ['b1', 'b2', 'b3', 'b4'], ['1 עד 3 ילדים', '4 עד 6 ילדים', '7 עד 10 ילדים', '11 ילדים ומעלה'], ['#A8E6CF', '#7ED9B8', '#5FCBA3', '#0B6E73']),
+    hours: bars(hrs, hk, hl, ['#FF6B57']), days: bars(days, [0, 1, 2, 3, 4, 5, 6], DAYS, ['#6FC3E8']),
+    rows: rows, hasRows: rows.length > 0, noRows: rows.length === 0,
+    topFav: topFav, hasFav: topFav.length > 0, noFav: topFav.length === 0,
+    topWords: topWords, hasWords: topWords.length > 0, noWords: topWords.length === 0,
+    topViews: topViews, hasViews: topViews.length > 0, noViews: topViews.length === 0,
+    feed: feed, hasFeed: feed.length > 0, noFeed: feed.length === 0,
+    noGen: !c.gen, hasGen: !!c.gen, noLogin: !Object.keys(lo).length, hasLogin: !!Object.keys(lo).length
+  };
+}
+
+function toV(a) { return a.map(function (v) { return { v: v }; }); }
+function listFor(age, space) { return ((D[age] && D[age][space]) || []).concat((D2[age] && D2[age][space]) || []); }
+function findAct(age, space, t) { var l = listFor(age, space); for (var i = 0; i < l.length; i++) { if (l[i][0] === t) return l[i]; } return null; }
+function byId(arr, id) { for (var i = 0; i < arr.length; i++) { if (arr[i].id === id) return arr[i]; } return null; }
+function bankWords(age, space) { var b = (W[age] && W[age][space]) || null; if (!b) return []; return [].concat(b.n || [], b.v || [], b.d || [], b.s || []); }
+function matchWords(x, words) {
+  var text = x[0] + ' ' + x[1] + ' ' + x[2].join(' ') + ' ' + x[3].join(' ');
+  var toks = text.split(/[^֐-׿׳]+/).filter(Boolean);
+  var set = {};
+  toks.forEach(function (t) { set[t] = 1; var u = t; for (var i = 0; i < 2 && u.length > 2 && 'הובלמשכ'.indexOf(u[0]) >= 0; i++) { u = u.slice(1); set[u] = 1; } });
+  var out = [];
+  words.forEach(function (w) {
+    var hit = w.indexOf(' ') >= 0 ? text.indexOf(w) >= 0 : !!set[w];
+    if (hit && out.indexOf(w) < 0) out.push(w);
+  });
+  return out.slice(0, 8);
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { view: 'home', age: null, space: null, n: 4, page: 0, openKey: null, keep: null, tab: 'acts', menu: false, fb: {}, fav: {}, used: {}, big: false, calm: false, sess: null, loginTab: 'org', codeIn: '', pwIn: '', err: '', admF: 'all', admR: 'all' };
+  }
+  componentDidMount() {
+    var self = this;
+    try {
+      var ss = JSON.parse(window.localStorage.getItem(SESSKEY) || 'null');
+      if (ss && ss.kind === 'guest') this.setState({ sess: ss, view: 'home' });
+      else if (ss && ss.kind) {
+        sbToken().then(function (tok) {
+          if (!tok) { self.logout(); return; }
+          self.setState({ sess: ss, view: ss.kind === 'admin' ? 'admin' : 'home' });
+          if (ss.kind === 'admin') self.loadDash();
+        });
+      }
+    } catch (e) {}
+    try { window.addEventListener('pagehide', function () { self.flushQ(true); }); document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') self.flushQ(true); }); } catch (e) {}
+    this.flushQ();
+    try {
+      var raw = window.localStorage.getItem(STORE);
+      if (raw) {
+        var d = JSON.parse(raw);
+        this.setState({ fb: d.fb || {}, fav: d.fav || {}, used: d.used || {}, big: !!d.big, calm: !!d.calm });
+      }
+    } catch (e) {}
+  }
+  componentWillUnmount() { if (this._t) clearTimeout(this._t); }
+  save() {
+    try {
+      var s = this.state;
+      window.localStorage.setItem(STORE, JSON.stringify({ fb: s.fb, fav: s.fav, used: s.used, big: s.big, calm: s.calm }));
+    } catch (e) {}
+  }
+  up(o) { var self = this; this.setState(o, function () { self.save(); }); }
+  top() { try { window.scrollTo(0, 0); } catch (e) {} }
+  nav(view, extra) { if (view !== 'results') this.log({ type: 'view', view: view }); var o = Object.assign({ view: view, menu: false }, extra || {}); this.setState(o); this.top(); }
+  logAs(s, e) {
+    if (!s || s.kind === 'admin') return;
+    var a = qLoad(); a.push(Object.assign({ g: s.kind === 'guest' ? 1 : 0 }, e)); qSave(a);
+    var self = this; if (this._qt) clearTimeout(this._qt); this._qt = setTimeout(function () { self.flushQ(); }, 1500);
+  }
+  flushQ(keep) {
+    var self = this;
+    if (this._qBusy) return;
+    var a = qLoad(); if (!a.length) return;
+    var guest = !!a[0].g, batch = [];
+    for (var i = 0; i < a.length && batch.length < 50 && !!a[i].g === guest; i++) batch.push(a[i]);
+    this._qBusy = true;
+    var send = function (tok) {
+      if (!guest && !tok) { self._qBusy = false; if (!sbLoadTok()) qSave(qLoad().slice(batch.length)); return; }
+      var evts = batch.map(function (e) { var o = Object.assign({}, e); delete o.g; return o; });
+      return sbRpc('log_events', { evts: evts }, guest ? null : tok, keep).then(function () {
+        qSave(qLoad().slice(batch.length)); self._qBusy = false;
+        if (qLoad().length) self.flushQ(keep);
+      });
+    };
+    return Promise.resolve(guest ? null : sbToken()).then(send).catch(function () { self._qBusy = false; });
+  }
+  loadDash() {
+    var self = this;
+    this.setState({ dashState: 'loading' });
+    sbToken().then(function (tok) {
+      if (!tok) { self.logout(); return; }
+      return sbRpc('admin_events', {}, tok).then(function (rows) {
+        self._log = (rows || []).map(function (r) { return Object.assign({}, r.data || {}, { t: Date.parse(r.t), u: r.u, type: r.type }); });
+        self.setState({ dashState: 'ok' });
+      });
+    }).catch(function () { self.setState({ dashState: 'error' }); });
+  }
+  log(e) { this.logAs(this.state.sess, e); }
+  begin(s) { try { window.localStorage.setItem(SESSKEY, JSON.stringify(s)); } catch (e) {} this.logAs(s, { type: 'login' }); this.setState({ sess: s, view: s.kind === 'admin' ? 'admin' : 'home', codeIn: '', pwIn: '', err: '', menu: false, busy: false }); this.top(); if (s.kind === 'admin') this.loadDash(); }
+  signIn(email, pw, expect, badMsg) {
+    var self = this;
+    if (this.state.busy) return;
+    this.setState({ busy: true, err: 'בודקים את הפרטים...' });
+    sbAuth(email, pw).then(function (t) { return sbRpc('whoami', {}, t.a); }).then(function (me) {
+      if (!me || me.kind !== expect) { sbSaveTok(null); self.setState({ busy: false, err: badMsg }); return; }
+      self._code = ''; self._pw = '';
+      self.begin(me.kind === 'admin' ? { kind: 'admin', id: 'admin', name: 'מנהל' } : { kind: 'org', id: me.id, name: me.name });
+    }).catch(function (e) {
+      sbSaveTok(null);
+      self.setState({ busy: false, err: e && (e.status === 400 || e.status === 401) ? badMsg : 'אין חיבור לשרת כרגע. בדקי את האינטרנט ונסי שוב.' });
+    });
+  }
+  clearDates(r) { try { var a = document.getElementById('d-from'), b = document.getElementById('d-to'); if (a) a.value = ''; if (b) b.value = ''; } catch (e) {} this.setState({ admFrom: '', admTo: '', admR: r || 'all' }); }
+  setDate(k, v) { var o = {}; o[k] = v || ''; var from = k === 'admFrom' ? o[k] : (this.state.admFrom || ''), to = k === 'admTo' ? o[k] : (this.state.admTo || ''); o.admR = (from || to) ? 'custom' : 'all'; this.setState(o); }
+  val(id, fb) { try { var el = document.getElementById(id); if (el && el.value != null && el.value !== '') return el.value; } catch (e) {} return fb || ''; }
+  matchOrgs(q) { q = (q || '').trim(); if (!q) return ORGS.slice(); return ORGS.filter(function (o) { return o.id.indexOf(q) === 0 || o.name.indexOf(q) >= 0 || q.indexOf(o.name) >= 0 || q.indexOf(o.id) >= 0; }); }
+  pickOrg(o) { this._code = o.name; try { var el = document.getElementById('l-code'); if (el) el.value = o.name; var pw = document.getElementById('l-pw'); if (pw) pw.focus(); } catch (e) {} this.setState({ selOrg: o.id, codeQ: o.name, listOpen: false, err: '' }); }
+  tryOrg() {
+    var c = this.val('l-code', this._code || this.state.codeQ).trim(), pw = this.val('l-pw', this._pw), o = null, sel = this.state.selOrg;
+    for (var i = 0; i < ORGS.length; i++) { if (ORGS[i].id === sel) o = ORGS[i]; }
+    if (o && c && c !== o.name && c !== o.id) o = null;
+    if (!o) { var m = this.matchOrgs(c); if (c && m.length === 1) o = m[0]; }
+    if (!o) { this.setState({ err: c ? 'לא מצאנו מעון כזה. בחרי מהרשימה או בדקי את הסמל.' : 'הקלידי סמל או שם מעון, או בחרי מהרשימה.', listOpen: true }); return; }
+    if (!pw) { this.setState({ err: 'חסרה סיסמה.' }); return; }
+    this.signIn(o.id + '@patpot.invalid', pw, 'org', 'הסיסמה לא נכונה למעון ' + o.name + '. נסי שוב.');
+  }
+  tryAdmin() { var pw = this.val('l-apw', this._pw); if (!pw) { this.setState({ err: 'חסרה סיסמה.' }); return; } this.signIn('admin@patpot.invalid', pw, 'admin', 'הסיסמה לא נכונה.'); }
+  logout() {
+    var self = this, s = this.state.sess;
+    var done = function () { sbSaveTok(null); try { window.localStorage.removeItem(SESSKEY); } catch (e) {} self._log = null; self.setState({ sess: null, view: 'home', menu: false, loginTab: 'org', pwIn: '', codeIn: '', err: '', busy: false }); self.top(); };
+    if (s && s.kind === 'org') { Promise.resolve(this.flushQ()).then(done, done); } else done();
+  }
+  start(age, space) {
+    var self = this;
+    if (this._t) clearTimeout(this._t);
+    this.log({ type: 'gen', age: age, space: space, n: this.state.n == null ? 4 : this.state.n });
+    this.setState({ age: age, space: space, view: 'loading', page: 0, openKey: null, keep: null, tab: 'acts', menu: false });
+    this.top();
+    this._t = setTimeout(function () { self.setState({ view: 'results' }); }, this.state.calm ? 200 : 1300);
+  }
+
+  renderVals() {
+    var self = this;
+    var st = this.state || {};
+    var n = st.n == null ? 4 : st.n;
+    var view = st.view || 'home';
+    var fb = st.fb || {}, fav = st.fav || {}, used = st.used || {};
+    var favKeys = Object.keys(fav);
+    var ready = !!(st.age && st.space);
+    var ag = byId(AGES, st.age), sp = byId(SPACES, st.space);
+    var sess = st.sess || null, isAdmin = !!(sess && sess.kind === 'admin');
+
+    var ages = AGES.map(function (a, i) {
+      var on = st.age === a.id;
+      return { delay: (i * 90) + 'ms', shadow: on ? '0 12px 26px rgba(255,107,87,0.32)' : '0 4px 0 rgba(35,34,58,0.07), 0 10px 22px rgba(35,34,58,0.08)', id: a.id, num: a.num, label: a.label, range: a.range, bg: a.bg, on: on, pressed: on ? 'true' : 'false',
+        border: on ? '3px solid #FF6B57' : '2px solid ' + EDGE[a.id],
+        pick: function () { self.setState({ age: a.id, page: 0 }); },
+        pickW: function () { self.setState({ age: a.id }); } };
+    });
+    var spaces = SPACES.map(function (s, i) {
+      var on = st.space === s.id;
+      return { delay: (i * 60) + 'ms', shadow: on ? '0 14px 28px rgba(255,107,87,0.32)' : '0 4px 0 rgba(35,34,58,0.07), 0 10px 22px rgba(35,34,58,0.08)', id: s.id, label: s.label, icon: s.icon, bg: s.bg, on: on, pressed: on ? 'true' : 'false',
+        border: on ? '3px solid #FF6B57' : '2px solid ' + EDGE[s.id],
+        pick: function () { self.setState({ space: s.id, page: 0 }); },
+        pickW: function () { self.setState({ space: s.id }); } };
+    });
+
+    var words = ready ? bankWords(st.age, st.space) : [];
+    var mk = function (x, k, age, space, showWhere) {
+      var key = age + '|' + space + '|' + x[0];
+      var isOpen = st.openKey === key || (st.openKey == null && k === 0);
+      var isFav = !!fav[key];
+      var setFb = function (v) { var o = Object.assign({}, self.state.fb || {}); o[key] = o[key] === v ? null : v; if (!o[key]) delete o[key]; self.up({ fb: o, keep: key }); self.log({ type: 'fb', age: age, space: space, act: x[0], v: o[key] || 'none' }); };
+      var a = byId(AGES, age), s = byId(SPACES, space);
+      var wa = '*' + x[0] + '* · פטפוט\n' + 'מטרה: ' + x[1] + '\n\n' + x[2].map(function (v, j) { return (j + 1) + '. ' + v; }).join('\n') + '\n\nאפשר להגיד: ' + x[3].map(function (v) { return '״' + v + '״'; }).join(' ');
+      wa += '\n\nעוד פעילויות להעשרה שפתית במעון, בפטפוט:\nhttps://shamisuperface.github.io/patpot/';
+      var mw = matchWords(x, bankWords(age, space));
+      return { delay: (k * 90) + 'ms', num: k + 1, t: x[0], g: x[1], b: x[4], ph: toV(x[3]), numBg: NUMC[k % NUMC.length],
+        steps: x[2].map(function (v, j) { return { v: v, n: j + 1 }; }),
+        words: mw.map(function (w) { return { w: w }; }), hasWords: mw.length > 0,
+        showWhere: !!showWhere, where: (a ? a.label : '') + ' · ' + (s ? s.label : ''),
+        open: isOpen, closed: !isOpen, openStr: isOpen ? 'true' : 'false',
+        toggle: function () { self.setState({ openKey: isOpen ? '' : key }); },
+        fav: isFav, favStr: isFav ? 'true' : 'false', favLabel: isFav ? 'שמורה' : 'שמירה', favBg: isFav ? '#FFE08A' : '#FFFFFF', starFill: isFav ? '#FFC93C' : 'none',
+        toggleFav: function () { var o = Object.assign({}, self.state.fav || {}); var on = !o[key]; if (o[key]) delete o[key]; else o[key] = 1; self.up({ fav: o }); self.log({ type: 'fav', age: age, space: space, act: x[0], on: on }); },
+        share: function () { self.log({ type: 'share', age: age, space: space, act: x[0] }); },
+        wa: 'https://wa.me/?text=' + encodeURIComponent(wa),
+        fbGood: fb[key] === 'good', fbBad: fb[key] === 'bad',
+        goodStr: fb[key] === 'good' ? 'true' : 'false', badStr: fb[key] === 'bad' ? 'true' : 'false',
+        goodBg: fb[key] === 'good' ? '#0B6E73' : '#FFFFFF', goodColor: fb[key] === 'good' ? '#FFFFFF' : '#0B6E73',
+        badBg: fb[key] === 'bad' ? '#9A3B10' : '#FFFFFF', badColor: fb[key] === 'bad' ? '#FFFFFF' : '#9A3B10',
+        good: function () { setFb('good'); }, bad: function () { setFb('bad'); } };
+    };
+
+    var acts = [], total = 0, rounds = 1, roundNo = 1;
+    if (view === 'results' && ready) {
+      var pre = st.age + '|' + st.space + '|';
+      var list = listFor(st.age, st.space);
+      var okx = function (x) { return fb[pre + x[0]] !== 'bad' || st.keep === pre + x[0]; };
+      total = list.filter(okx).length;
+      var pg = st.page || 0, L = list.length || 1, start = (pg * 5) % L;
+      for (var j = 0; j < L && acts.length < Math.min(5, total); j++) {
+        var x = list[(start + j) % L];
+        if (okx(x)) acts.push(mk(x, acts.length, st.age, st.space, false));
+      }
+      rounds = Math.ceil(L / 5); roundNo = (pg % rounds) + 1;
+    }
+    if (view === 'saved') {
+      favKeys.forEach(function (key) {
+        var p = key.split('|'); var x = findAct(p[0], p[1], p.slice(2).join('|'));
+        if (x) acts.push(mk(x, acts.length, p[0], p[1], true));
+      });
+    }
+
+    var groupTip = '';
+    if (ready) {
+      var lim = LIM[st.age];
+      if (st.space === 'change') groupTip = 'בפינת ההחתלה העבודה היא תמיד אחד על אחד. מספר הילדים קובע את משך התור, לא את הפעילות: שמרי על אותה שגרה מילולית עם כל ילד, וכשאפשר, שתפי את הממתינים בשיר או במבט.';
+      else if (n <= lim[0]) groupTip = 'קבוצה קטנה לגיל הזה. אפשר שיח אישי מלא: חכי לתגובה של כל ילד והרחיבי אותה.';
+      else if (n <= lim[1]) groupTip = 'קבוצה בינונית לגיל הזה. ודאי שכל ילד מקבל תור: פני לכל אחד בשמו והכיני חומרים לכל אחד כדי לצמצם המתנה.';
+      else groupTip = 'קבוצה גדולה לגיל הזה. מומלץ לחלק לתתי קבוצות של ' + (st.age === 'a1' ? '2 עד 3' : '3 עד 4') + ' ילדים ולהפעיל בסבבים, או להיעזר במחנכת נוספת. מי שממתין יכול להחזיק חפץ מהפעילות ולשמוע את השיח מקרוב.';
+    }
+
+    var bank = [], usedCount = 0, bankTotal = 0;
+    if (ready) {
+      var b = W[st.age][st.space];
+      bank = CATS.map(function (c) {
+        return { label: c.label, bg: c.bg, words: (b[c.k] || []).map(function (w) {
+          var key = st.age + '|' + st.space + '|' + w; var on = !!used[key];
+          bankTotal++; if (on) usedCount++;
+          return { w: w, mark: on ? '✓ ' : '', pressed: on ? 'true' : 'false', bg: on ? '#23223A' : '#FFFFFF', color: on ? '#FFFFFF' : '#23223A',
+            toggle: function () { var o = Object.assign({}, self.state.used || {}); var on = !o[key]; if (o[key]) delete o[key]; else o[key] = 1; self.up({ used: o }); self.log({ type: 'word', age: st.age, space: st.space, w: w, on: on }); } };
+        }) };
+      });
+    }
+
+    var goodCount = 0; var tried = {};
+    Object.keys(fb).forEach(function (k) { if (fb[k]) { var s = k.split('|')[1]; tried[s] = (tried[s] || 0) + 1; if (fb[k] === 'good') goodCount++; } });
+    var triedTotal = Object.keys(fb).filter(function (k) { return fb[k]; }).length;
+    var usedTotal = Object.keys(used).length;
+    var spacesTried = Object.keys(tried).length;
+    var score = triedTotal + Math.floor(usedTotal / 3) + favKeys.length;
+    var levels = [[0, 'מתחילה לפטפט'], [5, 'מפטפטת'], [15, 'פטפטנית'], [35, 'אלופת מילים']];
+    var li = 0; for (var q = 0; q < levels.length; q++) { if (score >= levels[q][0]) li = q; }
+    var next = levels[li + 1];
+    var levelPct = next ? Math.round(100 * (score - levels[li][0]) / (next[0] - levels[li][0])) : 100;
+    var levelHint = next ? 'עוד ' + (next[0] - score) + ' צעדים לדרגת ״' + next[1] + '״. כל פעילות שסימנת, שמרת או מילה שסימנת נספרות.' : 'הגעת לדרגה הגבוהה. כל הכבוד על העבודה!';
+
+    var maxPer = 39;
+    var spaceProg = SPACES.map(function (s) { var c = tried[s.id] || 0; return { label: s.label, icon: s.icon, color: s.color, count: c, max: maxPer, pct: Math.max(c ? 4 : 0, Math.round(100 * c / maxPer)) }; });
+    var badges = [
+      { mark: '1', name: 'צעד ראשון', hint: 'סימנת פעילות ראשונה', on: triedTotal >= 1, bg: '#FFF1C2' },
+      { mark: '8', name: 'סיור במעון', hint: 'ניסית פעילות בכל 8 המרחבים', on: spacesTried >= 8, bg: '#D8F3EA' },
+      { mark: '20', name: 'אוצר מילים', hint: 'סימנת 20 מילים מהבנק', on: usedTotal >= 20, bg: '#DDF0FB' },
+      { mark: '10', name: 'אספנית', hint: 'שמרת 10 פעילויות', on: favKeys.length >= 10, bg: '#FFE3EC' }
+    ].map(function (x) { x.op = x.on ? '1' : '0.55'; if (!x.on) x.hint = 'עוד לא: ' + x.hint; return x; });
+    var stats = [
+      { v: goodCount, label: 'פעילויות שעבדו מעולה', bg: '#D8F3EA' },
+      { v: triedTotal, label: 'פעילויות שניסית', bg: '#FFF1C2' },
+      { v: favKeys.length, label: 'פעילויות שמורות', bg: '#FFE3EC' },
+      { v: usedTotal, label: 'מילים שסימנת', bg: '#DDF0FB' }
+    ];
+
+    var menuDefs = [
+      ['home', 'בית', 'ב', '#FFE0D6'], ['saved', 'הפעילויות שלי', '★', '#FFF1C2'], ['words', 'בנק מילים', 'א', '#DDF0FB'],
+      ['journey', 'המסע שלי', '↑', '#D8F3EA'], ['tips', 'עקרונות וטיפים', '!', '#ECE4FF'], ['access', 'נגישות ותצוגה', 'Aא', '#FFE3EC'], ['about', 'אודות ומקורות', 'i', '#FCE9D6']
+    ];
+    if (isAdmin) menuDefs.unshift(['admin', 'לוח בקרה', '▦', '#FFE0D6']);
+    menuDefs.push(['logout', 'התנתקות', '⎋', '#EDE7F0']);
+    var menuItems = menuDefs.map(function (m) {
+      var on = view === m[0] || (m[0] === 'home' && (view === 'results' || view === 'loading'));
+      return { label: m[1], mark: m[2], dot: m[3], bg: on ? m[3] : '#FFFFFF', hasBadge: m[0] === 'saved' && favKeys.length > 0, badge: String(favKeys.length),
+        go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); } };
+    });
+
+    var settings = [
+      { t: 'טקסט גדול', d: 'מגדיל את כל הטקסט והכפתורים', on: !!st.big, toggle: function () { self.up({ big: !self.state.big }); } },
+      { t: 'בלי אנימציות', d: 'מבטל תנועה וקפיצות על המסך', on: !!st.calm, toggle: function () { self.up({ calm: !self.state.calm }); } }
+    ].map(function (o) { o.onStr = o.on ? 'true' : 'false'; o.bg = o.on ? '#0B6E73' : '#CFC6D9'; o.justify = o.on ? 'flex-start' : 'flex-end'; return o; });
+
+    var tab = st.tab || 'acts';
+    var tabs = [{ id: 'acts', label: 'פעילויות' }, { id: 'words', label: 'בנק מילים' }].map(function (t) {
+      var on = tab === t.id;
+      return { label: t.label, sel: on ? 'true' : 'false', bg: on ? '#FFE0D6' : 'transparent', shadow: 'none', pick: function () { self.setState({ tab: t.id }); } };
+    });
+
+    var orgList = this.matchOrgs(st.codeQ).map(function (o) { var on = st.selOrg === o.id; return { id: o.id, name: o.name, sel: on ? 'true' : 'false', bg: on ? '#FFE0D6' : '#FDF6EE', pick: function () { self.pickOrg(o); } }; });
+    var lt = st.loginTab || 'org';
+    var loginTabs = [['org', 'כניסת מעון'], ['guest', 'בלי שם'], ['admin', 'מנהל']].map(function (t) { var on = lt === t[0]; return { label: t[1], sel: on ? 'true' : 'false', bg: on ? '#FF6B57' : 'transparent', pick: function () { self.setState({ loginTab: t[0], err: '', pwIn: '' }); } }; });
+    var af = st.admF || 'all', ar = st.admR || 'all';
+    var dash = buildDash((isAdmin && view === 'admin') ? (this._log || []) : [], af, ar, st.admFrom, st.admTo);
+    var fmtD = function (s) { try { return new Date(s + 'T12:00:00').toLocaleDateString('he-IL'); } catch (e) { return s; } };
+    var rangeText = ar === 'custom' ? ('מוצגים נתונים ' + (st.admFrom ? 'מ-' + fmtD(st.admFrom) : 'מההתחלה') + ' ' + (st.admTo ? 'עד ' + fmtD(st.admTo) : 'עד היום')) : (ar === '7' ? 'מוצגים 7 הימים האחרונים' : (ar === '30' ? 'מוצגים 30 הימים האחרונים' : 'מוצגים כל הנתונים'));
+    if (st.admFrom && st.admTo && st.admFrom > st.admTo) rangeText = 'תאריך ההתחלה מאוחר מתאריך הסיום. בדקי את הטווח.';
+    if (st.dashState === 'loading') rangeText = 'טוען נתונים...'; else if (st.dashState === 'error') rangeText = 'לא הצלחנו לטעון את הנתונים. בדקו את החיבור ונסו שוב.';
+    var admOrgs = [['all', 'כל המעונות'], ['75531', 'שביל הילדות'], ['90852', 'גן אנגלית'], ['guest', 'אורחות']].map(function (o) { var on = af === o[0]; return { label: o[1], sel: on ? 'true' : 'false', bg: on ? '#23223A' : '#FFFFFF', color: on ? '#FFFFFF' : '#23223A', pick: function () { self.setState({ admF: o[0] }); } }; });
+    var admRanges = [['all', 'כל הזמן'], ['30', '30 יום'], ['7', '7 ימים']].map(function (o) { var on = ar === o[0]; return { label: o[1], sel: on ? 'true' : 'false', bg: on ? '#23223A' : '#FFFFFF', color: on ? '#FFFFFF' : '#23223A', pick: function () { self.clearDates(o[0]); } }; });
+    var missing = !st.age && !st.space ? 'בחרי גיל ומרחב כדי להתחיל' : (!st.age ? 'נשאר לבחור גיל' : 'נשאר לבחור מרחב');
+    var vResults = view === 'results' && ready;
+
+    return {
+      rootCls: (st.big ? 'big ' : '') + (st.calm ? 'calm' : ''),
+      vLogin: !sess, hasSess: !!sess, sessName: sess ? sess.name : '',
+      loginTabs: loginTabs, tabOrg: lt === 'org', tabGuest: lt === 'guest', tabAdmin: lt === 'admin',
+      codeIn: st.codeIn || '', pwIn: st.pwIn || '', err: st.err || '', hasErr: !!st.err,
+      onCode: function (e) { var v = e && e.target ? e.target.value : ''; self._code = v; if (v !== self.state.codeQ || self.state.selOrg || !self.state.listOpen) self.setState({ codeQ: v, selOrg: null, listOpen: true, err: '' }); },
+      onPw: function (e) { self._pw = e && e.target ? e.target.value : ''; if (self.state.err) self.setState({ err: '' }); },
+      codeKey: function (e) { if (!e) return; if (e.key === 'Enter') { if (e.preventDefault) e.preventDefault(); var m = self.matchOrgs(self.val('l-code', self._code)); if (m.length === 1) self.pickOrg(m[0]); else self.setState({ listOpen: true }); } else if (e.key === 'Escape') { self.setState({ listOpen: false }); } },
+      pwKey: function (e) { if (e && e.key === 'Enter') { if (e.preventDefault) e.preventDefault(); self.tryOrg(); } },
+      adminKey: function (e) { if (e && e.key === 'Enter') { if (e.preventDefault) e.preventDefault(); self.tryAdmin(); } },
+      openList: function () { if (!self.state.listOpen) self.setState({ listOpen: true }); },
+      closeList: function () { if (self.state.listOpen) self.setState({ listOpen: false }); },
+      toggleList: function () { self.setState({ listOpen: !self.state.listOpen }); },
+      showList: !!st.listOpen, listStr: st.listOpen ? 'true' : 'false',
+      orgList: orgList, noOrgMatch: orgList.length === 0,
+      loginOrg: function (e) { if (e && e.preventDefault) e.preventDefault(); self.tryOrg(); },
+      loginAdmin: function (e) { if (e && e.preventDefault) e.preventDefault(); self.tryAdmin(); },
+      loginGuest: function () { self.begin({ kind: 'guest', id: 'guest', name: 'אורחת' }); },
+      logout: function () { self.logout(); },
+      vAdmin: isAdmin && view === 'admin', isAdmin: isAdmin,
+      goAdmin: function () { self.nav('admin'); self.loadDash(); },
+      dash: dash, admOrgs: admOrgs, admRanges: admRanges, rangeText: rangeText,
+      onFrom: function (e) { var v = e && e.target ? e.target.value : ''; if (v !== (self.state.admFrom || '')) self.setDate('admFrom', v); },
+      onTo: function (e) { var v = e && e.target ? e.target.value : ''; if (v !== (self.state.admTo || '')) self.setDate('admTo', v); },
+      clearDatesBtn: function () { self.clearDates('all'); },
+      menu: !!st.menu, menuStr: st.menu ? 'true' : 'false',
+      openMenu: function () { self.setState({ menu: true }); },
+      closeMenu: function () { self.setState({ menu: false }); },
+      goHome: function () { self.nav('home', { page: 0 }); },
+      goSaved: function () { self.nav('saved', { openKey: null }); },
+      goWords: function () { self.nav('words'); },
+      goJourney: function () { self.nav('journey'); },
+      navHome: (view === 'home' || view === 'results' || view === 'loading') ? '#FFE0D6' : 'transparent',
+      navSaved: view === 'saved' ? '#FFF1C2' : 'transparent',
+      navWords: view === 'words' ? '#DDF0FB' : 'transparent',
+      navJourney: view === 'journey' ? '#D8F3EA' : 'transparent',
+      menuItems: menuItems,
+      favCount: favKeys.length, hasFav: favKeys.length > 0, noFav: favKeys.length === 0,
+      ages: ages, spaces: spaces, n: n,
+      inc: function () { self.setState({ n: Math.min(20, n + 1) }); },
+      dec: function () { self.setState({ n: Math.max(1, n - 1) }); },
+      ready: ready, notReady: !ready, missing: missing,
+      go: function () { if (self.state.age && self.state.space) self.start(self.state.age, self.state.space); },
+      surprise: function () { var a = AGES[Math.floor(Math.random() * 3)].id; var s = SPACES[Math.floor(Math.random() * 8)].id; self.start(a, s); },
+      selAge: ag ? ag.label : '', selSpace: sp ? sp.label : '', spaceBg: sp ? sp.bg : '#FFFFFF', spaceIcon: sp ? sp.icon : LOGO,
+      vHome: view === 'home', vLoading: view === 'loading',
+      vList: vResults || view === 'saved', vResults: vResults, vSaved: view === 'saved',
+      showActs: (vResults && tab === 'acts') || (view === 'saved' && favKeys.length > 0),
+      tabs: tabs,
+      acts: acts, total: total, rounds: rounds, roundNo: roundNo, groupTip: groupTip,
+      more: function () { self.log({ type: 'more', age: self.state.age, space: self.state.space }); self.setState({ page: (self.state.page || 0) + 1, openKey: null, keep: null }); self.top(); },
+      vWordsHead: view === 'words',
+      showBank: view === 'words' || (vResults && tab === 'words'),
+      bankReady: ready, bankNotReady: !ready, bank: bank, usedCount: usedCount, bankTotal: bankTotal,
+      bankTitle: ready ? (ag.label + ' · ' + sp.label) : '',
+      vJourney: view === 'journey', levelName: levels[li][1], levelPct: Math.max(4, Math.min(100, levelPct)), levelHint: levelHint,
+      stats: stats, spaceProg: spaceProg, badges: badges,
+      vTips: view === 'tips', tips: TIPS,
+      vAccess: view === 'access', settings: settings,
+      vAbout: view === 'about'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>פטפוט · העשרה שפתית במרחבי המעון</title>
+<meta name="description" content="פטפוט: פעילויות קצרות להעשרה שפתית במרחבי המעון, לפי שכבת גיל, מרחב וגודל קבוצה.">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<style>
+body{margin:0;background:#FDF6EE;font-family:Assistant,Arial,sans-serif;color:#23223A}
+#boot{min-height:100vh;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;font-size:18px;font-weight:700}
+#boot img{width:90px;height:auto}
+</style>
+</head>
+<body>
+<div id="app"><div id="boot"><img src="img/mascot.svg" alt=""><span>טוען את פטפוט...</span></div></div>
+<script>
+(function () {
+  'use strict';
+  var SELF_URL = 'https://shamisuperface.github.io/patpot/';
+  var OLD_URL = 'https://claude.ai/artifact/HkkGqU3SYFcoXuv8LMrtEU';
+  var ASSETS = {
+    '/_blob/cf6ba380f849ea66cc5408e188dde6cf': 'img/logo.svg',
+    '/_blob/55a5ba60b8c3fe4146b54f13b98b97ec': 'img/mascot.svg',
+    '/_blob/354c98f3e60473883735b64c8ba73392': 'img/sp-change.svg',
+    '/_blob/76317235b2d777be072194dcca732552': 'img/sp-breakfast.svg',
+    '/_blob/aebf80e80c2250811bfc06cb720e5abc': 'img/sp-lunch.svg',
+    '/_blob/a86281ecdadf6518f512c141098011a7': 'img/sp-art.svg',
+    '/_blob/317406de48312a4ef0c0c4b7436c8dbe': 'img/sp-socio.svg',
+    '/_blob/cb157eb671f02d51afefe2601ba92a76': 'img/sp-build.svg',
+    '/_blob/c2afdd090610df5a838cb0373e5caf1b': 'img/sp-book.svg',
+    '/_blob/6fcbcaeb90e701c39a036db30b1db984': 'img/sp-yard.svg'
+  };
+  var EVT = { onclick: 'click', onchange: 'change', oninput: 'input', onkeydown: 'keydown', onfocus: 'focus', onblur: 'blur', onsubmit: 'submit' };
+  var HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  var appEl = document.getElementById('app');
+
+  function get(scope, path) {
+    path = String(path).trim();
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i = 0; i < parts.length; i++) { if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  function interp(str, scope) { return str.replace(HOLE, function (_, p) { var v = get(scope, p); return v == null ? '' : String(v); }); }
+  function whole(str) { var m = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/.exec(str || ''); return m ? m[1] : null; }
+
+  function kids(node, scope, out) { for (var c = node.firstChild; c; c = c.nextSibling) render(c, scope, out); }
+  function render(node, scope, out) {
+    if (node.nodeType === 3) { out.push(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'helmet' || tag === 'script') return;
+    if (tag === 'sc-if') { var p = whole(node.getAttribute('value')); if (p && get(scope, p)) kids(node, scope, out); return; }
+    if (tag === 'sc-for') {
+      var lp = whole(node.getAttribute('list')), arr = lp ? get(scope, lp) : null, as = node.getAttribute('as') || 'item';
+      if (arr && arr.length) for (var i = 0; i < arr.length; i++) { var s = Object.create(scope); s[as] = arr[i]; s.$index = i; kids(node, s, out); }
+      return;
+    }
+    var el = document.createElementNS(node.namespaceURI || 'http://www.w3.org/1999/xhtml', tag);
+    var h = {};
+    for (var j = 0; j < node.attributes.length; j++) {
+      var a = node.attributes[j], n = a.name, ln = n.toLowerCase();
+      if (ln.indexOf('hint-') === 0) continue;
+      if (EVT[ln]) { var hp = whole(a.value), fn = hp ? get(scope, hp) : null; if (typeof fn === 'function') h[EVT[ln]] = fn; continue; }
+      var wp = whole(a.value), val = wp ? get(scope, wp) : interp(a.value, scope);
+      if (val === false || val == null) continue;
+      if (val === true) val = '';
+      el.setAttribute(n, String(val));
+    }
+    el.__h = h;
+    var sub = []; kids(node, scope, sub);
+    for (var k = 0; k < sub.length; k++) el.appendChild(sub[k]);
+    out.push(el);
+  }
+
+  function bindEl(el) {
+    if (!el.__h) return;
+    el.__b = el.__b || {};
+    Object.keys(el.__h).forEach(function (type) {
+      if (el.__b[type]) return;
+      el.__b[type] = true;
+      el.addEventListener(type, function (e) { var f = el.__h && el.__h[type]; if (f) f(e); });
+    });
+  }
+  function bindTree(n) {
+    if (n.nodeType !== 1) return;
+    bindEl(n);
+    for (var c = n.firstChild; c; c = c.nextSibling) bindTree(c);
+  }
+  function morph(a, b) {
+    if (a.nodeType !== b.nodeType || a.nodeName !== b.nodeName || a.namespaceURI !== b.namespaceURI) {
+      a.parentNode.replaceChild(b, a); bindTree(b); return;
+    }
+    if (a.nodeType === 3) { if (a.nodeValue !== b.nodeValue) a.nodeValue = b.nodeValue; return; }
+    var i, at;
+    for (i = 0; i < b.attributes.length; i++) { at = b.attributes[i]; if (a.getAttribute(at.name) !== at.value) a.setAttribute(at.name, at.value); }
+    for (i = a.attributes.length - 1; i >= 0; i--) { at = a.attributes[i]; if (!b.hasAttribute(at.name)) a.removeAttribute(at.name); }
+    a.__h = b.__h; bindEl(a);
+    morphKids(a, Array.prototype.slice.call(b.childNodes));
+  }
+  function morphKids(parent, list) {
+    for (var i = 0; i < list.length; i++) {
+      var cur = parent.childNodes[i];
+      if (cur) morph(cur, list[i]); else { parent.appendChild(list[i]); bindTree(list[i]); }
+    }
+    while (parent.childNodes.length > list.length) parent.removeChild(parent.lastChild);
+  }
+
+  var tpl = null, comp = null, queued = false, pending = [];
+  function flush() {
+    queued = false;
+    var vals = comp.renderVals() || {};
+    var out = [];
+    kids(tpl, vals, out);
+    morphKids(appEl, out);
+    var cbs = pending; pending = [];
+    cbs.forEach(function (f) { try { f(); } catch (e) { console.error(e); } });
+  }
+  function schedule() { if (!queued) { queued = true; Promise.resolve().then(flush); } }
+
+  function DCLogic(props) { this.props = props || {}; this.state = {}; }
+  DCLogic.prototype.setState = function (o, cb) {
+    if (typeof o === 'function') o = o(this.state, this.props);
+    this.state = Object.assign({}, this.state, o || {});
+    if (cb) pending.push(cb);
+    schedule();
+  };
+  DCLogic.prototype.forceUpdate = function (cb) { if (cb) pending.push(cb); schedule(); };
+
+  function fail(msg) { appEl.innerHTML = '<div id="boot"><img src="img/mascot.svg" alt=""><span></span></div>'; appEl.querySelector('span').textContent = msg; }
+
+  fetch('app.dc.html').then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); }).then(function (text) {
+    Object.keys(ASSETS).forEach(function (k) { text = text.split(k).join(ASSETS[k]); });
+    if (SELF_URL.indexOf('https://') === 0) text = text.split(OLD_URL).join(SELF_URL);
+    var doc = new DOMParser().parseFromString(text, 'text/html');
+    var xdc = doc.querySelector('x-dc');
+    var code = doc.querySelector('script[data-dc-script]');
+    if (!xdc || !code) throw new Error('missing template');
+    var helmet = xdc.querySelector('helmet');
+    if (helmet) Array.prototype.slice.call(helmet.children).forEach(function (n) {
+      if (n.localName === 'link' || n.localName === 'style') document.head.appendChild(document.importNode(n, true));
+    });
+    tpl = xdc;
+    var Comp = new Function('DCLogic', code.textContent + '\n;return Component;')(DCLogic);
+    comp = new Comp({});
+    appEl.innerHTML = '';
+    flush();
+    if (typeof comp.componentDidMount === 'function') comp.componentDidMount();
+  }).catch(function (e) { console.error(e); fail('לא הצלחנו לטעון את פטפוט. נסי לרענן את הדף.'); });
+})();
+</script>
+</body>
+</html>
