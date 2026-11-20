@@ -73,8 +73,8 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </span>
 </button>
 <div style="display: flex; align-items: center; gap: 8px">
-<sc-if value="{{hasSess}}" hint-placeholder-val="{{ false }}"><span style="background: #FFFFFF; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 800; white-space: nowrap; max-width: 34vw; overflow: hidden; text-overflow: ellipsis">{{sessName}}</span></sc-if>
-<button type="button" onClick="{{goSaved}}" aria-label="הפעילויות השמורות שלי" style="position: relative; width: 48px; height: 48px; border-radius: 24px; border: none; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(255,107,87,0.18)">
+<sc-if value="{{hasSess}}" hint-placeholder-val="{{ false }}"><span style="background: #FFFFFF; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 800; white-space: nowrap; max-width: 34vw; overflow: hidden; text-overflow: ellipsis; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{sessName}}</span></sc-if>
+<button type="button" onClick="{{goSaved}}" aria-label="הפעילויות השמורות שלי" style="position: relative; width: 48px; height: 48px; border-radius: 24px; border: none; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(255,107,87,0.18)">
 <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#FFC93C" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>
 <sc-if value="{{hasFav}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; top: -4px; left: -4px; min-width: 22px; height: 22px; border-radius: 11px; background: #FF6B57; color: #23223A; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; padding: 0 5px; box-sizing: border-box">{{favCount}}</span></sc-if>
 </button>
@@ -95,9 +95,9 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <nav class="drawer" aria-label="תפריט ראשי" style="position: absolute; top: 0; right: 0; bottom: 0; border-radius: 40px 0 0 40px; width: min(340px, 88vw); background: #FFFFFF; box-shadow: -8px 0 30px rgba(35,34,58,0.2); overflow-y: auto; padding: 20px 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
 <div style="display: flex; align-items: center; justify-content: space-between">
 <div style="display: flex; align-items: center; gap: 10px"><img src="/_blob/cf6ba380f849ea66cc5408e188dde6cf" alt="" width="40" height="40"><strong style="font-family: Rubik, Arial, sans-serif; font-size: 24px">פִּטְפּוּט</strong></div>
-<button type="button" onClick="{{closeMenu}}" aria-label="סגירת תפריט" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: #F6EFE6; cursor: pointer; font-size: 22px; color: #23223A">×</button>
+<button type="button" onClick="{{closeMenu}}" aria-label="סגירת תפריט" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: #F6EFE6; cursor: pointer; font-size: 22px; color: #23223A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">×</button>
 </div>
-<div style="background: #FFF1C2; border-radius: 32px 32px 32px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="background: #FFF1C2; border-radius: 32px 32px 32px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <strong style="font-size: 15px">המסע שלך · {{levelName}}</strong>
 <div style="height: 10px; border-radius: 5px; background: rgba(35,34,58,0.12); overflow: hidden"><div style="height: 100%; border-radius: 5px; background: #FF6B57; width: {{levelPct}}%"></div></div>
 <span style="font-size: 14px; color: #55546B">{{levelHint}}</span>
@@ -105,7 +105,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px">
 <sc-for list="{{menuItems}}" as="m" hint-placeholder-count="7">
 <li>
-<button type="button" onClick="{{m.go}}" style="width: 100%; min-height: 54px; border: none; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 8px 12px; text-align: right; font-size: 18px; font-weight: 700; color: #23223A; background: {{m.bg}}">
+<button type="button" onClick="{{m.go}}" style="width: 100%; min-height: 54px; border: none; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 8px 12px; text-align: right; font-size: 18px; font-weight: 700; color: #23223A; background: {{m.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <span aria-hidden="true" class="morph" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: {{m.dot}}; font-family: Rubik, Arial, sans-serif; font-size: 16px; font-weight: 800">{{m.mark}}</span>
 <span style="flex: 1 1 auto">{{m.label}}</span>
 <sc-if value="{{m.hasBadge}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; font-weight: 800; background: #23223A; color: #FFFFFF; border-radius: 10px; padding: 2px 8px">{{m.badge}}</span></sc-if>
@@ -119,15 +119,15 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </sc-if>
 
 <aside class="side" aria-label="תפריט צד" style="position: fixed; top: 100px; right: 20px; bottom: 20px; width: 260px; z-index: 15; flex-direction: column; gap: 14px; overflow-y: auto">
-<div style="background: #FFFFFF; border-radius: 40px 40px 40px 14px; padding: 18px 14px; box-shadow: 0 14px 30px rgba(35,34,58,0.08); display: flex; flex-direction: column; gap: 12px">
-<div style="background: #FFF1C2; border-radius: 30px 30px 30px 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="background: #FFFFFF; border-radius: 40px 40px 40px 14px; padding: 18px 14px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 14px 30px rgba(35,34,58,0.08); display: flex; flex-direction: column; gap: 12px">
+<div style="background: #FFF1C2; border-radius: 30px 30px 30px 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <strong style="font-size: 15px">המסע שלך · {{levelName}}</strong>
 <div style="height: 10px; border-radius: 999px; background: rgba(35,34,58,0.12); overflow: hidden"><div style="height: 100%; border-radius: 999px; background: #FF6B57; width: {{levelPct}}%"></div></div>
 </div>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
 <sc-for list="{{menuItems}}" as="m" hint-placeholder-count="7">
 <li>
-<button type="button" class="squish" onClick="{{m.go}}" style="width: 100%; min-height: 52px; border: none; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 6px 10px; text-align: right; font-size: 17px; font-weight: 700; color: #23223A; background: {{m.bg}}">
+<button type="button" class="squish" onClick="{{m.go}}" style="width: 100%; min-height: 52px; border: none; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 6px 10px; text-align: right; font-size: 17px; font-weight: 700; color: #23223A; background: {{m.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <span aria-hidden="true" class="morph" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; background: {{m.dot}}; font-family: Rubik, Arial, sans-serif; font-size: 15px; font-weight: 800">{{m.mark}}</span>
 <span style="flex: 1 1 auto">{{m.label}}</span>
 <sc-if value="{{m.hasBadge}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; font-weight: 800; background: #23223A; color: #FFFFFF; border-radius: 999px; padding: 2px 9px">{{m.badge}}</span></sc-if>
@@ -139,10 +139,10 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </aside>
 
 <nav class="bbar" aria-label="ניווט מהיר" style="position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 30; background: #FFFFFF; border-radius: 999px; box-shadow: 0 12px 30px rgba(35,34,58,0.18); padding: 6px; justify-content: space-around; gap: 2px">
-<button type="button" class="squish" onClick="{{goHome}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navHome}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-5h-6v5H5a1 1 0 0 1-1-1z" fill="#FFB3A6"></path></svg>בית</button>
-<button type="button" class="squish" onClick="{{goSaved}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navSaved}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#FFC93C" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>שמורות</button>
-<button type="button" class="squish" onClick="{{goWords}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navWords}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#A9DCF2" stroke="#23223A" stroke-width="2" stroke-linejoin="round"><path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg>מילים</button>
-<button type="button" class="squish" onClick="{{goJourney}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navJourney}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z" fill="#A8E6CF"></path><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 20h8"></path></svg>המסע</button>
+<button type="button" class="squish" onClick="{{goHome}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navHome}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-5h-6v5H5a1 1 0 0 1-1-1z" fill="#FFB3A6"></path></svg>בית</button>
+<button type="button" class="squish" onClick="{{goSaved}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navSaved}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#FFC93C" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>שמורות</button>
+<button type="button" class="squish" onClick="{{goWords}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navWords}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#A9DCF2" stroke="#23223A" stroke-width="2" stroke-linejoin="round"><path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg>מילים</button>
+<button type="button" class="squish" onClick="{{goJourney}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: {{navJourney}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 0 1-10 0z" fill="#A8E6CF"></path><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 20h8"></path></svg>המסע</button>
 <button type="button" class="squish" onClick="{{openMenu}}" style="flex: 1 1 0; min-height: 58px; border: none; border-radius: 999px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #23223A; font-size: 12px; font-weight: 800; background: transparent"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#D2C3FF" stroke="#23223A" stroke-width="1.8"><circle cx="5" cy="12" r="2.4"></circle><circle cx="12" cy="12" r="2.4"></circle><circle cx="19" cy="12" r="2.4"></circle></svg>עוד</button>
 </nav>
 
@@ -152,7 +152,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div class="pop" style="display: flex; flex-direction: column; gap: 22px">
 <sc-if value="{{isOrg}}" hint-placeholder-val="{{ false }}"><button type="button" class="squish" onClick="{{goDaily}}" style="align-self: flex-start; min-height: 52px; padding: 0 22px; border-radius: 999px; border: none; background: #0B6E73; color: #FFFFFF; font-family: Rubik, Arial, sans-serif; font-size: 18px; font-weight: 800; cursor: pointer; box-shadow: 0 10px 22px rgba(11,110,115,0.25)">סיכום יומי להורים</button></sc-if>
 
-<section style="position: relative; background: #FFFFFF; border-radius: 48px 48px 48px 120px; padding: 30px 26px 54px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px; overflow: hidden; box-shadow: 0 18px 40px rgba(255,107,87,0.14)">
+<section style="position: relative; background: #FFFFFF; border-radius: 48px 48px 48px 120px; padding: 30px 26px 54px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px; overflow: hidden; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 18px 40px rgba(255,107,87,0.14)">
 <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 60px; overflow: hidden; pointer-events: none">
 <svg class="drift2" width="200%" height="60" viewBox="0 0 1200 60" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 30c100 0 100-22 200-22s100 22 200 22 100-22 200-22 100 22 200 22 100-22 200-22 100 22 200 22v30H0z" fill="#FFE3EC"></path></svg>
 <svg class="drift" width="200%" height="40" viewBox="0 0 1200 40" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 20c75 0 75-16 150-16s75 16 150 16 75-16 150-16 75 16 150 16 75-16 150-16 75 16 150 16 75-16 150-16 75 16 150 16v20H0z" fill="#FFE0D6"></path></svg>
@@ -162,14 +162,14 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <span aria-hidden="true" class="rise" style="position: absolute; bottom: 16px; left: 6%; width: 10px; height: 10px; border-radius: 50%; background: #B49CFF; animation-delay: 3.5s"></span>
 <span aria-hidden="true" class="rise" style="position: absolute; bottom: 8px; left: 20%; width: 14px; height: 14px; border-radius: 50%; background: #7ED9B8; animation-delay: 1.2s"></span>
 <div style="position: relative; flex: 999 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
-<span style="align-self: flex-start; background: #FFE0D6; border-radius: 999px; padding: 5px 14px; font-size: 14px; font-weight: 800; color: #9E2F1F">למחנכות ומטפלות במעון</span>
+<span style="align-self: flex-start; background: #FFE0D6; border-radius: 999px; padding: 5px 14px; font-size: 14px; font-weight: 800; color: #9E2F1F; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">למחנכות ומטפלות במעון</span>
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 40px; line-height: 1.1; font-weight: 800">כל פינה במעון היא הזדמנות לשיחה</h1>
 <p style="margin: 0; font-size: 18px; line-height: 1.55; color: #3A3950">בחרי גיל, מרחב וגודל קבוצה, וקבלי 5 פעילויות להעשרה שפתית, עם משפטים מוכנים ובנק מילים. יש יותר מ-300 פעילויות במאגר.</p>
 </div>
 <div style="position: relative; flex: 1 1 160px; max-width: 220px; margin: 0 auto; display: flex; align-items: center; justify-content: center; padding: 18px"><div aria-hidden="true" class="morph" style="position: absolute; inset: 0; background: #FFF1C2"></div><img class="bob" src="/_blob/55a5ba60b8c3fe4146b54f13b98b97ec" alt="פִּטְפּוּט, דמות של בועת דיבור מחייכת" width="170" height="155" style="position: relative; width: 100%; height: auto; display: block"></div>
 </section>
 
-<section aria-labelledby="h-age" style="display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 40px 40px 40px 14px; padding: 22px; box-shadow: 0 10px 26px rgba(35,34,58,0.07)">
+<section aria-labelledby="h-age" style="display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 40px 40px 40px 14px; padding: 22px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 10px 26px rgba(35,34,58,0.07)">
 <h2 id="h-age" style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 40px; height: 40px; background: #FFC93C; display: inline-flex; align-items: center; justify-content: center; font-size: 18px">1</span>מי בקבוצה?</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
 <sc-for list="{{ages}}" as="a" hint-placeholder-count="3">
@@ -185,7 +185,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </div>
 </section>
 
-<section aria-labelledby="h-space" style="display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 40px 40px 40px 14px; padding: 22px; box-shadow: 0 10px 26px rgba(35,34,58,0.07)">
+<section aria-labelledby="h-space" style="display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-radius: 40px 40px 40px 14px; padding: 22px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 10px 26px rgba(35,34,58,0.07)">
 <h2 id="h-space" style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 40px; height: 40px; background: #6FC3E8; display: inline-flex; align-items: center; justify-content: center; font-size: 18px">2</span>איפה את עכשיו?</h2>
 <div class="sp-grid" style="gap: 12px">
 <sc-for list="{{spaces}}" as="s" hint-placeholder-count="8">
@@ -198,15 +198,15 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </div>
 </section>
 
-<section aria-labelledby="h-n" style="background: #FFFFFF; border-radius: 999px; padding: 14px 18px 14px 26px; box-shadow: 0 10px 24px rgba(180,156,255,0.16); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px">
+<section aria-labelledby="h-n" style="background: #FFFFFF; border-radius: 999px; padding: 14px 18px 14px 26px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 10px 24px rgba(180,156,255,0.16); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px">
 <h2 id="h-n" style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 40px; height: 40px; background: #B49CFF; display: inline-flex; align-items: center; justify-content: center; font-size: 18px">3</span>כמה ילדים בקבוצה?</h2>
 <div style="display: flex; align-items: center; gap: 10px">
-<button type="button" aria-label="הוספת ילד" onClick="{{inc}}" class="squish" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: #E7DEFF; color: #23223A; font-size: 28px; font-weight: 800; cursor: pointer">+</button>
+<button type="button" aria-label="הוספת ילד" onClick="{{inc}}" class="squish" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: #E7DEFF; color: #23223A; font-size: 28px; font-weight: 800; cursor: pointer; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">+</button>
 <div aria-live="polite" style="min-width: 84px; text-align: center; display: flex; flex-direction: column">
 <span style="font-family: Rubik, Arial, sans-serif; font-size: 36px; font-weight: 800; line-height: 1">{{n}}</span>
 <span style="font-size: 14px; font-weight: 700; color: #55546B">ילדים</span>
 </div>
-<button type="button" aria-label="הפחתת ילד" onClick="{{dec}}" class="squish" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: #E7DEFF; color: #23223A; font-size: 28px; font-weight: 800; cursor: pointer">−</button>
+<button type="button" aria-label="הפחתת ילד" onClick="{{dec}}" class="squish" style="width: 54px; height: 54px; border-radius: 50%; border: none; background: #E7DEFF; color: #23223A; font-size: 28px; font-weight: 800; cursor: pointer; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">−</button>
 </div>
 </section>
 
@@ -215,9 +215,9 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <button type="button" class="squish" onClick="{{go}}" style="flex: 1 1 260px; min-height: 64px; border-radius: 999px; border: none; background: #FF6B57; color: #23223A; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 800; cursor: pointer; box-shadow: 0 12px 26px rgba(255,107,87,0.35)">בני לי 5 פעילויות</button>
 </sc-if>
 <sc-if value="{{notReady}}" hint-placeholder-val="{{ true }}">
-<div style="flex: 1 1 260px; min-height: 64px; border-radius: 999px; background: #F3E9DC; color: #4A4960; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 16px; text-align: center">{{missing}}</div>
+<div style="flex: 1 1 260px; min-height: 64px; border-radius: 999px; background: #F3E9DC; color: #4A4960; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 16px; text-align: center; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{missing}}</div>
 </sc-if>
-<button type="button" class="squish" onClick="{{surprise}}" style="flex: 0 1 auto; min-height: 64px; padding: 0 24px; border-radius: 999px; border: none; background: #FFFFFF; box-shadow: 0 10px 22px rgba(111,195,232,0.28); color: #23223A; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><circle cx="8.5" cy="8.5" r="1.3" fill="#23223A"></circle><circle cx="15.5" cy="15.5" r="1.3" fill="#23223A"></circle><circle cx="12" cy="12" r="1.3" fill="#23223A"></circle></svg>הפתיעי אותי</button>
+<button type="button" class="squish" onClick="{{surprise}}" style="flex: 0 1 auto; min-height: 64px; padding: 0 24px; border-radius: 999px; border: none; background: #FFFFFF; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 10px 22px rgba(111,195,232,0.28); color: #23223A; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"></rect><circle cx="8.5" cy="8.5" r="1.3" fill="#23223A"></circle><circle cx="15.5" cy="15.5" r="1.3" fill="#23223A"></circle><circle cx="12" cy="12" r="1.3" fill="#23223A"></circle></svg>הפתיעי אותי</button>
 </div>
 
 </div>
@@ -236,7 +236,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div class="pop" style="display: flex; flex-direction: column; gap: 16px">
 
 <sc-if value="{{vResults}}" hint-placeholder-val="{{ false }}">
-<section style="position: relative; overflow: hidden; border-radius: 44px 44px 44px 110px; padding: 22px 22px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; background: {{spaceBg}}">
+<section style="position: relative; overflow: hidden; border-radius: 44px 44px 44px 110px; padding: 22px 22px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; background: {{spaceBg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 34px; overflow: hidden; pointer-events: none"><svg class="drift" width="200%" height="34" viewBox="0 0 1200 34" preserveAspectRatio="none" style="position: absolute; right: 0; bottom: 0; display: block"><path d="M0 17c75 0 75-13 150-13s75 13 150 13 75-13 150-13 75 13 150 13 75-13 150-13 75 13 150 13 75-13 150-13 75 13 150 13v17H0z" fill="rgba(255,255,255,0.55)"></path></svg></div>
 <span class="morph" style="flex: none; width: 82px; height: 82px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><img class="sway" src="{{spaceIcon}}" alt="" width="56" height="56"></span>
 <div style="flex: 999 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
@@ -246,10 +246,10 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <span style="background: rgba(255,255,255,0.8); border-radius: 999px; padding: 5px 14px; font-size: 15px; font-weight: 700">{{n}} ילדים</span>
 </div>
 </div>
-<button type="button" class="squish" onClick="{{goHome}}" style="position: relative; flex: none; min-height: 48px; padding: 0 20px; border-radius: 999px; border: none; background: #FFFFFF; color: #23223A; font-size: 16px; font-weight: 800; cursor: pointer">שינוי בחירה</button>
+<button type="button" class="squish" onClick="{{goHome}}" style="position: relative; flex: none; min-height: 48px; padding: 0 20px; border-radius: 999px; border: none; background: #FFFFFF; color: #23223A; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">שינוי בחירה</button>
 </section>
 
-<div role="tablist" aria-label="תצוגה" style="display: flex; gap: 6px; background: #FFFFFF; border-radius: 999px; padding: 6px; box-shadow: 0 8px 20px rgba(35,34,58,0.06)">
+<div role="tablist" aria-label="תצוגה" style="display: flex; gap: 6px; background: #FFFFFF; border-radius: 999px; padding: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 8px 20px rgba(35,34,58,0.06)">
 <sc-for list="{{tabs}}" as="tb" hint-placeholder-count="2">
 <button type="button" role="tab" aria-selected="{{tb.sel}}" onClick="{{tb.pick}}" style="flex: 1 1 0; min-height: 48px; border: none; border-radius: 999px; cursor: pointer; font-size: 17px; font-weight: 800; color: #23223A; background: {{tb.bg}}; box-shadow: {{tb.shadow}}">{{tb.label}}</button>
 </sc-for>
@@ -257,12 +257,12 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </sc-if>
 
 <sc-if value="{{vSaved}}" hint-placeholder-val="{{ false }}">
-<section style="background: #FFF1C2; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px">
+<section style="background: #FFF1C2; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">הפעילויות שלי</h1>
 <p style="margin: 0; font-size: 17px; color: #3A3950">פעילויות שסימנת בכוכב. אפשר לפתוח, לשתף בוואטסאפ או להסיר.</p>
 </section>
 <sc-if value="{{noFav}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border-radius: 44px; padding: 30px 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+<div style="background: #FFFFFF; border-radius: 44px; padding: 30px 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <img src="/_blob/55a5ba60b8c3fe4146b54f13b98b97ec" alt="" width="110" height="100">
 <p style="margin: 0; font-size: 18px; font-weight: 700">עוד אין פעילויות שמורות</p>
 <p style="margin: 0; font-size: 16px; color: #55546B">בכל כרטיס פעילות יש כפתור ״שמירה״. מה שתשמרי יופיע כאן.</p>
@@ -275,7 +275,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div style="display: flex; flex-direction: column; gap: 14px">
 
 <sc-if value="{{vResults}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 16px 20px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 8px 20px rgba(180,156,255,0.14)">
+<div style="background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 16px 20px; display: flex; gap: 12px; align-items: flex-start; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 8px 20px rgba(180,156,255,0.14)">
 <span aria-hidden="true" class="morph" style="flex: none; width: 44px; height: 44px; background: #E7DEFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.4"></circle><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c3 0 6 2 6 5.5"></path></svg></span>
 <div style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 16px">התאמה לקבוצה של {{n}}</strong><p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3A3950">{{groupTip}}</p></div>
 </div>
@@ -283,7 +283,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 
 <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px">
 <sc-for list="{{acts}}" as="x" hint-placeholder-count="5">
-<li class="pop" style="animation-delay: {{x.delay}}; background: #FFFFFF; border-radius: 38px; overflow: hidden; box-shadow: 0 12px 28px rgba(35,34,58,0.07)">
+<li class="pop" style="animation-delay: {{x.delay}}; background: #FFFFFF; border-radius: 38px; overflow: hidden; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 12px 28px rgba(35,34,58,0.07)">
 <button type="button" onClick="{{x.toggle}}" aria-expanded="{{x.openStr}}" style="width: 100%; min-height: 78px; border: none; background: transparent; cursor: pointer; text-align: right; padding: 18px 22px; display: flex; align-items: center; gap: 14px; color: #23223A">
 <span aria-hidden="true" class="morph" style="flex: none; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800; background: {{x.numBg}}">{{x.num}}</span>
 <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px">
@@ -292,7 +292,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <sc-if value="{{x.showWhere}}" hint-placeholder-val="{{ false }}"><span style="font-size: 14px; font-weight: 700; color: #0B6E73">{{x.where}}</span></sc-if>
 </span>
 <sc-if value="{{x.fav}}" hint-placeholder-val="{{ false }}"><svg aria-label="שמורה" role="img" width="22" height="22" viewBox="0 0 24 24" fill="#FFC93C" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round" style="flex: none"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg></sc-if>
-<span aria-hidden="true" style="flex: none; width: 38px; height: 38px; border-radius: 50%; background: #FFE0D6; display: flex; align-items: center; justify-content: center">
+<span aria-hidden="true" style="flex: none; width: 38px; height: 38px; border-radius: 50%; background: #FFE0D6; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <sc-if value="{{x.open}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"></path></svg></sc-if>
 <sc-if value="{{x.closed}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></sc-if>
 </span>
@@ -310,33 +310,33 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </sc-for>
 </ol>
 </div>
-<div style="background: #D8F3EA; border-radius: 30px 30px 30px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="background: #D8F3EA; border-radius: 30px 30px 30px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <strong style="font-size: 16px; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linejoin="round"><path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"></path></svg>מה אפשר להגיד</strong>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{x.ph}}" as="p" hint-placeholder-count="2">
-<span style="background: #FFFFFF; border-radius: 22px 22px 6px 22px; padding: 9px 16px; font-size: 17px; line-height: 1.4">״{{p.v}}״</span>
+<span style="background: #FFFFFF; border-radius: 22px 22px 6px 22px; padding: 9px 16px; font-size: 17px; line-height: 1.4; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">״{{p.v}}״</span>
 </sc-for>
 </div>
 </div>
 <sc-if value="{{x.hasWords}}" hint-placeholder-val="{{ false }}">
-<div style="background: #DDF0FB; border-radius: 30px 30px 30px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="background: #DDF0FB; border-radius: 30px 30px 30px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <strong style="font-size: 16px">מילים מהבנק בפעילות הזאת</strong>
 <div style="display: flex; flex-wrap: wrap; gap: 6px">
 <sc-for list="{{x.words}}" as="wd" hint-placeholder-count="3">
-<span style="background: #FFFFFF; border-radius: 999px; padding: 6px 14px; font-size: 16px; font-weight: 700">{{wd.w}}</span>
+<span style="background: #FFFFFF; border-radius: 999px; padding: 6px 14px; font-size: 16px; font-weight: 700; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{wd.w}}</span>
 </sc-for>
 </div>
 </div>
 </sc-if>
-<div style="background: #FFE7D1; border-radius: 30px 30px 30px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px">
+<div style="background: #FFE7D1; border-radius: 30px 30px 30px 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <strong style="font-size: 16px">בקבוצה</strong>
 <p style="margin: 0; font-size: 16px; line-height: 1.55">{{x.b}}</p>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
-<button type="button" onClick="{{x.toggleFav}}" aria-pressed="{{x.favStr}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 8px; background: {{x.favBg}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{x.starFill}}" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>{{x.favLabel}}</button>
-<a href="{{x.wa}}" target="_blank" rel="noopener" onClick="{{x.share}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; background: #D8F3EA; color: #23223A; font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px; text-decoration: none; box-sizing: border-box"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v12M7 8l5-5 5 5"></path></svg>שיתוף בוואטסאפ</a>
+<button type="button" onClick="{{x.toggleFav}}" aria-pressed="{{x.favStr}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 8px; background: {{x.favBg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{x.starFill}}" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>{{x.favLabel}}</button>
+<a href="{{x.wa}}" target="_blank" rel="noopener" onClick="{{x.share}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; background: #D8F3EA; color: #23223A; font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px; text-decoration: none; box-sizing: border-box; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v12M7 8l5-5 5 5"></path></svg>שיתוף בוואטסאפ</a>
 </div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: #FDF6EE; border-radius: 999px; padding: 8px 10px 8px 18px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: #FDF6EE; border-radius: 999px; padding: 8px 10px 8px 18px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <strong style="font-size: 16px; margin-inline-end: auto">איך הלך?</strong>
 <button type="button" aria-pressed="{{x.goodStr}}" onClick="{{x.good}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #0B6E73; cursor: pointer; font-size: 16px; font-weight: 800; color: {{x.goodColor}}; background: {{x.goodBg}}">עבד מעולה</button>
 <button type="button" aria-pressed="{{x.badStr}}" onClick="{{x.bad}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #9A3B10; cursor: pointer; font-size: 16px; font-weight: 800; color: {{x.badColor}}; background: {{x.badBg}}">פחות עבד</button>
@@ -363,24 +363,24 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 
 <sc-if value="{{vWordsHead}}" hint-placeholder-val="{{ false }}">
 <div class="pop" style="display: flex; flex-direction: column; gap: 14px">
-<section style="background: #DDF0FB; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 8px">
+<section style="background: #DDF0FB; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">בנק מילים</h1>
 <p style="margin: 0; font-size: 17px; color: #3A3950">מילים שכדאי שהילדים ישמעו שוב ושוב במרחב. סמני מילה כשהשתמשת בה.</p>
 </section>
 <div style="display: flex; flex-direction: column; gap: 8px">
-<section aria-label="שכבת גיל" style="background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 22px rgba(35,34,58,0.07)">
+<section aria-label="שכבת גיל" style="background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 8px 22px rgba(35,34,58,0.07)">
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 34px; height: 34px; background: #FFC93C; display: inline-flex; align-items: center; justify-content: center; font-size: 16px">1</span>שכבת גיל</h2>
 <div class="age-grid">
 <sc-for list="{{ages}}" as="a" hint-placeholder-count="3">
-<button type="button" aria-pressed="{{a.pressed}}" onClick="{{a.pickW}}" class="squish" style="width: 100%; min-height: 48px; padding: 0 18px; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{a.bg}}; border: {{a.border}}">{{a.label}}</button>
+<button type="button" aria-pressed="{{a.pressed}}" onClick="{{a.pickW}}" class="squish" style="width: 100%; min-height: 48px; padding: 0 18px; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{a.bg}}; border: {{a.border}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{a.label}}</button>
 </sc-for>
 </div>
 </section>
-<section aria-label="מרחב" style="background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 22px rgba(35,34,58,0.07)">
+<section aria-label="מרחב" style="background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 8px 22px rgba(35,34,58,0.07)">
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 34px; height: 34px; background: #6FC3E8; display: inline-flex; align-items: center; justify-content: center; font-size: 16px">2</span>מרחב</h2>
 <div class="sp-grid">
 <sc-for list="{{spaces}}" as="s" hint-placeholder-count="8">
-<button type="button" aria-pressed="{{s.pressed}}" onClick="{{s.pickW}}" class="squish" style="width: 100%; justify-content: center; min-height: 48px; padding: 0 12px; border-radius: 999px; cursor: pointer; font-size: 15px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 6px; background: {{s.bg}}; border: {{s.border}}"><img src="{{s.icon}}" alt="" width="24" height="24">{{s.label}}</button>
+<button type="button" aria-pressed="{{s.pressed}}" onClick="{{s.pickW}}" class="squish" style="width: 100%; justify-content: center; min-height: 48px; padding: 0 12px; border-radius: 999px; cursor: pointer; font-size: 15px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 6px; background: {{s.bg}}; border: {{s.border}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><img src="{{s.icon}}" alt="" width="24" height="24">{{s.label}}</button>
 </sc-for>
 </div>
 </section>
@@ -391,17 +391,17 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <sc-if value="{{showBank}}" hint-placeholder-val="{{ false }}">
 <div class="pop" style="display: flex; flex-direction: column; gap: 12px">
 <sc-if value="{{bankReady}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; background: #FFFFFF; border-radius: 999px; padding: 12px 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; background: #FFFFFF; border-radius: 999px; padding: 12px 20px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <span style="font-size: 16px; font-weight: 700">{{bankTitle}}</span>
-<span style="font-size: 15px; font-weight: 800; background: #D8F3EA; border-radius: 14px; padding: 4px 12px">סימנת {{usedCount}} מתוך {{bankTotal}}</span>
+<span style="font-size: 15px; font-weight: 800; background: #D8F3EA; border-radius: 14px; padding: 4px 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">סימנת {{usedCount}} מתוך {{bankTotal}}</span>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px">
 <sc-for list="{{bank}}" as="c" hint-placeholder-count="4">
-<section style="border-radius: 36px; padding: 20px; display: flex; flex-direction: column; gap: 10px; background: {{c.bg}}">
+<section style="border-radius: 36px; padding: 20px; display: flex; flex-direction: column; gap: 10px; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h3 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">{{c.label}}</h3>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{c.words}}" as="w" hint-placeholder-count="5">
-<button type="button" class="squish" aria-pressed="{{w.pressed}}" onClick="{{w.toggle}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; cursor: pointer; font-size: 17px; font-weight: 800; display: flex; align-items: center; gap: 6px; color: {{w.color}}; background: {{w.bg}}; border: none; box-shadow: 0 3px 8px rgba(35,34,58,0.08)">{{w.mark}}{{w.w}}</button>
+<button type="button" class="squish" aria-pressed="{{w.pressed}}" onClick="{{w.toggle}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; cursor: pointer; font-size: 17px; font-weight: 800; display: flex; align-items: center; gap: 6px; color: {{w.color}}; background: {{w.bg}}; border: none; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 3px 8px rgba(35,34,58,0.08)">{{w.mark}}{{w.w}}</button>
 </sc-for>
 </div>
 </section>
@@ -410,14 +410,14 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <p style="margin: 0; font-size: 15px; color: #55546B; line-height: 1.55">טיפ: בחרי 3 מילים לשבוע והשתמשי בהן בכל פעם שאת במרחב. החזרה היא מה שמאפשר לילדים לזהות את המילה ולהשתמש בה.</p>
 </sc-if>
 <sc-if value="{{bankNotReady}}" hint-placeholder-val="{{ false }}">
-<p style="margin: 0; background: #FFFFFF; border-radius: 999px; padding: 16px 22px; font-size: 17px">בחרי שכבת גיל ומרחב כדי לראות את בנק המילים.</p>
+<p style="margin: 0; background: #FFFFFF; border-radius: 999px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">בחרי שכבת גיל ומרחב כדי לראות את בנק המילים.</p>
 </sc-if>
 </div>
 </sc-if>
 
 <sc-if value="{{vJourney}}" hint-placeholder-val="{{ false }}">
 <div class="pop" style="display: flex; flex-direction: column; gap: 16px">
-<section style="background: #FFE0D6; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+<section style="background: #FFE0D6; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <img src="/_blob/55a5ba60b8c3fe4146b54f13b98b97ec" alt="" width="100" height="91" style="flex: none">
 <div style="flex: 999 1 220px; display: flex; flex-direction: column; gap: 8px">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">המסע שלי</h1>
@@ -428,13 +428,13 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </section>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
 <sc-for list="{{stats}}" as="k" hint-placeholder-count="4">
-<div style="border-radius: 36px; padding: 20px; display: flex; flex-direction: column; gap: 4px; background: {{k.bg}}">
+<div style="border-radius: 36px; padding: 20px; display: flex; flex-direction: column; gap: 4px; background: {{k.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <span style="font-family: Rubik, Arial, sans-serif; font-size: 34px; font-weight: 800; line-height: 1">{{k.v}}</span>
 <span style="font-size: 15px; font-weight: 700">{{k.label}}</span>
 </div>
 </sc-for>
 </div>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">פעילויות שניסית בכל מרחב</h2>
 <sc-for list="{{spaceProg}}" as="sp" hint-placeholder-count="8">
 <div style="display: flex; align-items: center; gap: 10px">
@@ -449,7 +449,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">תגים</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
 <sc-for list="{{badges}}" as="bd" hint-placeholder-count="4">
-<div style="border-radius: 36px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; background: {{bd.bg}}; opacity: {{bd.op}}">
+<div style="border-radius: 36px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; background: {{bd.bg}}; opacity: {{bd.op}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <span aria-hidden="true" class="morph" style="width: 58px; height: 58px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 22px; font-weight: 800">{{bd.mark}}</span>
 <strong style="font-size: 16px">{{bd.name}}</strong>
 <span style="font-size: 14px; color: #3A3950">{{bd.hint}}</span>
@@ -462,16 +462,16 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 
 <sc-if value="{{vTips}}" hint-placeholder-val="{{ false }}">
 <div class="pop" style="display: flex; flex-direction: column; gap: 14px">
-<section style="background: #D8F3EA; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px">
+<section style="background: #D8F3EA; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">עקרונות וטיפים</h1>
 <p style="margin: 0; font-size: 17px; color: #3A3950">ארבעה הרגלים שהופכים כל רגע במעון לשיחה. הם מלווים את כל הפעילויות.</p>
 </section>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px">
 <sc-for list="{{tips}}" as="tp" hint-placeholder-count="4">
-<section style="border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px; background: {{tp.bg}}">
+<section style="border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px; background: {{tp.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <div style="display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 46px; height: 46px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">{{tp.n}}</span><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">{{tp.t}}</h2></div>
 <p style="margin: 0; font-size: 16px; line-height: 1.6">{{tp.d}}</p>
-<p style="margin: 0; background: #FFFFFF; border-radius: 24px 24px 24px 8px; padding: 12px 16px; font-size: 16px; line-height: 1.5"><strong>לדוגמה: </strong>{{tp.e}}</p>
+<p style="margin: 0; background: #FFFFFF; border-radius: 24px 24px 24px 8px; padding: 12px 16px; font-size: 16px; line-height: 1.5; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><strong>לדוגמה: </strong>{{tp.e}}</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #3A3950"><strong>למה זה חשוב: </strong>{{tp.w}}</p>
 </section>
 </sc-for>
@@ -481,15 +481,15 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 
 <sc-if value="{{vDaily}}" hint-placeholder-val="{{ false }}">
 <div class="pop" style="display: flex; flex-direction: column; gap: 14px">
-<section style="background: #D8F3EA; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px">
+<section style="background: #D8F3EA; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">סיכום יומי להורים</h1>
 <p style="margin: 0; font-size: 17px; color: #3A3950; line-height: 1.6">הסיכום אוסף את הפעילויות שסומנו היום ״עבד״ או ״פחות עבד״ ואת המילים שסומנו, מכל המכשירים של המעון. בוואטסאפ בוחרים את קבוצת ההורים ושולחים.</p>
 </section>
-<sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 999px; padding: 16px 22px; font-size: 17px">אוספים את הפעילויות של היום...</p></sc-if>
-<sc-if value="{{dailyError}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 16px 22px; font-size: 17px; color: #8A1F3A">לא הצלחנו לטעון את הסיכום. בדקי את החיבור לאינטרנט ונסי שוב.</p></sc-if>
-<sc-if value="{{dailyEmpty}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; background: #FFFFFF; border-radius: 28px; padding: 16px 22px; font-size: 17px; line-height: 1.6">עוד לא סומנו היום פעילויות. אחרי פעילות, סמני ״עבד״ או ״פחות עבד״ בכרטיס שלה, והיא תיכנס לסיכום.</p></sc-if>
+<sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 999px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">אוספים את הפעילויות של היום...</p></sc-if>
+<sc-if value="{{dailyError}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 16px 22px; font-size: 17px; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">לא הצלחנו לטעון את הסיכום. בדקי את החיבור לאינטרנט ונסי שוב.</p></sc-if>
+<sc-if value="{{dailyEmpty}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; background: #FFFFFF; border-radius: 28px; padding: 16px 22px; font-size: 17px; line-height: 1.6; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">עוד לא סומנו היום פעילויות. אחרי פעילות, סמני ״עבד״ או ״פחות עבד״ בכרטיס שלה, והיא תיכנס לסיכום.</p></sc-if>
 <sc-if value="{{dailyReady}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border-radius: 28px; padding: 18px 22px; font-size: 16px; line-height: 1.7; white-space: pre-wrap; box-shadow: 0 10px 22px rgba(35,34,58,0.08)">{{dailyText}}</div>
+<div style="background: #FFFFFF; border-radius: 28px; padding: 18px 22px; font-size: 16px; line-height: 1.7; white-space: pre-wrap; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 10px 22px rgba(35,34,58,0.08)">{{dailyText}}</div>
 <a href="{{dailyWa}}" target="_blank" rel="noopener" onClick="{{dailySent}}" class="squish" style="min-height: 58px; border-radius: 999px; background: #0B6E73; color: #FFFFFF; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none">שליחה לקבוצת ההורים בוואטסאפ</a>
 </sc-if>
 <button type="button" class="squish" onClick="{{dailyRefresh}}" style="min-height: 48px; border-radius: 999px; border: 2px solid #0B6E73; background: #FFFFFF; color: #0B6E73; font-size: 16px; font-weight: 800; cursor: pointer">רענון הסיכום</button>
@@ -498,14 +498,14 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 
 <sc-if value="{{vAccess}}" hint-placeholder-val="{{ false }}">
 <div class="pop" style="display: flex; flex-direction: column; gap: 14px">
-<section style="background: #E7DEFF; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px">
+<section style="background: #E7DEFF; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">נגישות ותצוגה</h1>
 <p style="margin: 0; font-size: 17px; color: #3A3950">התאימי את התצוגה לנוחות שלך. ההגדרות נשמרות בדפדפן הזה.</p>
 </section>
 <sc-for list="{{settings}}" as="o" hint-placeholder-count="2">
-<div style="background: #FFFFFF; border-radius: 999px; padding: 14px 18px 14px 26px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="background: #FFFFFF; border-radius: 999px; padding: 14px 18px 14px 26px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <div style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 18px">{{o.t}}</strong><span style="font-size: 15px; color: #55546B">{{o.d}}</span></div>
-<button type="button" role="switch" aria-checked="{{o.onStr}}" aria-label="{{o.t}}" onClick="{{o.toggle}}" style="flex: none; width: 64px; height: 36px; border-radius: 18px; border: none; cursor: pointer; padding: 4px; display: flex; justify-content: {{o.justify}}; background: {{o.bg}}"><span style="width: 28px; height: 28px; border-radius: 14px; background: #FFFFFF; display: block"></span></button>
+<button type="button" role="switch" aria-checked="{{o.onStr}}" aria-label="{{o.t}}" onClick="{{o.toggle}}" style="flex: none; width: 64px; height: 36px; border-radius: 18px; border: none; cursor: pointer; padding: 4px; display: flex; justify-content: {{o.justify}}; background: {{o.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><span style="width: 28px; height: 28px; border-radius: 14px; background: #FFFFFF; display: block; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"></span></button>
 </div>
 </sc-for>
 <p style="margin: 0; font-size: 15px; color: #55546B; line-height: 1.6">הממשק בנוי לניווט במקלדת, עם ניגודיות צבעים גבוהה, כפתורים גדולים ותיאורים לקוראי מסך. נתקלת בבעיה? כדאי לדווח למי שהפנה אותך לכלי.</p>
@@ -514,19 +514,19 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 
 <sc-if value="{{vAbout}}" hint-placeholder-val="{{ false }}">
 <div class="pop" style="display: flex; flex-direction: column; gap: 14px">
-<section style="background: #FFE0D6; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+<section style="background: #FFE0D6; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <img src="/_blob/cf6ba380f849ea66cc5408e188dde6cf" alt="" width="72" height="72" style="flex: none">
 <div style="flex: 999 1 220px; display: flex; flex-direction: column; gap: 6px">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">על פִּטְפּוּט</h1>
 <p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3A3950">פִּטְפּוּט הוא מאגר פעילויות קצרות להעשרה שפתית בשגרת המעון: בהחתלה, בארוחות, ביצירה, במשחק, בבנייה, בספר ובחצר. הפעילויות מותאמות לשלוש שכבות גיל ולגודל הקבוצה.</p>
 </div>
 </section>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">חשוב לדעת</h2>
 <p style="margin: 0; font-size: 16px; line-height: 1.6">הפעילויות נכתבו על בסיס העקרונות במקורות המקצועיים שבהמשך, ואינן מחליפות הדרכה מקצועית. לכל ילד קצב התפתחות משלו. אם יש חשש לעיכוב שפתי, מומלץ לשתף את ההורים ולהפנות לטיפת חלב או לקלינאית תקשורת.</p>
 <p style="margin: 0; font-size: 16px; line-height: 1.6">בפעילויות עם חפצים קטנים, מזון או מים נדרשת השגחה צמודה, בהתאם להנחיות הבטיחות של המעון.</p>
 </section>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 8px">
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">מקורות</h2>
 <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #3A3950">משרד החינוך, האגף לחינוך הגיל הרך · The Hanen Centre · Head Start · Anita Zucker Center, University of Florida · Juniper Gardens Children׳s Project · ZERO TO THREE · Whitehurst, קריאה דיאלוגית</p>
 </section>
@@ -559,10 +559,10 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 44px; font-weight: 800; line-height: 1">פִּטְפּוּט</h1>
 <p style="margin: 0; font-size: 18px; font-weight: 700; color: #3A3950">מילים קטנות בכל פינה במעון</p>
 </div>
-<div style="background: #FFFFFF; border-radius: 44px 44px 44px 16px; padding: 22px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 18px 40px rgba(255,107,87,0.18)">
-<div role="tablist" aria-label="סוג כניסה" style="display: flex; gap: 4px; background: #FDF6EE; border-radius: 999px; padding: 5px">
+<div style="background: #FFFFFF; border-radius: 44px 44px 44px 16px; padding: 22px; display: flex; flex-direction: column; gap: 16px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 18px 40px rgba(255,107,87,0.18)">
+<div role="tablist" aria-label="סוג כניסה" style="display: flex; gap: 4px; background: #FDF6EE; border-radius: 999px; padding: 5px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <sc-for list="{{loginTabs}}" as="lt" hint-placeholder-count="3">
-<button type="button" role="tab" aria-selected="{{lt.sel}}" onClick="{{lt.pick}}" class="squish" style="flex: 1 1 0; min-height: 46px; border: none; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{lt.bg}}">{{lt.label}}</button>
+<button type="button" role="tab" aria-selected="{{lt.sel}}" onClick="{{lt.pick}}" class="squish" style="flex: 1 1 0; min-height: 46px; border: none; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{lt.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{lt.label}}</button>
 </sc-for>
 </div>
 <sc-if value="{{tabOrg}}" hint-placeholder-val="{{ true }}">
@@ -574,13 +574,13 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </div>
 <sc-if value="{{showList}}" hint-placeholder-val="{{ false }}">
 <ul id="l-list" role="listbox" aria-label="מעונות" style="list-style: none; margin: 0; padding: 6px; background: #FFFFFF; border: 2px solid #F0E3D3; border-radius: 26px; display: flex; flex-direction: column; gap: 4px; max-height: 230px; overflow-y: auto">
-<sc-for list="{{orgList}}" as="og" hint-placeholder-count="2"><li><button type="button" role="option" aria-selected="{{og.sel}}" onClick="{{og.pick}}" style="width: 100%; min-height: 50px; border: none; border-radius: 999px; cursor: pointer; padding: 0 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 17px; font-weight: 800; color: #23223A; background: {{og.bg}}"><span>{{og.name}}</span><span style="font-size: 14px; font-weight: 700; color: #4A4960">סמל {{og.id}}</span></button></li></sc-for>
+<sc-for list="{{orgList}}" as="og" hint-placeholder-count="2"><li><button type="button" role="option" aria-selected="{{og.sel}}" onClick="{{og.pick}}" style="width: 100%; min-height: 50px; border: none; border-radius: 999px; cursor: pointer; padding: 0 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 17px; font-weight: 800; color: #23223A; background: {{og.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><span>{{og.name}}</span><span style="font-size: 14px; font-weight: 700; color: #4A4960">סמל {{og.id}}</span></button></li></sc-for>
 <sc-if value="{{noOrgMatch}}" hint-placeholder-val="{{ false }}"><li style="padding: 10px 16px; font-size: 15px; color: #4A4960">לא נמצא מעון כזה. בדקי את הסמל או השם.</li></sc-if>
 </ul>
 </sc-if>
 <label for="l-pw" style="font-size: 15px; font-weight: 800">סיסמה</label>
 <input id="l-pw" type="password" autocomplete="current-password" onChange="{{onPw}}" onInput="{{onPw}}" onKeyDown="{{pwKey}}" onFocus="{{closeList}}" style="min-height: 54px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 20px; font-size: 18px; font-family: inherit; color: #23223A; box-sizing: border-box">
-<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A">{{err}}</p></sc-if>
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{err}}</p></sc-if>
 <button type="button" onClick="{{loginOrg}}" class="squish" style="min-height: 58px; border-radius: 999px; border: none; background: #FF6B57; color: #23223A; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; cursor: pointer; box-shadow: 0 10px 22px rgba(255,107,87,0.32)">כניסה</button>
 <p style="margin: 0; font-size: 14px; color: #55546B; text-align: center">את הסיסמה מקבלים מהנהלת הכלי.</p>
 </div>
@@ -595,8 +595,22 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div style="display: flex; flex-direction: column; gap: 12px">
 <label for="l-apw" style="font-size: 15px; font-weight: 800">סיסמת מנהל</label>
 <input id="l-apw" type="password" autocomplete="current-password" onChange="{{onPw}}" onInput="{{onPw}}" onKeyDown="{{adminKey}}" style="min-height: 54px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 20px; font-size: 18px; font-family: inherit; color: #23223A; box-sizing: border-box">
-<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A">{{err}}</p></sc-if>
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{err}}</p></sc-if>
 <button type="button" onClick="{{loginAdmin}}" class="squish" style="min-height: 58px; border-radius: 999px; border: none; background: #23223A; color: #FFFFFF; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; cursor: pointer">כניסה ללוח הבקרה</button>
+</div>
+</sc-if>
+</div>
+<div style="background: #FFFFFF; border-radius: 32px 32px 32px 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32); overflow: hidden">
+<button type="button" class="squish" onClick="{{toggleVid}}" aria-expanded="{{vidStr}}" aria-controls="vid-panel" style="width: 100%; min-height: 54px; padding: 0 18px; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-family: inherit; font-size: 17px; font-weight: 800; color: #23223A">
+<span style="display: flex; align-items: center; gap: 10px"><span aria-hidden="true" style="width: 34px; height: 34px; border-radius: 50%; background: #FF6B57; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="#23223A"><path d="M7 4.5v15l13-7.5z"></path></svg></span>סרטון הסבר</span>
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="transform: {{vidRot}}; transition: transform 0.2s"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<sc-if value="{{vidOpen}}" hint-placeholder-val="{{ false }}">
+<div id="vid-panel" style="padding: 0 16px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px">
+<div style="width: min(300px, 100%); aspect-ratio: 9 / 16; border-radius: 24px; overflow: hidden; background: #23223A">
+<iframe src="https://www.youtube-nocookie.com/embed/0xjujWtHxbQ?rel=0&amp;playsinline=1" title="סרטון הסבר על פִּטְפּוּט" width="100%" height="100%" style="border: 0; display: block" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>
+<button type="button" class="squish" onClick="{{toggleVid}}" style="min-height: 44px; padding: 0 22px; border-radius: 999px; border: none; background: #FDF6EE; color: #23223A; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">סגירת הסרטון</button>
 </div>
 </sc-if>
 </div>
@@ -612,69 +626,69 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div style="display: flex; align-items: center; gap: 10px"><img src="/_blob/cf6ba380f849ea66cc5408e188dde6cf" alt="" width="40" height="40"><span style="display: flex; flex-direction: column; line-height: 1.1"><strong style="font-family: Rubik, Arial, sans-serif; font-size: 22px">לוח בקרה</strong><span style="font-size: 13px; opacity: 0.85">פִּטְפּוּט · מנהל</span></span></div>
 <div style="display: flex; gap: 8px">
 <button type="button" class="squish" onClick="{{goHome}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; background: #FFC93C; color: #23223A; font-size: 15px; font-weight: 800; cursor: pointer">מעבר לממשק</button>
-<button type="button" class="squish" onClick="{{logout}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; background: #FFFFFF; color: #23223A; font-size: 15px; font-weight: 800; cursor: pointer">התנתקות</button>
+<button type="button" class="squish" onClick="{{logout}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; background: #FFFFFF; color: #23223A; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">התנתקות</button>
 </div>
 </div>
 <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -18px; height: 20px; overflow: hidden; pointer-events: none"><svg class="drift" width="200%" height="20" viewBox="0 0 1200 20" preserveAspectRatio="none" style="position: absolute; right: 0; display: block"><path d="M0 0h1200v6c-50 0-50 12-100 12S1050 6 1000 6s-50 12-100 12S850 6 800 6s-50 12-100 12S650 6 600 6s-50 12-100 12S450 6 400 6s-50 12-100 12S250 6 200 6s-50 12-100 12S50 6 0 6z" fill="#23223A"></path></svg></div>
 </div>
 <div style="max-width: 1120px; margin: 0 auto; padding: 36px 16px 64px; display: flex; flex-direction: column; gap: 18px">
-<p role="note" style="margin: 0; background: #FFF1C2; border-radius: 999px; padding: 12px 20px; font-size: 15px; font-weight: 700">הנתונים נאספים מכל המעונות ומכל המכשירים. כל מעון רואה רק את הנתונים שלו, ולוח הבקרה פתוח רק למנהל.</p>
+<p role="note" style="margin: 0; background: #FFF1C2; border-radius: 999px; padding: 12px 20px; font-size: 15px; font-weight: 700; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">הנתונים נאספים מכל המעונות ומכל המכשירים. כל מעון רואה רק את הנתונים שלו, ולוח הבקרה פתוח רק למנהל.</p>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
-<sc-for list="{{admOrgs}}" as="o" hint-placeholder-count="4"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
+<sc-for list="{{admOrgs}}" as="o" hint-placeholder-count="4"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
 <span aria-hidden="true" style="width: 2px; height: 28px; background: #F0E3D3; margin: 0 6px"></span>
-<sc-for list="{{admRanges}}" as="o" hint-placeholder-count="3"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
+<sc-for list="{{admRanges}}" as="o" hint-placeholder-count="3"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
 </div>
-<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 16px 20px; box-shadow: 0 6px 16px rgba(35,34,58,0.06)">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 16px 20px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 6px 16px rgba(35,34,58,0.06)">
 <span aria-hidden="true" class="morph" style="flex: none; width: 48px; height: 48px; background: #DDF0FB; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="4" fill="#FFFFFF"></rect><path d="M3 10h18M8 3v4M16 3v4"></path><circle cx="8" cy="14.5" r="1" fill="#FF6B57" stroke="none"></circle><circle cx="12" cy="14.5" r="1" fill="#FF6B57" stroke="none"></circle></svg></span>
 <div style="display: flex; flex-direction: column; gap: 4px"><label for="d-from" style="font-size: 14px; font-weight: 800">מתאריך</label><input id="d-from" type="date" onChange="{{onFrom}}" onInput="{{onFrom}}" style="min-height: 46px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 16px; font-size: 16px; font-family: inherit; color: #23223A; box-sizing: border-box"></div>
 <div style="display: flex; flex-direction: column; gap: 4px"><label for="d-to" style="font-size: 14px; font-weight: 800">עד תאריך</label><input id="d-to" type="date" onChange="{{onTo}}" onInput="{{onTo}}" style="min-height: 46px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 16px; font-size: 16px; font-family: inherit; color: #23223A; box-sizing: border-box"></div>
-<button type="button" class="squish" onClick="{{clearDatesBtn}}" style="min-height: 46px; padding: 0 18px; border-radius: 999px; border: none; background: #F3E9DC; color: #23223A; font-size: 15px; font-weight: 800; cursor: pointer">ניקוי תאריכים</button>
+<button type="button" class="squish" onClick="{{clearDatesBtn}}" style="min-height: 46px; padding: 0 18px; border-radius: 999px; border: none; background: #F3E9DC; color: #23223A; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">ניקוי תאריכים</button>
 <span aria-live="polite" style="flex: 1 1 220px; align-self: center; font-size: 15px; font-weight: 700; color: #3A3950">{{rangeText}}</span>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
-<sc-for list="{{dash.kpis}}" as="k" hint-placeholder-count="8"><div class="pop" style="border-radius: 36px 36px 36px 12px; padding: 18px; display: flex; flex-direction: column; gap: 4px; background: {{k.bg}}"><span style="font-family: Rubik, Arial, sans-serif; font-size: 34px; font-weight: 800; line-height: 1">{{k.v}}</span><span style="font-size: 15px; font-weight: 700">{{k.label}}</span></div></sc-for>
+<sc-for list="{{dash.kpis}}" as="k" hint-placeholder-count="8"><div class="pop" style="border-radius: 36px 36px 36px 12px; padding: 18px; display: flex; flex-direction: column; gap: 4px; background: {{k.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><span style="font-family: Rubik, Arial, sans-serif; font-size: 34px; font-weight: 800; line-height: 1">{{k.v}}</span><span style="font-size: 15px; font-weight: 700">{{k.label}}</span></div></sc-for>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px">
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">כניסות לפי מעון</h2>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">כניסות לפי מעון</h2>
 <sc-for list="{{dash.byOrg}}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 130px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 36px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for>
 <span style="font-size: 13px; color: #55546B">לא מושפע מסינון המעון.</span></section>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי שכבת גיל</h2>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי שכבת גיל</h2>
 <sc-for list="{{dash.byAge}}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 130px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 36px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></section>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי מרחב פעילות</h2>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי מרחב פעילות</h2>
 <sc-for list="{{dash.bySpace}}" as="r" hint-placeholder-count="8"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 130px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 36px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></section>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי גודל קבוצה</h2>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי גודל קבוצה</h2>
 <sc-for list="{{dash.byN}}" as="r" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 130px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 36px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></section>
 </div>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">אחוז הצלחה לפי פעילות</h2>
 <span style="font-size: 14px; color: #55546B">לפי הסימון האחרון של כל משתמשת: עבד מעולה מול פחות עבד. ירוק 70% ומעלה, כתום 40% עד 69%, אדום מתחת ל-40%.</span>
-<sc-if value="{{dash.noRows}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; background: #FDF6EE; border-radius: 999px; padding: 12px 18px; font-size: 15px">עוד אין משובים על פעילויות.</p></sc-if>
+<sc-if value="{{dash.noRows}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; background: #FDF6EE; border-radius: 999px; padding: 12px 18px; font-size: 15px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">עוד אין משובים על פעילויות.</p></sc-if>
 <sc-if value="{{dash.hasRows}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; gap: 8px">
-<sc-for list="{{dash.rows}}" as="r" hint-placeholder-count="5"><div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #FDF6EE; border-radius: 999px; padding: 10px 18px"><span style="flex: 999 1 260px; min-width: 0; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 140px; height: 14px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.bar}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 48px; text-align: left; font-family: Rubik, Arial, sans-serif; font-size: 17px; font-weight: 800">{{r.pct}}%</span><span style="flex: none; font-size: 13px; color: #3A3950">עבד {{r.g}} · לא עבד {{r.b}}</span></div></sc-for>
+<sc-for list="{{dash.rows}}" as="r" hint-placeholder-count="5"><div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #FDF6EE; border-radius: 999px; padding: 10px 18px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><span style="flex: 999 1 260px; min-width: 0; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 140px; height: 14px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.bar}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 48px; text-align: left; font-family: Rubik, Arial, sans-serif; font-size: 17px; font-weight: 800">{{r.pct}}%</span><span style="flex: none; font-size: 13px; color: #3A3950">עבד {{r.g}} · לא עבד {{r.b}}</span></div></sc-for>
 </div>
 </sc-if>
 </section>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px">
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">באילו שעות מפיקים פעילויות</h2>
-<div style="height: 140px; display: flex; align-items: flex-end; gap: 4px"><sc-for list="{{dash.hours}}" as="h" hint-placeholder-count="14"><div style="flex: 1 1 0; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px"><div style="width: 100%; border-radius: 999px 999px 6px 6px; min-height: 4px; height: {{h.pct}}%; background: {{h.color}}"></div><span style="font-size: 11px; font-weight: 700">{{h.label}}</span></div></sc-for></div></section>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">באילו ימים בשבוע</h2>
-<div style="height: 140px; display: flex; align-items: flex-end; gap: 8px"><sc-for list="{{dash.days}}" as="h" hint-placeholder-count="7"><div style="flex: 1 1 0; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px"><div style="width: 100%; border-radius: 999px 999px 6px 6px; min-height: 4px; height: {{h.pct}}%; background: {{h.color}}"></div><span style="font-size: 13px; font-weight: 800">{{h.label}}</span></div></sc-for></div></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">באילו שעות מפיקים פעילויות</h2>
+<div style="height: 140px; display: flex; align-items: flex-end; gap: 4px"><sc-for list="{{dash.hours}}" as="h" hint-placeholder-count="14"><div style="flex: 1 1 0; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px"><div style="width: 100%; border-radius: 999px 999px 6px 6px; min-height: 4px; height: {{h.pct}}%; background: {{h.color}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"></div><span style="font-size: 11px; font-weight: 700">{{h.label}}</span></div></sc-for></div></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">באילו ימים בשבוע</h2>
+<div style="height: 140px; display: flex; align-items: flex-end; gap: 8px"><sc-for list="{{dash.days}}" as="h" hint-placeholder-count="7"><div style="flex: 1 1 0; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 4px"><div style="width: 100%; border-radius: 999px 999px 6px 6px; min-height: 4px; height: {{h.pct}}%; background: {{h.color}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"></div><span style="font-size: 13px; font-weight: 800">{{h.label}}</span></div></sc-for></div></section>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px">
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">פעילויות שנשמרו הכי הרבה</h2>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">פעילויות שנשמרו הכי הרבה</h2>
 <sc-if value="{{dash.noFav}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד אין שמירות.</p></sc-if>
-<sc-for list="{{dash.topFav}}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 1 1 auto; min-width: 0; font-size: 14px; font-weight: 700">{{r.label}}</span><span style="flex: none; background: #FFF1C2; border-radius: 999px; padding: 2px 10px; font-weight: 800">{{r.v}}</span></div></sc-for></section>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">מילים שסומנו הכי הרבה</h2>
+<sc-for list="{{dash.topFav}}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 1 1 auto; min-width: 0; font-size: 14px; font-weight: 700">{{r.label}}</span><span style="flex: none; background: #FFF1C2; border-radius: 999px; padding: 2px 10px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{r.v}}</span></div></sc-for></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">מילים שסומנו הכי הרבה</h2>
 <sc-if value="{{dash.noWords}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד לא סומנו מילים.</p></sc-if>
-<div style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{dash.topWords}}" as="r" hint-placeholder-count="5"><span style="background: #DDF0FB; border-radius: 999px; padding: 6px 14px; font-size: 15px; font-weight: 800">{{r.label}} · {{r.v}}</span></sc-for></div></section>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">מסכים שנפתחו</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{dash.topWords}}" as="r" hint-placeholder-count="5"><span style="background: #DDF0FB; border-radius: 999px; padding: 6px 14px; font-size: 15px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{r.label}} · {{r.v}}</span></sc-for></div></section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">מסכים שנפתחו</h2>
 <sc-if value="{{dash.noViews}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד אין מעברים בין מסכים.</p></sc-if>
 <sc-for list="{{dash.topViews}}" as="r" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 120px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 14px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 30px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></section>
 </div>
-<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">פעילות אחרונה</h2>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">פעילות אחרונה</h2>
 <sc-if value="{{dash.noFeed}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד אין פעילות.</p></sc-if>
-<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px"><sc-for list="{{dash.feed}}" as="e" hint-placeholder-count="5"><li style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #FDF6EE; border-radius: 999px; padding: 8px 16px"><span style="flex: none; background: #FFFFFF; border-radius: 999px; padding: 2px 10px; font-size: 13px; font-weight: 800">{{e.who}}</span><span style="flex: 1 1 200px; font-size: 15px">{{e.text}}</span><span style="flex: none; font-size: 13px; color: #55546B">{{e.time}}</span></li></sc-for></ul></section>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px"><sc-for list="{{dash.feed}}" as="e" hint-placeholder-count="5"><li style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #FDF6EE; border-radius: 999px; padding: 8px 16px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><span style="flex: none; background: #FFFFFF; border-radius: 999px; padding: 2px 10px; font-size: 13px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{e.who}}</span><span style="flex: 1 1 200px; font-size: 15px">{{e.text}}</span><span style="flex: none; font-size: 13px; color: #55546B">{{e.time}}</span></li></sc-for></ul></section>
 </div>
 </div>
 </sc-if>
@@ -1620,6 +1634,7 @@ class Component extends DCLogic {
     return {
       rootCls: (st.big ? 'big ' : '') + (st.calm ? 'calm' : ''),
       vLogin: !sess, hasSess: !!sess, sessName: sess ? sess.name : '',
+      vidOpen: !!st.vid, vidStr: st.vid ? 'true' : 'false', vidRot: st.vid ? 'rotate(180deg)' : 'none', toggleVid: function () { self.setState({ vid: !self.state.vid }); },
       loginTabs: loginTabs, tabOrg: lt === 'org', tabGuest: lt === 'guest', tabAdmin: lt === 'admin',
       codeIn: st.codeIn || '', pwIn: st.pwIn || '', err: st.err || '', hasErr: !!st.err,
       onCode: function (e) { var v = e && e.target ? e.target.value : ''; self._code = v; if (v !== self.state.codeQ || self.state.selOrg || !self.state.listOpen) self.setState({ codeQ: v, selOrg: null, listOpen: true, err: '' }); },
