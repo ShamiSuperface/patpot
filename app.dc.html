@@ -1582,11 +1582,14 @@ class Component extends DCLogic {
     ];
     if (isAdmin) menuDefs.unshift(['admin', 'לוח בקרה', '▦', '#FFE0D6']);
     if (sess && sess.kind === 'org') menuDefs.splice(1, 0, ['daily', 'סיכום יומי להורים', '✉', '#D8F3EA']);
+    if (!isAdmin) menuDefs.push(['joinme', 'הוספת המעון שלי', '+', '#E4F6D8']);
+    var JOIN_TEXT = 'שלום שמי, אני רוצה להצטרף לפִּטְפּוּט עם המעון שלנו.\n\nשם המעון:\nסמל המעון:\nעיר:\nשם איש/אשת קשר:\nטלפון:\nמספר הילדים במעון (בערך):\n\nתודה!';
+    var JOIN_WA = 'https://wa.me/972544573435?text=' + encodeURIComponent(JOIN_TEXT);
     menuDefs.push(['logout', 'התנתקות', '⎋', '#EDE7F0']);
     var menuItems = menuDefs.map(function (m) {
       var on = view === m[0] || (m[0] === 'home' && (view === 'results' || view === 'loading'));
       return { label: m[1], mark: m[2], dot: m[3], bg: on ? m[3] : '#FFFFFF', hasBadge: m[0] === 'saved' && favKeys.length > 0, badge: String(favKeys.length),
-        go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); if (m[0] === 'daily') self.loadDaily(); } };
+        go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'joinme') { self.setState({ menu: false }); var w = null; try { w = window.open(JOIN_WA, '_blank'); } catch (e) {} if (!w) window.location.href = JOIN_WA; return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); if (m[0] === 'daily') self.loadDaily(); } };
     });
 
     var settings = [
