@@ -53,6 +53,28 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 .bbar{display:flex}
 .bspace{height:92px}
 @media (min-width:1100px){.side{display:flex}.bbar{display:none !important}.bspace{display:none}.burger{display:none !important}.mainwrap{margin-right:300px !important;margin-left:auto !important;max-width:none !important;padding-left:40px !important}.hdrwrap{max-width:none !important;padding-right:24px !important;padding-left:24px !important}}
+@media (max-width:480px){
+.hdr-tag,.burger-lbl{display:none}
+.burger{width:48px;padding:0 !important}
+.hdrwrap{padding:8px 12px !important;gap:8px !important}
+.hdrwrap>div{gap:6px !important;min-width:0}
+.hdr-logo{gap:6px !important;padding:2px !important;flex:none}
+.hdr-logo img{width:36px;height:36px}
+.hdr-name{font-size:22px !important}
+.hdr-sess{max-width:26vw !important;font-size:13px !important;padding:8px 10px !important}
+.burger,.hdr-fav{width:44px !important;height:44px !important}
+.ltab{font-size:15px !important;white-space:nowrap;padding:0 6px !important}
+.act-head{padding:14px 14px !important;gap:10px !important}
+.act-num{width:44px !important;height:44px !important;font-size:19px !important}
+.act-title{font-size:19px !important}
+.act-body{padding:0 14px 16px !important}
+.act-actions>*{flex:1 1 auto;justify-content:center}
+.fb-box{padding:12px !important}
+.fb-box>strong{flex:1 0 100%;margin:0 !important}
+.fb-box>button{flex:1 1 0;padding:0 8px !important}
+.wsp{font-size:14px !important;line-height:1.15;padding:6px 8px !important;gap:4px !important}
+.wsp img{width:20px;height:20px}
+}
 </style>
 </helmet>
 <div class="{{rootCls}}" dir="rtl" lang="he" style="font-family: Assistant, Arial, sans-serif; color: #23223A; background: #FDF6EE; min-height: 100vh; position: relative; overflow-x: hidden">
@@ -65,22 +87,22 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 
 <header style="position: sticky; top: 0; z-index: 20; background: #FFE0D6">
 <div class="hdrwrap" style="max-width: 960px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
-<button type="button" onClick="{{goHome}}" aria-label="פִּטְפּוּט, למסך הבית" style="border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 4px; color: #23223A">
+<button type="button" onClick="{{goHome}}" aria-label="פִּטְפּוּט, למסך הבית" class="hdr-logo" style="border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 4px; color: #23223A">
 <img src="/_blob/cf6ba380f849ea66cc5408e188dde6cf" alt="" width="44" height="44" style="display: block">
 <span style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.05">
-<span style="font-family: Rubik, Arial, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.01em">פִּטְפּוּט</span>
-<span style="font-size: 13px; font-weight: 700; color: #55546B">מילים קטנות בכל פינה במעון</span>
+<span class="hdr-name" style="font-family: Rubik, Arial, sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -0.01em">פִּטְפּוּט</span>
+<span class="hdr-tag" style="font-size: 13px; font-weight: 700; color: #55546B">מילים קטנות בכל פינה במעון</span>
 </span>
 </button>
 <div style="display: flex; align-items: center; gap: 8px">
-<sc-if value="{{hasSess}}" hint-placeholder-val="{{ false }}"><span style="background: #FFFFFF; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 800; white-space: nowrap; max-width: 34vw; overflow: hidden; text-overflow: ellipsis; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{sessName}}</span></sc-if>
-<button type="button" onClick="{{goSaved}}" aria-label="הפעילויות השמורות שלי" style="position: relative; width: 48px; height: 48px; border-radius: 24px; border: none; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(255,107,87,0.18)">
+<sc-if value="{{hasSess}}" hint-placeholder-val="{{ false }}"><span class="hdr-sess" style="background: #FFFFFF; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 800; white-space: nowrap; max-width: 34vw; overflow: hidden; text-overflow: ellipsis; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{sessName}}</span></sc-if>
+<button type="button" onClick="{{goSaved}}" aria-label="הפעילויות השמורות שלי" class="hdr-fav" style="position: relative; width: 48px; height: 48px; border-radius: 24px; border: none; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(255,107,87,0.18)">
 <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#FFC93C" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>
 <sc-if value="{{hasFav}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; top: -4px; left: -4px; min-width: 22px; height: 22px; border-radius: 11px; background: #FF6B57; color: #23223A; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; padding: 0 5px; box-sizing: border-box">{{favCount}}</span></sc-if>
 </button>
-<button type="button" class="burger squish" onClick="{{openMenu}}" aria-expanded="{{menuStr}}" style="height: 48px; padding: 0 18px 0 14px; border-radius: 999px; border: none; background: #23223A; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 800">
+<button type="button" class="burger squish" aria-label="תפריט" onClick="{{openMenu}}" aria-expanded="{{menuStr}}" style="height: 48px; padding: 0 18px 0 14px; border-radius: 999px; border: none; background: #23223A; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 800">
 <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
-<span>תפריט</span>
+<span class="burger-lbl">תפריט</span>
 </button>
 </div>
 </div>
@@ -284,10 +306,10 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px">
 <sc-for list="{{acts}}" as="x" hint-placeholder-count="5">
 <li class="pop" style="animation-delay: {{x.delay}}; background: #FFFFFF; border-radius: 38px; overflow: hidden; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 12px 28px rgba(35,34,58,0.07)">
-<button type="button" onClick="{{x.toggle}}" aria-expanded="{{x.openStr}}" style="width: 100%; min-height: 78px; border: none; background: transparent; cursor: pointer; text-align: right; padding: 18px 22px; display: flex; align-items: center; gap: 14px; color: #23223A">
-<span aria-hidden="true" class="morph" style="flex: none; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800; background: {{x.numBg}}">{{x.num}}</span>
+<button type="button" class="act-head" onClick="{{x.toggle}}" aria-expanded="{{x.openStr}}" style="width: 100%; min-height: 78px; border: none; background: transparent; cursor: pointer; text-align: right; padding: 18px 22px; display: flex; align-items: center; gap: 14px; color: #23223A">
+<span aria-hidden="true" class="morph act-num" style="flex: none; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800; background: {{x.numBg}}">{{x.num}}</span>
 <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px">
-<span style="font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800; line-height: 1.25">{{x.t}}</span>
+<span class="act-title" style="font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800; line-height: 1.25">{{x.t}}</span>
 <span style="font-size: 15px; font-weight: 600; color: #4A4960">{{x.g}}</span>
 <sc-if value="{{x.showWhere}}" hint-placeholder-val="{{ false }}"><span style="font-size: 14px; font-weight: 700; color: #0B6E73">{{x.where}}</span></sc-if>
 </span>
@@ -298,7 +320,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </span>
 </button>
 <sc-if value="{{x.open}}" hint-placeholder-val="{{ false }}">
-<div style="padding: 0 22px 22px; display: flex; flex-direction: column; gap: 14px">
+<div class="act-body" style="padding: 0 22px 22px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <strong style="font-family: Rubik, Arial, sans-serif; font-size: 17px">איך עושים?</strong>
 <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
@@ -332,11 +354,11 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <strong style="font-size: 16px">בקבוצה</strong>
 <p style="margin: 0; font-size: 16px; line-height: 1.55">{{x.b}}</p>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<div class="act-actions" style="display: flex; flex-wrap: wrap; gap: 8px">
 <button type="button" onClick="{{x.toggleFav}}" aria-pressed="{{x.favStr}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 8px; background: {{x.favBg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{x.starFill}}" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>{{x.favLabel}}</button>
 <a href="{{x.wa}}" target="_blank" rel="noopener" onClick="{{x.share}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; background: #D8F3EA; color: #23223A; font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px; text-decoration: none; box-sizing: border-box; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v12M7 8l5-5 5 5"></path></svg>שיתוף בוואטסאפ</a>
 </div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: #FDF6EE; border-radius: 999px; padding: 8px 10px 8px 18px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
+<div class="fb-box" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: #FDF6EE; border-radius: 28px; padding: 8px 10px 8px 18px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <strong style="font-size: 16px; margin-inline-end: auto">איך הלך?</strong>
 <button type="button" aria-pressed="{{x.goodStr}}" onClick="{{x.good}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #0B6E73; cursor: pointer; font-size: 16px; font-weight: 800; color: {{x.goodColor}}; background: {{x.goodBg}}">עבד מעולה</button>
 <button type="button" aria-pressed="{{x.badStr}}" onClick="{{x.bad}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #9A3B10; cursor: pointer; font-size: 16px; font-weight: 800; color: {{x.badColor}}; background: {{x.badBg}}">פחות עבד</button>
@@ -372,7 +394,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 34px; height: 34px; background: #FFC93C; display: inline-flex; align-items: center; justify-content: center; font-size: 16px">1</span>שכבת גיל</h2>
 <div class="age-grid">
 <sc-for list="{{ages}}" as="a" hint-placeholder-count="3">
-<button type="button" aria-pressed="{{a.pressed}}" onClick="{{a.pickW}}" class="squish" style="width: 100%; min-height: 48px; padding: 0 18px; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{a.bg}}; border: {{a.border}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{a.label}}</button>
+<button type="button" aria-pressed="{{a.pressed}}" onClick="{{a.pickW}}" class="squish" style="width: 100%; min-height: 48px; padding: 0 18px; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{a.bg}}; border: {{a.border}}">{{a.label}}</button>
 </sc-for>
 </div>
 </section>
@@ -380,7 +402,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" class="morph" style="width: 34px; height: 34px; background: #6FC3E8; display: inline-flex; align-items: center; justify-content: center; font-size: 16px">2</span>מרחב</h2>
 <div class="sp-grid">
 <sc-for list="{{spaces}}" as="s" hint-placeholder-count="8">
-<button type="button" aria-pressed="{{s.pressed}}" onClick="{{s.pickW}}" class="squish" style="width: 100%; justify-content: center; min-height: 48px; padding: 0 12px; border-radius: 999px; cursor: pointer; font-size: 15px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 6px; background: {{s.bg}}; border: {{s.border}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><img src="{{s.icon}}" alt="" width="24" height="24">{{s.label}}</button>
+<button type="button" aria-pressed="{{s.pressed}}" onClick="{{s.pickW}}" class="squish wsp" style="width: 100%; justify-content: center; min-height: 48px; padding: 0 12px; border-radius: 999px; cursor: pointer; font-size: 15px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 6px; background: {{s.bg}}; border: {{s.border}}"><img src="{{s.icon}}" alt="" width="24" height="24">{{s.label}}</button>
 </sc-for>
 </div>
 </section>
@@ -410,7 +432,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <p style="margin: 0; font-size: 15px; color: #55546B; line-height: 1.55">טיפ: בחרי 3 מילים לשבוע והשתמשי בהן בכל פעם שאת במרחב. החזרה היא מה שמאפשר לילדים לזהות את המילה ולהשתמש בה.</p>
 </sc-if>
 <sc-if value="{{bankNotReady}}" hint-placeholder-val="{{ false }}">
-<p style="margin: 0; background: #FFFFFF; border-radius: 999px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">בחרי שכבת גיל ומרחב כדי לראות את בנק המילים.</p>
+<p style="margin: 0; background: #FFFFFF; border-radius: 24px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">בחרי שכבת גיל ומרחב כדי לראות את בנק המילים.</p>
 </sc-if>
 </div>
 </sc-if>
@@ -485,8 +507,8 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">סיכום יומי להורים</h1>
 <p style="margin: 0; font-size: 17px; color: #3A3950; line-height: 1.6">הסיכום אוסף את הפעילויות שסומנו היום ״עבד״ או ״פחות עבד״ ואת המילים שסומנו, מכל המכשירים של המעון. בוואטסאפ בוחרים את קבוצת ההורים ושולחים.</p>
 </section>
-<sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 999px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">אוספים את הפעילויות של היום...</p></sc-if>
-<sc-if value="{{dailyError}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 16px 22px; font-size: 17px; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">לא הצלחנו לטעון את הסיכום. בדקי את החיבור לאינטרנט ונסי שוב.</p></sc-if>
+<sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 24px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">אוספים את הפעילויות של היום...</p></sc-if>
+<sc-if value="{{dailyError}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 24px; padding: 16px 22px; font-size: 17px; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">לא הצלחנו לטעון את הסיכום. בדקי את החיבור לאינטרנט ונסי שוב.</p></sc-if>
 <sc-if value="{{dailyEmpty}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; background: #FFFFFF; border-radius: 28px; padding: 16px 22px; font-size: 17px; line-height: 1.6; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">עוד לא סומנו היום פעילויות. אחרי פעילות, סמני ״עבד״ או ״פחות עבד״ בכרטיס שלה, והיא תיכנס לסיכום.</p></sc-if>
 <sc-if value="{{dailyReady}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border-radius: 28px; padding: 18px 22px; font-size: 16px; line-height: 1.7; white-space: pre-wrap; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 10px 22px rgba(35,34,58,0.08)">{{dailyText}}</div>
@@ -562,14 +584,14 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div style="background: #FFFFFF; border-radius: 44px 44px 44px 16px; padding: 22px; display: flex; flex-direction: column; gap: 16px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 18px 40px rgba(255,107,87,0.18)">
 <div role="tablist" aria-label="סוג כניסה" style="display: flex; gap: 4px; background: #FDF6EE; border-radius: 999px; padding: 5px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <sc-for list="{{loginTabs}}" as="lt" hint-placeholder-count="3">
-<button type="button" role="tab" aria-selected="{{lt.sel}}" onClick="{{lt.pick}}" class="squish" style="flex: 1 1 0; min-height: 46px; border: none; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{lt.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{lt.label}}</button>
+<button type="button" role="tab" aria-selected="{{lt.sel}}" onClick="{{lt.pick}}" class="squish ltab" style="flex: 1 1 0; min-height: 46px; border: none; border-radius: 999px; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{lt.bg}}">{{lt.label}}</button>
 </sc-for>
 </div>
 <sc-if value="{{tabOrg}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; flex-direction: column; gap: 12px">
 <label for="l-code" style="font-size: 15px; font-weight: 800">סמל מעון או שם המעון</label>
 <div style="position: relative">
-<input id="l-code" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="l-list" aria-expanded="{{listStr}}" placeholder="לדוגמה: 75531 או שביל הילדות" onChange="{{onCode}}" onInput="{{onCode}}" onFocus="{{openList}}" onKeyDown="{{codeKey}}" style="width: 100%; min-height: 54px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 20px 0 60px; font-size: 18px; font-family: inherit; color: #23223A; box-sizing: border-box">
+<input id="l-code" type="text" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="l-list" aria-expanded="{{listStr}}" placeholder="לדוגמה: 75531" onChange="{{onCode}}" onInput="{{onCode}}" onFocus="{{openList}}" onKeyDown="{{codeKey}}" style="width: 100%; min-height: 54px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 20px 0 60px; font-size: 18px; font-family: inherit; color: #23223A; box-sizing: border-box">
 <button type="button" aria-label="הצגת רשימת המעונות" onClick="{{toggleList}}" style="position: absolute; left: 6px; top: 5px; width: 44px; height: 44px; border-radius: 50%; border: none; background: #FFE0D6; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></button>
 </div>
 <sc-if value="{{showList}}" hint-placeholder-val="{{ false }}">
@@ -580,7 +602,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </sc-if>
 <label for="l-pw" style="font-size: 15px; font-weight: 800">סיסמה</label>
 <input id="l-pw" type="password" autocomplete="current-password" onChange="{{onPw}}" onInput="{{onPw}}" onKeyDown="{{pwKey}}" onFocus="{{closeList}}" style="min-height: 54px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 20px; font-size: 18px; font-family: inherit; color: #23223A; box-sizing: border-box">
-<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{err}}</p></sc-if>
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 24px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{err}}</p></sc-if>
 <button type="button" onClick="{{loginOrg}}" class="squish" style="min-height: 58px; border-radius: 999px; border: none; background: #FF6B57; color: #23223A; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; cursor: pointer; box-shadow: 0 10px 22px rgba(255,107,87,0.32)">כניסה</button>
 <p style="margin: 0; font-size: 14px; color: #55546B; text-align: center">את הסיסמה מקבלים מהנהלת הכלי.</p>
 </div>
@@ -595,7 +617,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div style="display: flex; flex-direction: column; gap: 12px">
 <label for="l-apw" style="font-size: 15px; font-weight: 800">סיסמת מנהל</label>
 <input id="l-apw" type="password" autocomplete="current-password" onChange="{{onPw}}" onInput="{{onPw}}" onKeyDown="{{adminKey}}" style="min-height: 54px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 20px; font-size: 18px; font-family: inherit; color: #23223A; box-sizing: border-box">
-<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 999px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{err}}</p></sc-if>
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 24px; padding: 10px 18px; font-size: 15px; font-weight: 700; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{err}}</p></sc-if>
 <button type="button" onClick="{{loginAdmin}}" class="squish" style="min-height: 58px; border-radius: 999px; border: none; background: #23223A; color: #FFFFFF; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; cursor: pointer">כניסה ללוח הבקרה</button>
 </div>
 </sc-if>
@@ -632,7 +654,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -18px; height: 20px; overflow: hidden; pointer-events: none"><svg class="drift" width="200%" height="20" viewBox="0 0 1200 20" preserveAspectRatio="none" style="position: absolute; right: 0; display: block"><path d="M0 0h1200v6c-50 0-50 12-100 12S1050 6 1000 6s-50 12-100 12S850 6 800 6s-50 12-100 12S650 6 600 6s-50 12-100 12S450 6 400 6s-50 12-100 12S250 6 200 6s-50 12-100 12S50 6 0 6z" fill="#23223A"></path></svg></div>
 </div>
 <div style="max-width: 1120px; margin: 0 auto; padding: 36px 16px 64px; display: flex; flex-direction: column; gap: 18px">
-<p role="note" style="margin: 0; background: #FFF1C2; border-radius: 999px; padding: 12px 20px; font-size: 15px; font-weight: 700; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">הנתונים נאספים מכל המעונות ומכל המכשירים. כל מעון רואה רק את הנתונים שלו, ולוח הבקרה פתוח רק למנהל.</p>
+<p role="note" style="margin: 0; background: #FFF1C2; border-radius: 24px; padding: 12px 20px; font-size: 15px; font-weight: 700; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">הנתונים נאספים מכל המעונות ומכל המכשירים. כל מעון רואה רק את הנתונים שלו, ולוח הבקרה פתוח רק למנהל.</p>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
 <sc-for list="{{admOrgs}}" as="o" hint-placeholder-count="4"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
 <span aria-hidden="true" style="width: 2px; height: 28px; background: #F0E3D3; margin: 0 6px"></span>
@@ -662,7 +684,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">אחוז הצלחה לפי פעילות</h2>
 <span style="font-size: 14px; color: #55546B">לפי הסימון האחרון של כל משתמשת: עבד מעולה מול פחות עבד. ירוק 70% ומעלה, כתום 40% עד 69%, אדום מתחת ל-40%.</span>
-<sc-if value="{{dash.noRows}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; background: #FDF6EE; border-radius: 999px; padding: 12px 18px; font-size: 15px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">עוד אין משובים על פעילויות.</p></sc-if>
+<sc-if value="{{dash.noRows}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; background: #FDF6EE; border-radius: 24px; padding: 12px 18px; font-size: 15px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">עוד אין משובים על פעילויות.</p></sc-if>
 <sc-if value="{{dash.hasRows}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; gap: 8px">
 <sc-for list="{{dash.rows}}" as="r" hint-placeholder-count="5"><div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: #FDF6EE; border-radius: 999px; padding: 10px 18px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><span style="flex: 999 1 260px; min-width: 0; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 140px; height: 14px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.bar}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 48px; text-align: left; font-family: Rubik, Arial, sans-serif; font-size: 17px; font-weight: 800">{{r.pct}}%</span><span style="flex: none; font-size: 13px; color: #3A3950">עבד {{r.g}} · לא עבד {{r.b}}</span></div></sc-for>
@@ -1597,7 +1619,7 @@ class Component extends DCLogic {
     if (isAdmin) menuDefs.unshift(['admin', 'לוח בקרה', '▦', '#FFE0D6']);
     if (sess && sess.kind === 'org') menuDefs.splice(1, 0, ['daily', 'סיכום יומי להורים', '✉', '#D8F3EA']);
     if (!isAdmin) menuDefs.push(['joinme', 'הוספת המעון שלי', '+', '#E4F6D8']);
-    var JOIN_TEXT = 'שלום שמי, אני רוצה להצטרף לפִּטְפּוּט עם המעון שלנו.\n\nשם המעון:\nסמל המעון:\nעיר:\nשם איש/אשת קשר:\nטלפון:\nמספר הילדים במעון (בערך):\n\nתודה!';
+    var JOIN_TEXT = 'שלום שמי, ראיתי את פִּטְפּוּט ואשמח לקבל הצעת מחיר להצטרפות המעון שלנו.';
     var JOIN_WA = 'https://wa.me/972544573435?text=' + encodeURIComponent(JOIN_TEXT);
     menuDefs.push(['logout', 'התנתקות', '⎋', '#EDE7F0']);
     var menuItems = menuDefs.map(function (m) {
