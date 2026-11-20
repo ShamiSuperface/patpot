@@ -113,7 +113,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </li>
 </sc-for>
 </ul>
-<p style="margin: 0; font-size: 13px; color: #55546B; line-height: 1.5">כלי חינמי לצוותי חינוך-טיפול במעונות יום. השמירות והסימונים נשמרים בדפדפן שלך בלבד.</p>
+<p style="margin: 0; font-size: 13px; color: #55546B; line-height: 1.5">כלי חינמי לצוותי חינוך-טיפול במעונות יום. השמירות נשמרות בדפדפן שלך. נתוני שימוש, בלי פרטים אישיים, נשמרים לצורך הסיכום היומי ולוח הבקרה.</p>
 </nav>
 </div>
 </sc-if>
@@ -618,7 +618,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -18px; height: 20px; overflow: hidden; pointer-events: none"><svg class="drift" width="200%" height="20" viewBox="0 0 1200 20" preserveAspectRatio="none" style="position: absolute; right: 0; display: block"><path d="M0 0h1200v6c-50 0-50 12-100 12S1050 6 1000 6s-50 12-100 12S850 6 800 6s-50 12-100 12S650 6 600 6s-50 12-100 12S450 6 400 6s-50 12-100 12S250 6 200 6s-50 12-100 12S50 6 0 6z" fill="#23223A"></path></svg></div>
 </div>
 <div style="max-width: 1120px; margin: 0 auto; padding: 36px 16px 64px; display: flex; flex-direction: column; gap: 18px">
-<p role="note" style="margin: 0; background: #FFF1C2; border-radius: 999px; padding: 12px 20px; font-size: 15px; font-weight: 700">גרסת הדגמה: הנתונים נאספים בדפדפן של המכשיר הזה בלבד. כדי לרכז נתונים מכל המעונות צריך לחבר מסד נתונים משותף.</p>
+<p role="note" style="margin: 0; background: #FFF1C2; border-radius: 999px; padding: 12px 20px; font-size: 15px; font-weight: 700">הנתונים נאספים מכל המעונות ומכל המכשירים. כל מעון רואה רק את הנתונים שלו, ולוח הבקרה פתוח רק למנהל.</p>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
 <sc-for list="{{admOrgs}}" as="o" hint-placeholder-count="4"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
 <span aria-hidden="true" style="width: 2px; height: 28px; background: #F0E3D3; margin: 0 6px"></span>
@@ -1304,7 +1304,7 @@ function dailyText(rows, orgName, dayStr) {
     });
   }
   if (words.length) { L.push('*מילים שתרגלנו היום:* ' + words.slice(0, 20).join(', '), ''); }
-  L.push('רעיון לבית: אפשר לחזור על כמה מהמילים האלה בשיחה רגילה, בארוחה או באמבטיה. בלי לבחון, פשוט להגיד ולחכות לתגובה.', '');
+  L.push('רעיון לבית: אפשר לחזור על ' + (words.length ? 'כמה מהמילים' : 'כמה מהמשפטים') + ' האלה בשיחה רגילה, בארוחה או באמבטיה. בלי לבחון, פשוט להגיד ולחכות לתגובה.', '');
   L.push('נשלח מפטפוט: ' + SITE_LINK);
   return L.join('\n');
 }
