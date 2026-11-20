@@ -1176,7 +1176,7 @@ var STORE = 'patput-v1';
 var EDGE = { a1: '#E9C45E', a2: '#EFA0B4', a3: '#8FC6E4', change: '#EFA0B4', breakfast: '#E9C45E', lunch: '#F0AE80', art: '#BBA6F2', socio: '#86D2B4', build: '#93C8EA', book: '#E5B886', yard: '#A6D686' };
 var LOGKEY = 'patput-log';
 var SESSKEY = 'patput-session';
-var SITE_LINK = 'https://shamisuperface.github.io/patpot/';
+var SITE_LINK = 'https://pitput.education/';
 var ORGS = [{ id: '75531', name: 'שביל הילדות' }, { id: '90852', name: 'גן אנגלית' }];
 function orgName(id) { for (var i = 0; i < ORGS.length; i++) { if (ORGS[i].id === id) return ORGS[i].name; } return id; }
 var SB_URL = 'https://twpptxxesvjidnaeldqe.supabase.co';
@@ -1488,7 +1488,7 @@ class Component extends DCLogic {
       var setFb = function (v) { var o = Object.assign({}, self.state.fb || {}); o[key] = o[key] === v ? null : v; if (!o[key]) delete o[key]; self.up({ fb: o, keep: key }); self.log({ type: 'fb', age: age, space: space, act: x[0], v: o[key] || 'none' }); };
       var a = byId(AGES, age), s = byId(SPACES, space);
       var wa = '*' + x[0] + '* · פטפוט\n' + 'מטרה: ' + x[1] + '\n\n' + x[2].map(function (v, j) { return (j + 1) + '. ' + v; }).join('\n') + '\n\nאפשר להגיד: ' + x[3].map(function (v) { return '״' + v + '״'; }).join(' ');
-      wa += '\n\nעוד פעילויות להעשרה שפתית במעון, בפטפוט:\nhttps://shamisuperface.github.io/patpot/';
+      wa += '\n\nעוד פעילויות להעשרה שפתית במעון, בפטפוט:\nhttps://pitput.education/';
       var mw = matchWords(x, bankWords(age, space));
       return { delay: (k * 90) + 'ms', num: k + 1, t: x[0], g: x[1], b: x[4], ph: toV(x[3]), numBg: NUMC[k % NUMC.length],
         steps: x[2].map(function (v, j) { return { v: v, n: j + 1 }; }),
