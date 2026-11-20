@@ -1178,6 +1178,7 @@ var LOGKEY = 'patput-log';
 var SESSKEY = 'patput-session';
 var SITE_LINK = 'https://shamisuperface.github.io/patpot/';
 var ORGS = [{ id: '75531', name: 'שביל הילדות' }, { id: '90852', name: 'גן אנגלית' }];
+function orgName(id) { for (var i = 0; i < ORGS.length; i++) { if (ORGS[i].id === id) return ORGS[i].name; } return id; }
 var SB_URL = 'https://twpptxxesvjidnaeldqe.supabase.co';
 var SB_KEY = 'sb_publishable_8WYlm3FQo8iXPz98v3gh9w_C2UuqEuX';
 var TOKKEY = 'patpot-auth';
@@ -1254,7 +1255,7 @@ function buildDash(log, f, r, from, to) {
   Object.keys(last).forEach(function (k) { var v = last[k]; if (v !== 'good' && v !== 'bad') return; var a = k.split('#').slice(1).join('#'); if (!acts[a]) acts[a] = { g: 0, b: 0 }; if (v === 'good') { acts[a].g++; good++; } else { acts[a].b++; bad++; } });
   var rows = Object.keys(acts).map(function (k) { var x = acts[k], t = x.g + x.b, pct = Math.round(100 * x.g / t); return { label: actLabel(k), g: x.g, b: x.b, total: t, pct: pct, bar: Math.max(4, pct), color: pct >= 70 ? '#0B6E73' : (pct >= 40 ? '#F4B07A' : '#C2410C') }; }).sort(function (a, b) { return b.total - a.total || b.pct - a.pct; }).slice(0, 30);
   var hk = [], hl = []; for (var h = 6; h <= 19; h++) { hk.push(h); hl.push(String(h)); }
-  var feed = F.slice(-15).reverse().map(function (e) { var tm = ''; try { tm = new Date(e.t).toLocaleString('he-IL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); } catch (x) {} return { text: evText(e), who: e.u === 'guest' ? 'אורחת' : (e.u === '75531' ? 'שביל הילדות' : (e.u === '90852' ? 'גן אנגלית' : e.u)), time: tm }; });
+  var feed = F.slice(-15).reverse().map(function (e) { var tm = ''; try { tm = new Date(e.t).toLocaleString('he-IL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); } catch (x) {} return { text: evText(e), who: e.u === 'guest' ? 'אורחת' : orgName(e.u), time: tm }; });
   var topFav = topList(favs, 8, actLabel), topWords = topList(words, 12), topViews = topList(views, 8, function (k) { return VLAB[k] || k; });
   return {
     kpis: [
@@ -1267,7 +1268,7 @@ function buildDash(log, f, r, from, to) {
       { v: Object.keys(daySet).length, label: 'ימי שימוש', bg: '#FCE9D6' },
       { v: c.gen ? (Math.round(10 * (c.more || 0) / c.gen) / 10) : 0, label: 'רענונים בממוצע להפקה', bg: '#E4F6D8' }
     ],
-    byOrg: bars(lo, ['75531', '90852', 'guest'], ['שביל הילדות', 'גן אנגלית', 'אורחות (בלי שם)'], ['#FF6B57', '#6FC3E8', '#B49CFF']),
+    byOrg: bars(lo, ORGS.map(function (o) { return o.id; }).concat(['guest']), ORGS.map(function (o) { return o.name; }).concat(['אורחות (בלי שם)']), ['#FF6B57', '#6FC3E8', '#7ED9B8', '#FFC93C', '#FF8FAA', '#B49CFF']),
     byAge: bars(age, AGES.map(function (a) { return a.id; }), AGES.map(function (a) { return a.label; }), ['#FFC93C', '#FF8FAA', '#6FC3E8']),
     bySpace: bars(sp, SPACES.map(function (s) { return s.id; }), SPACES.map(function (s) { return s.label; }), SPACES.map(function (s) { return s.color; })),
     byN: bars(nb, ['b1', 'b2', 'b3', 'b4'], ['1 עד 3 ילדים', '4 עד 6 ילדים', '7 עד 10 ילדים', '11 ילדים ומעלה'], ['#A8E6CF', '#7ED9B8', '#5FCBA3', '#0B6E73']),
@@ -1608,7 +1609,7 @@ class Component extends DCLogic {
     var rangeText = ar === 'custom' ? ('מוצגים נתונים ' + (st.admFrom ? 'מ-' + fmtD(st.admFrom) : 'מההתחלה') + ' ' + (st.admTo ? 'עד ' + fmtD(st.admTo) : 'עד היום')) : (ar === '7' ? 'מוצגים 7 הימים האחרונים' : (ar === '30' ? 'מוצגים 30 הימים האחרונים' : 'מוצגים כל הנתונים'));
     if (st.admFrom && st.admTo && st.admFrom > st.admTo) rangeText = 'תאריך ההתחלה מאוחר מתאריך הסיום. בדקי את הטווח.';
     if (st.dashState === 'loading') rangeText = 'טוען נתונים...'; else if (st.dashState === 'error') rangeText = 'לא הצלחנו לטעון את הנתונים. בדקו את החיבור ונסו שוב.';
-    var admOrgs = [['all', 'כל המעונות'], ['75531', 'שביל הילדות'], ['90852', 'גן אנגלית'], ['guest', 'אורחות']].map(function (o) { var on = af === o[0]; return { label: o[1], sel: on ? 'true' : 'false', bg: on ? '#23223A' : '#FFFFFF', color: on ? '#FFFFFF' : '#23223A', pick: function () { self.setState({ admF: o[0] }); } }; });
+    var admOrgs = [['all', 'כל המעונות']].concat(ORGS.map(function (o) { return [o.id, o.name]; }), [['guest', 'אורחות']]).map(function (o) { var on = af === o[0]; return { label: o[1], sel: on ? 'true' : 'false', bg: on ? '#23223A' : '#FFFFFF', color: on ? '#FFFFFF' : '#23223A', pick: function () { self.setState({ admF: o[0] }); } }; });
     var admRanges = [['all', 'כל הזמן'], ['30', '30 יום'], ['7', '7 ימים']].map(function (o) { var on = ar === o[0]; return { label: o[1], sel: on ? 'true' : 'false', bg: on ? '#23223A' : '#FFFFFF', color: on ? '#FFFFFF' : '#23223A', pick: function () { self.clearDates(o[0]); } }; });
     var missing = !st.age && !st.space ? 'בחרי גיל ומרחב כדי להתחיל' : (!st.age ? 'נשאר לבחור גיל' : 'נשאר לבחור מרחב');
     var vResults = view === 'results' && ready;
