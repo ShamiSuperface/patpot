@@ -1605,7 +1605,7 @@ class Component extends DCLogic {
 
     var orgList = this.matchOrgs(st.codeQ).map(function (o) { var on = st.selOrg === o.id; return { id: o.id, name: o.name, sel: on ? 'true' : 'false', bg: on ? '#FFE0D6' : '#FDF6EE', pick: function () { self.pickOrg(o); } }; });
     var lt = st.loginTab || 'org';
-    var loginTabs = [['org', 'כניסת מעון'], ['guest', 'בלי שם'], ['admin', 'מנהל']].map(function (t) { var on = lt === t[0]; return { label: t[1], sel: on ? 'true' : 'false', bg: on ? '#FF6B57' : 'transparent', pick: function () { self.setState({ loginTab: t[0], err: '', pwIn: '' }); } }; });
+    var loginTabs = [['org', 'כניסת מעון'], ['guest', 'סתם לפטפט'], ['admin', 'מנהל']].map(function (t) { var on = lt === t[0]; return { label: t[1], sel: on ? 'true' : 'false', bg: on ? '#FF6B57' : 'transparent', pick: function () { self.setState({ loginTab: t[0], err: '', pwIn: '' }); } }; });
     var af = st.admF || 'all', ar = st.admR || 'all';
     var dash = buildDash((isAdmin && view === 'admin') ? (this._log || []) : [], af, ar, st.admFrom, st.admTo);
     var fmtD = function (s) { try { return new Date(s + 'T12:00:00').toLocaleDateString('he-IL'); } catch (e) { return s; } };
