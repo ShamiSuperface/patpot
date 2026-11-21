@@ -370,6 +370,15 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </div>
 <sc-if value="{{x.fbGood}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; font-weight: 700; color: #0B6E73">מעולה! זה נרשם במסע שלך.</p></sc-if>
 <sc-if value="{{x.fbBad}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; color: #4A4960">תודה. הפעילות לא תוצע שוב ברענון. לחיצה נוספת מבטלת.</p></sc-if>
+<sc-if value="{{x.showDet}}" hint-placeholder-val="{{ false }}"><div class="det-box" style="background: #FFFFFF; border-radius: 26px 26px 26px 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
+<span style="font-size: 15px; font-weight: 800">מה עשית? אפשר לבחור כמה, לא חובה</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detS}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
+<span style="font-size: 15px; font-weight: 800">כמה זמן?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detM}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
+<sc-if value="{{x.showReason}}" hint-placeholder-val="{{ false }}"><span style="font-size: 15px; font-weight: 800">מה לא עבד?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detR}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div></sc-if>
+<span style="font-size: 13px; color: #55546B">נשמר בלי שמות ובלי פרטים על ילדים.</span>
+</div></sc-if>
 </div>
 </sc-if>
 </li>
@@ -686,6 +695,34 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שימושים לפי גודל קבוצה</h2>
 <sc-for list="{{dash.byN}}" as="r" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 130px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 36px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></section>
 </div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px">
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">ביצוע ואסטרטגיות (שכבה 1)</h2>
+<p style="margin: 0; font-size: 15px; color: #4A4960">דיווח עצמי של המטפלות אחרי פעילות: {{dash.didN}} דיווחים, אחד לכל פעילות ביום. דיווח עצמי נוטה להיות גבוה מביצוע נצפה.</p>
+<sc-if value="{{dash.noDid}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד אין דיווחי ביצוע.</p></sc-if>
+<sc-if value="{{dash.hasDid}}" hint-placeholder-val="{{ false }}"><strong style="font-size: 15px">אסטרטגיות (אחוז מהדיווחים)</strong>
+<sc-for list="{{dash.didS}}" as="r" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 150px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 44px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for>
+<strong style="font-size: 15px">משך</strong>
+<sc-for list="{{dash.didM}}" as="r" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 150px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 44px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></sc-if>
+</section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">למה "פחות עבד" (שכבה 4)</h2>
+<sc-if value="{{dash.noR}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד לא נבחרו סיבות.</p></sc-if>
+<sc-if value="{{dash.hasR}}" hint-placeholder-val="{{ false }}"><sc-for list="{{dash.didR}}" as="r" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 10px"><span style="flex: 0 0 150px; font-size: 15px; font-weight: 700">{{r.label}}</span><div style="flex: 1 1 auto; height: 16px; border-radius: 999px; background: #F3E9DC; overflow: hidden"><div style="height: 100%; border-radius: 999px; width: {{r.pct}}%; background: {{r.color}}"></div></div><span style="flex: none; min-width: 44px; text-align: left; font-weight: 800">{{r.v}}</span></div></sc-for></sc-if>
+</section>
+</div>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">תצפית של 5 דקות (שכבות 2 ו-3)</h2>
+<p style="margin: 0; font-size: 15px; color: #4A4960">למדריכה: צפי 5 דקות בשגרה אחת וספרי. רק ספירה ברמת הקבוצה, בלי שמות ובלי טקסט חופשי. משמש להדרכה ולמעקב לאורך זמן, לא להשוואה בין מעונות.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 4px"><label for="o-org" style="font-size: 14px; font-weight: 800">מעון</label><select id="o-org" class="obs-sel" onChange="{{obsOrg}}" style="min-height: 44px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 14px; font-size: 16px; font-family: inherit; color: #23223A"><sc-for list="{{obsOrgs}}" as="o" hint-placeholder-count="2"><option value="{{o.id}}">{{o.name}}</option></sc-for></select></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><label for="o-grp" style="font-size: 14px; font-weight: 800">קבוצה (תווית, לא שמות)</label><input id="o-grp" class="obs-in" type="text" maxlength="30" placeholder="לדוגמה: פעוטות א" onInput="{{obsGrp}}" onChange="{{obsGrp}}" style="min-height: 44px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 14px; font-size: 16px; font-family: inherit; color: #23223A"></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><label for="o-rt" style="font-size: 14px; font-weight: 800">שגרה</label><select id="o-rt" class="obs-sel" onChange="{{obsRt}}" style="min-height: 44px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 14px; font-size: 16px; font-family: inherit; color: #23223A"><sc-for list="{{obsRts}}" as="o" hint-placeholder-count="8"><option value="{{o.id}}">{{o.name}}</option></sc-for></select></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
+<sc-for list="{{obsFields}}" as="f" hint-placeholder-count="9"><div style="display: flex; flex-direction: column; gap: 2px"><label for="{{f.fid}}" style="font-size: 14px; font-weight: 800">{{f.label}}</label><span style="font-size: 12px; color: #55546B">{{f.hint}}</span><input id="{{f.fid}}" class="obs-in" type="number" inputmode="numeric" min="0" max="300" placeholder="0" onInput="{{f.set}}" onChange="{{f.set}}" style="min-height: 44px; border-radius: 999px; border: 2px solid #F0E3D3; background: #FDF6EE; padding: 0 14px; font-size: 16px; font-family: inherit; color: #23223A"></div></sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px"><button type="button" onClick="{{obsSave}}" class="squish" style="min-height: 48px; padding: 0 22px; border-radius: 999px; border: none; cursor: pointer; background: #FF6B57; color: #23223A; font-size: 16px; font-weight: 800">שמירת תצפית</button><span aria-live="polite" style="font-size: 15px; font-weight: 700">{{obsMsg}}</span></div>
+<sc-if value="{{noObs}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 15px; color: #55546B">עוד אין תצפיות.</p></sc-if>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px"><sc-for list="{{obsList}}" as="o" hint-placeholder-count="3"><li style="background: #FDF6EE; border-radius: 22px; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><strong style="font-size: 15px">{{o.head}}</strong><span style="font-size: 14px">{{o.body}}</span></li></sc-for></ul>
+</section>
 <section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">שביעות רצון לפי פעילות</h2>
 <span style="font-size: 14px; color: #55546B">לפי הסימון האחרון של כל משתמשת: עבד מעולה מול פחות עבד. זה מדד לנוחות ולהתאמה של הפעילות למטפלת, לא לשינוי אצל הילדים. ירוק 70% ומעלה, כתום 40% עד 69%, אדום מתחת ל-40%.</span>
@@ -1203,6 +1240,10 @@ var CATS = [
 ];
 var NUMC = ['#FFB3A6', '#FFE08A', '#A9DCF2', '#D2C3FF', '#A8E6CF'];
 var LIM = { a1: [2, 4], a2: [3, 5], a3: [4, 7] };
+var STRATS = [['w', 'חיכיתי לתגובה'], ['n', 'תיארתי במילים'], ['e', 'הרחבתי'], ['c', 'הצעתי בחירה']];
+var MINS = [2, 5, 10];
+var REASONS = [['long', 'ארוך מדי'], ['hard', 'קשה לגיל'], ['easy', 'קל מדי'], ['mat', 'חסר ציוד'], ['big', 'קבוצה גדולה מדי'], ['int', 'לא עניין את הילדים'], ['safe', 'לא בטוח']];
+var OBSF = [['waits', 'המתנות לתגובה', 'המטפלת עוצרת ומחכה'], ['narr', 'תמלול', 'מתארת במילים מה קורה'], ['expand', 'הרחבות', 'מוסיפה מילה למה שהילד אמר'], ['choice', 'שאלות בחירה', 'זה או זה?'], ['testq', 'שאלות מבחן', 'מה זה? איזה צבע?'], ['direct', 'הוראות ניהול', 'שב, אל תיגע'], ['inits', 'יוזמות של ילדים', 'ילד פונה ראשון, במילה או בתנועה'], ['chains', 'שרשראות של 3 תורות', 'הלוך-חזור-הלוך'], ['newwords', 'מילים חדשות בהקשר', 'מילה חדשה שנשמעה במצב אמיתי']];
 var DUR = { a1: '2-3 דקות', a2: '3-5 דקות', a3: '3-5 דקות' };
 var ADAPT = { a1: 'קרבי את הפנים, האטי וחזרי על אותה מילה. כל מבט, חיוך או צליל הוא תשובה.', a2: 'הציעי בחירה בין שניים וקבלי הצבעה. אמרי את המילה בשבילו, בלי לבקש שיחזור.', a3: 'חזרי לשלב פשוט יותר: בחירה בין שניים, מילה אחת או הצבעה במקום משפט. אם הילד נמנע, מורידים את הדרישה.' };
 var TIPS = [
@@ -1272,6 +1313,7 @@ function evText(e) {
   if (e.type === 'share') return 'שיתוף בוואטסאפ: ' + e.act;
   if (e.type === 'word') return (e.on ? 'סימון מילה: ' : 'ביטול סימון: ') + e.w;
   if (e.type === 'view') return 'מעבר למסך: ' + (VLAB[e.view] || e.view);
+  if (e.type === 'did') return 'פירוט ביצוע: ' + e.act;
   return e.type;
 }
 function buildDash(log, f, r, from, to) {
@@ -1280,7 +1322,7 @@ function buildDash(log, f, r, from, to) {
   var L = log.filter(function (e) { return e && e.t >= since && e.t <= until; });
   var F = f === 'all' ? L : L.filter(function (e) { return e.u === f; });
   var lo = {}; L.forEach(function (e) { if (e.type === 'login') inc(lo, e.u); });
-  var c = {}, age = {}, sp = {}, nb = {}, hrs = {}, days = {}, favs = {}, words = {}, views = {}, last = {}, daySet = {};
+  var c = {}, age = {}, sp = {}, nb = {}, hrs = {}, days = {}, favs = {}, words = {}, views = {}, last = {}, daySet = {}, didLast = {};
   F.forEach(function (e) {
     inc(c, e.type);
     var d = new Date(e.t); daySet[d.toDateString()] = 1;
@@ -1289,7 +1331,12 @@ function buildDash(log, f, r, from, to) {
     if (e.type === 'fav') inc(favs, actKey(e.age + '|' + e.space + '|' + (e.id || e.act)), e.on ? 1 : -1);
     if (e.type === 'word') inc(words, e.w, e.on ? 1 : -1);
     if (e.type === 'view') inc(views, e.view);
+    if (e.type === 'did') didLast[e.u + '#' + actKey(e.age + '|' + e.space + '|' + (e.id || e.act)) + '#' + d.toDateString()] = e;
   });
+  var DL = Object.keys(didLast).map(function (k) { return didLast[k]; }), dn = DL.length;
+  var sc = {}, mc = {}, rc = {}; DL.forEach(function (e) { (e.s || []).forEach(function (q) { inc(sc, q); }); if (e.m) inc(mc, String(e.m)); if (e.r) inc(rc, e.r); });
+  var pctRows = function (cnt, defs, base, color) { var mx = 1; defs.forEach(function (q) { mx = Math.max(mx, cnt[q[0]] || 0); }); return defs.map(function (q) { var v = cnt[q[0]] || 0; return { label: q[1], v: base ? Math.round(100 * v / base) + '%' : String(v), pct: base ? Math.round(100 * v / base) : Math.round(100 * v / mx), color: color }; }); };
+  var rTot = 0; Object.keys(rc).forEach(function (q) { rTot += rc[q]; });
   var acts = {}, good = 0, bad = 0;
   Object.keys(last).forEach(function (k) { var v = last[k]; if (v !== 'good' && v !== 'bad') return; var a = k.split('#').slice(1).join('#'); if (!acts[a]) acts[a] = { g: 0, b: 0 }; if (v === 'good') { acts[a].g++; good++; } else { acts[a].b++; bad++; } });
   var rows = Object.keys(acts).map(function (k) { var x = acts[k], t = x.g + x.b, pct = Math.round(100 * x.g / t); return { label: actLabel(k), g: x.g, b: x.b, total: t, pct: pct, bar: Math.max(4, pct), color: pct >= 70 ? '#0B6E73' : (pct >= 40 ? '#F4B07A' : '#C2410C') }; }).sort(function (a, b) { return b.total - a.total || b.pct - a.pct; }).slice(0, 30);
@@ -1297,6 +1344,7 @@ function buildDash(log, f, r, from, to) {
   var feed = F.slice(-15).reverse().map(function (e) { var tm = ''; try { tm = new Date(e.t).toLocaleString('he-IL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); } catch (x) {} return { text: evText(e), who: e.u === 'guest' ? 'אורחת' : orgName(e.u), time: tm }; });
   var topFav = topList(favs, 8, actLabel), topWords = topList(words, 12), topViews = topList(views, 8, function (k) { return VLAB[k] || k; });
   return {
+    didN: dn, noDid: dn === 0, hasDid: dn > 0, didS: pctRows(sc, STRATS, dn, '#0B6E73'), didM: pctRows(mc, MINS.map(function (m) { return [String(m), m + ' דקות']; }), dn, '#FF6B57'), didR: pctRows(rc, REASONS, 0, '#C2410C'), noR: rTot === 0, hasR: rTot > 0,
     kpis: [
       { v: c.login || 0, label: 'כניסות', bg: '#FFE0D6' },
       { v: c.gen || 0, label: 'הפקות פעילויות', bg: '#FFF1C2' },
@@ -1441,6 +1489,20 @@ class Component extends DCLogic {
       });
     }).catch(function () { self.setState({ dailyState: 'error' }); });
   }
+  saveObs() {
+    var self = this, f = Object.assign({ org: ORGS[0].id, routine: SPACES[0].id, grp: '' }, this._obs || {}), o = { org: f.org, grp: (f.grp || '').trim(), routine: f.routine, mins: 5 }, bad = false;
+    OBSF.forEach(function (q) { var v = parseInt(f[q[0]] || '0', 10); if (isNaN(v) || v < 0 || v > 300) bad = true; o[q[0]] = isNaN(v) ? 0 : v; });
+    if (bad) { this.setState({ obsMsg: 'כל ספירה צריכה להיות מספר בין 0 ל-300.' }); return; }
+    this.setState({ obsMsg: 'שומרת...' });
+    sbToken().then(function (tok) {
+      if (!tok) { self.logout(); return; }
+      return sbRpc('log_observation', { o: o }, tok).then(function () {
+        self._obs = { org: f.org, routine: f.routine, grp: f.grp };
+        try { document.querySelectorAll('input.obs-in[type=number]').forEach(function (i) { i.value = ''; }); } catch (x) {}
+        return sbRpc('admin_observations', {}, tok).then(function (rows) { self.setState({ obs: rows || [], obsMsg: 'התצפית נשמרה.' }); });
+      });
+    }).catch(function () { self.setState({ obsMsg: 'השמירה נכשלה. נסי שוב.' }); });
+  }
   loadDash() {
     var self = this;
     this.setState({ dashState: 'loading' });
@@ -1449,6 +1511,7 @@ class Component extends DCLogic {
       return sbRpc('admin_events', {}, tok).then(function (rows) {
         self._log = (rows || []).map(function (r) { return Object.assign({}, r.data || {}, { t: Date.parse(r.t), u: r.u, type: r.type }); });
         self.setState({ dashState: 'ok' });
+        return sbRpc('admin_observations', {}, tok).then(function (o) { self.setState({ obs: o || [] }); }).catch(function () {});
       });
     }).catch(function () { self.setState({ dashState: 'error' }); });
   }
@@ -1532,7 +1595,14 @@ class Component extends DCLogic {
       var wa = '*' + x[0] + '* · פִּטְפּוּט\n' + 'מטרה: ' + x[1] + '\n\n' + x[2].map(function (v, j) { return (j + 1) + '. ' + v; }).join('\n') + '\n\nאפשר להגיד: ' + x[3].map(function (v) { return '״' + v + '״'; }).join(' ') + '\n\nמשך: ' + (DUR[age] || '3-5 דקות') + '\nאם קשה לילד: ' + (ADAPT[age] || '');
       wa += '\n\nעוד פעילויות להעשרה שפתית במעון, בפִּטְפּוּט:\nhttps://pitput.education/';
       var mw = matchWords(x, bankWords(age, space));
-      return { delay: (k * 90) + 'ms', num: k + 1, t: x[0], g: x[1], b: x[4], ph: toV(x[3]), dur: DUR[age] || '3-5 דקות', adapt: ADAPT[age] || '', needWait: !/חכ[יו]|המתינ|מחכ/.test(x[2].join(' ')), numBg: NUMC[k % NUMC.length],
+      var det = Object.assign({ s: {}, m: 0, r: '' }, (st.det || {})[key] || {});
+      var setDet = function (patch) { var all = Object.assign({}, self.state.det || {}); var cur = Object.assign({ s: {}, m: 0, r: '' }, all[key] || {}, patch); all[key] = cur; self.setState({ det: all }); self.log({ type: 'did', age: age, space: space, n: self.state.n, act: x[0], id: x[5], fb: (self.state.fb || {})[key] || '', s: Object.keys(cur.s).filter(function (q) { return cur.s[q]; }), m: cur.m, r: cur.r }); };
+      var chipBg = function (on) { return on ? '#D8F3EA' : '#FFFFFF'; };
+      return { showDet: !!fb[key], showReason: fb[key] === 'bad',
+        detS: STRATS.map(function (q) { var on = !!det.s[q[0]]; return { label: q[1], pressed: String(on), bg: chipBg(on), pick: function () { var o = Object.assign({}, det.s); o[q[0]] = !o[q[0]]; setDet({ s: o }); } }; }),
+        detM: MINS.map(function (m) { var on = det.m === m; return { label: m + ' דקות', pressed: String(on), bg: chipBg(on), pick: function () { setDet({ m: on ? 0 : m }); } }; }),
+        detR: REASONS.map(function (q) { var on = det.r === q[0]; return { label: q[1], pressed: String(on), bg: chipBg(on), pick: function () { setDet({ r: on ? '' : q[0] }); } }; }),
+        delay: (k * 90) + 'ms', num: k + 1, t: x[0], g: x[1], b: x[4], ph: toV(x[3]), dur: DUR[age] || '3-5 דקות', adapt: ADAPT[age] || '', needWait: !/חכ[יו]|המתינ|מחכ/.test(x[2].join(' ')), numBg: NUMC[k % NUMC.length],
         steps: x[2].map(function (v, j) { return { v: v, n: j + 1 }; }),
         words: mw.map(function (w) { return { w: w }; }), hasWords: mw.length > 0,
         showWhere: !!showWhere, where: (a ? a.label : '') + ' · ' + (s ? s.label : ''),
@@ -1682,6 +1752,22 @@ class Component extends DCLogic {
       vAdmin: isAdmin && view === 'admin', isAdmin: isAdmin,
       goAdmin: function () { self.nav('admin'); self.loadDash(); },
       dash: dash, admOrgs: admOrgs, admRanges: admRanges, rangeText: rangeText,
+      obsOrgs: ORGS.map(function (q) { return { id: q.id, name: q.name }; }),
+      obsRts: SPACES.map(function (q) { return { id: q.id, name: q.label }; }),
+      obsFields: OBSF.map(function (q) { return { fid: 'o-' + q[0], label: q[1], hint: q[2], set: function (e) { self._obs = self._obs || {}; self._obs[q[0]] = e && e.target ? e.target.value : ''; } }; }),
+      obsOrg: function (e) { self._obs = self._obs || {}; self._obs.org = e && e.target ? e.target.value : ''; },
+      obsRt: function (e) { self._obs = self._obs || {}; self._obs.routine = e && e.target ? e.target.value : ''; },
+      obsGrp: function (e) { self._obs = self._obs || {}; self._obs.grp = e && e.target ? e.target.value : ''; },
+      obsMsg: st.obsMsg || '',
+      obsSave: function () { self.saveObs(); },
+      noObs: !(st.obs && st.obs.length),
+      obsList: (st.obs || []).slice(0, 20).map(function (o) {
+        var resp = o.waits + o.narr + o.expand + o.choice, all = resp + o.testq + o.direct, tm = '';
+        try { tm = new Date(o.t).toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: '2-digit' }); } catch (x) {}
+        var sp = byId(SPACES, o.routine);
+        return { head: tm + ' · ' + orgName(o.org) + (o.grp ? ' · ' + o.grp : '') + (sp ? ' · ' + sp.label : ''),
+          body: 'שיח תגובתי: ' + (all ? Math.round(100 * resp / all) + '%' : '-') + ' (' + resp + ' מתוך ' + all + ') · המתנות ' + o.waits + ' · הרחבות ' + o.expand + ' · שאלות מבחן ' + o.testq + ' · יוזמות ילדים ' + o.inits + ' · שרשראות ' + o.chains + ' · מילים חדשות ' + o.newwords };
+      }),
       onFrom: function (e) { var v = e && e.target ? e.target.value : ''; if (v !== (self.state.admFrom || '')) self.setDate('admFrom', v); },
       onTo: function (e) { var v = e && e.target ? e.target.value : ''; if (v !== (self.state.admTo || '')) self.setDate('admTo', v); },
       clearDatesBtn: function () { self.clearDates('all'); },
