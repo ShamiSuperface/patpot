@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מדריך קצר לצוות: פִּטְפּוּט</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700;800&family=Assistant:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--coral:#FF6B57;--ink:#23223A;--teal:#0B6E73;--sand:#FDF6EE;--yellow:#FFC93C;--muted:#4A4960}
+*{box-sizing:border-box}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:Assistant,Arial,sans-serif;font-size:17px;line-height:1.55;text-align:right}
+.wrap{max-width:920px;margin:0 auto;padding:0 16px 48px}
+header{background:#FFE0D6;border-radius:0 0 110px 0;padding:32px 22px 34px;margin:0 -16px 26px;position:relative;overflow:hidden}
+header .brand{color:var(--ink);text-decoration:none;width:max-content;display:flex;align-items:center;gap:10px;font-family:Rubik,Arial,sans-serif;font-weight:800;font-size:22px}
+header .brand img{width:42px;height:42px}
+h1{font-family:Rubik,Arial,sans-serif;font-weight:800;font-size:34px;line-height:1.15;margin:16px 0 8px}
+header p{margin:0;font-size:18px;color:var(--muted);max-width:30em}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;padding:0;list-style:none}
+.toc a{display:inline-block;min-height:40px;line-height:40px;padding:0 16px;border-radius:999px;background:#fff;color:var(--ink);text-decoration:none;font-weight:800;font-size:15px;box-shadow:inset 0 0 0 2px rgba(35,34,58,.22)}
+section{background:#fff;border-radius:40px 40px 40px 14px;padding:22px 22px 20px;margin:0 0 18px;box-shadow:inset 0 0 0 2px rgba(35,34,58,.18);display:grid;grid-template-columns:1fr 210px;gap:20px;align-items:start;break-inside:avoid}
+section.two{grid-template-columns:1.2fr 200px 200px}
+.num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;background:var(--coral);color:var(--ink);font-family:Rubik,Arial,sans-serif;font-weight:800;font-size:18px;margin-left:10px;flex:none}
+h2{font-family:Rubik,Arial,sans-serif;font-weight:800;font-size:22px;margin:0 0 10px;display:flex;align-items:center}
+ul{margin:0;padding:0 20px 0 0}
+li{margin:0 0 6px}
+b{font-weight:800}
+.phone{width:100%;border-radius:26px;border:6px solid var(--ink);display:block;background:var(--ink)}
+.note{background:#D8F3EA;border-radius:26px;padding:12px 16px;margin-top:12px;font-size:16px}
+.warn{background:#FFF1C2}
+.pill{display:inline-block;padding:0 10px;border-radius:999px;background:#FDF6EE;box-shadow:inset 0 0 0 1.5px rgba(35,34,58,.25);font-weight:800;font-size:15px;white-space:nowrap}
+.rules{background:var(--teal);color:#fff;border-radius:40px 40px 14px 40px;padding:22px;margin:26px 0 18px;display:block}
+.rules h2{color:#fff}
+.rules li{margin-bottom:8px}
+.go{display:flex;align-items:center;justify-content:center;gap:12px;width:max-content;margin:28px auto 0;min-height:62px;padding:0 30px 0 22px;border-radius:999px;background:var(--coral);color:var(--ink);text-decoration:none;font-family:Rubik,Arial,sans-serif;font-weight:800;font-size:20px}
+.go img{width:40px;height:40px;background:#fff;border-radius:50%;padding:4px}
+footer{text-align:center;color:var(--muted);font-size:14px;margin-top:30px}
+@media (max-width:620px){
+ section,section.two{grid-template-columns:1fr}
+ .phone{max-width:250px;margin:0 auto}
+ section.two .phone{max-width:200px}
+ section.two{grid-template-columns:1fr 1fr}
+ section.two>div:first-child{grid-column:1 / -1}
+ h1{font-size:30px}
+}
+@media print{
+ body{background:#fff;font-size:13px}
+ header{border-radius:0 0 60px 0}
+ section{grid-template-columns:1fr 150px;padding:14px}
+ section.two{grid-template-columns:1fr 150px 150px}
+ .toc{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <a class="brand" href="https://pitput.education/" aria-label="מעבר למערכת פִּטְפּוּט"><img src="img/logo.svg" alt="">פִּטְפּוּט</a>
+ <h1>מדריך קצר לצוות</h1>
+ <p>כל מה שצריך כדי לעבוד עם פִּטְפּוּט מהנייד. קריאה של חמש דקות.</p>
+</header>
+
+<ul class="toc">
+ <li><a href="#login">כניסה</a></li><li><a href="#pick">בחירה</a></li><li><a href="#card">כרטיס פעילות</a></li>
+ <li><a href="#fb">משוב</a></li><li><a href="#words">בנק מילים</a></li><li><a href="#daily">סיכום להורים</a></li><li><a href="#menu">תפריט</a></li>
+</ul>
+
+<section id="login">
+ <div>
+  <h2><span class="num">1</span>נכנסים</h2>
+  <ul>
+   <li><b>כניסת מעון:</b> בחרי את המעון והקלידי את הסיסמה שקיבלת מהמנהלת.</li>
+   <li><b>סתם לפטפט:</b> כניסה בלי סיסמה, לניסיון. מה שתעשי לא נרשם למעון.</li>
+   <li><b>סרטון הסבר:</b> לחיצה על התיבה מעל חלונית הכניסה פותחת סרטון קצר.</li>
+  </ul>
+  <div class="note">בפעם הבאה הכניסה נשמרת בנייד. אין צורך להקליד שוב.</div>
+ </div>
+ <img class="phone" src="img/01-login.jpg" alt="מסך הכניסה">
+</section>
+
+<section id="pick" class="two">
+ <div>
+  <h2><span class="num">2</span>בוחרים שלושה דברים</h2>
+  <ul>
+   <li><b>מי בקבוצה:</b> תינוקות, פעוטות צעירים או פעוטות בוגרים.</li>
+   <li><b>איפה את עכשיו:</b> אחד משמונה מרחבים, מהחתלה ועד חצר.</li>
+   <li><b>כמה ילדים:</b> עם הכפתורים פלוס ומינוס.</li>
+  </ul>
+  <p>לחצי <span class="pill">בני לי 5 פעילויות</span>.</p>
+ </div>
+ <img class="phone" src="img/05-space.jpg" alt="בחירת מרחב">
+ <img class="phone" src="img/06-n.jpg" alt="בחירת מספר ילדים">
+</section>
+
+<section id="card" class="two">
+ <div>
+  <h2><span class="num">3</span>קוראים כרטיס פעילות</h2>
+  <ul>
+   <li>לחצי על פעילות כדי לפתוח אותה.</li>
+   <li><b>איך עושים:</b> 3 צעדים קצרים.</li>
+   <li><b>משך, להמתין, אם קשה לילד:</b> כמה זמן, מתי לחכות לתגובה ומה עושים כשקשה.</li>
+   <li><b>מה אפשר להגיד:</b> משפטים מוכנים. במקום <b>[שם]</b> אמרי את שם הילד.</li>
+   <li><b>מילים מהבנק:</b> המילים שכדאי לשלב.</li>
+  </ul>
+  <div class="note">בראש הרשימה יש התאמה לגודל הקבוצה שבחרת.</div>
+ </div>
+ <img class="phone" src="img/08-card.jpg" alt="כרטיס פעילות פתוח">
+ <img class="phone" src="img/09-card2.jpg" alt="משך, המתנה ומה אפשר להגיד">
+</section>
+
+<section id="fb" class="two">
+ <div>
+  <h2><span class="num">4</span>שומרים, משתפים, מסמנים</h2>
+  <ul>
+   <li><span class="pill">שמור</span> מוסיף את הפעילות לרשימה שלך.</li>
+   <li><span class="pill">שיתוף בוואטסאפ</span> שולח את הפעילות לצוות.</li>
+   <li>אחרי הפעילות סמני <span class="pill">עבד מעולה</span> או <span class="pill">פחות עבד</span>.</li>
+   <li>אם יש לך עוד רגע, סמני מה עשית וכמה זמן זה לקח. זה לא חובה.</li>
+   <li><span class="pill">עוד 5 פעילויות</span> בתחתית מביא הצעות חדשות. פעילות שסימנת "פחות עבד" לא תחזור.</li>
+  </ul>
+  <div class="note">נשמר בלי שמות ובלי פרטים על ילדים.</div>
+ </div>
+ <img class="phone" src="img/11-feedback.jpg" alt="משוב על פעילות">
+ <img class="phone" src="img/12-more.jpg" alt="עוד 5 פעילויות">
+</section>
+
+<section id="words">
+ <div>
+  <h2><span class="num">5</span>בנק מילים</h2>
+  <ul>
+   <li>לחצי <span class="pill">מילים</span> בסרגל התחתון.</li>
+   <li>בחרי גיל ומרחב. המילים מחולקות לשמות עצם, פעלים, תיאורים וצלילים.</li>
+   <li>השתמשת במילה? לחצי עליה כדי לסמן.</li>
+  </ul>
+  <div class="note warn">טיפ: בחרי 3 מילים לשבוע וחזרי עליהן בכל פעם שאת במרחב.</div>
+ </div>
+ <img class="phone" src="img/14b-words.jpg" alt="בנק מילים">
+</section>
+
+<section id="daily">
+ <div>
+  <h2><span class="num">6</span>סיכום יומי להורים</h2>
+  <ul>
+   <li>בסוף היום לחצי <span class="pill">סיכום יומי להורים</span> במסך הבית.</li>
+   <li>הסיכום נבנה לבד מהפעילויות שסימנת היום ומהמילים שסימנת.</li>
+   <li>עבדת עם כמה קבוצות גיל? בחרי קבוצה ושלחי לכל קבוצת הורים את הסיכום שלה.</li>
+   <li>קראי, ושלחי בוואטסאפ לקבוצת ההורים.</li>
+  </ul>
+  <div class="note">הסיכום כתוב בשפה של הורים, בלי מונחים מקצועיים.</div>
+ </div>
+ <img class="phone" src="img/17-daily.jpg" alt="סיכום יומי להורים">
+</section>
+
+<section id="saved" class="two">
+ <div>
+  <h2><span class="num">7</span>הפעילויות שלי והמסע שלי</h2>
+  <ul>
+   <li><b>שמורות</b> בסרגל התחתון: כל מה ששמרת, מוכן לפתיחה ולשיתוף.</li>
+   <li><b>המסע</b>: כמה פעילויות ניסית, כמה עבדו, כמה מילים סימנת ומה ניסית בכל מרחב.</li>
+  </ul>
+ </div>
+ <img class="phone" src="img/15-saved.jpg" alt="הפעילויות שלי">
+ <img class="phone" src="img/16-journey.jpg" alt="המסע שלי">
+</section>
+
+<section id="menu" class="two">
+ <div>
+  <h2><span class="num">8</span>התפריט</h2>
+  <ul>
+   <li>הכפתור הכהה בפינה, או <span class="pill">עוד</span> בסרגל התחתון.</li>
+   <li><b>עקרונות וטיפים:</b> ארבעת הרגלים שמלווים את כל הפעילויות.</li>
+   <li><b>נגישות ותצוגה:</b> טקסט גדול ובלי אנימציות.</li>
+   <li><b>הוספת המעון שלי:</b> בקשה להצעת מחיר בוואטסאפ.</li>
+   <li><b>סרטון הסבר ומדריך קצר לצוות:</b> זמינים תמיד מכאן, וגם במסך הכניסה.</li>
+   <li><b>התנתקות:</b> כשהנייד משותף.</li>
+  </ul>
+ </div>
+ <img class="phone" src="img/13-menu.jpg" alt="התפריט">
+ <img class="phone" src="img/20-tips.jpg" alt="עקרונות וטיפים">
+</section>
+
+<section class="rules">
+ <div>
+  <h2>ארבעה דברים לזכור</h2>
+  <ul>
+   <li>מחכים לתגובה. גם מבט, חיוך או הצבעה הם תשובה.</li>
+   <li>לא מבקשים מהילד לחזור נכון. אומרים את המילה הנכונה בשבילו.</li>
+   <li>קשה לילד? מורידים דרישה: בחירה בין שניים, מילה אחת או הצבעה.</li>
+   <li>חוזרים על אותן מילים, יום אחרי יום.</li>
+  </ul>
+ </div>
+</section>
+
+<a class="go" href="https://pitput.education/"><img src="img/logo.svg" alt="">לכניסה לפִּטְפּוּט</a>
+<footer>© 2026 כל הזכויות שמורות ל-SuperFace, שמי אוסטרובסקי</footer>
+</div>
+</body>
+</html>
