@@ -524,6 +524,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 24px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">אוספים את הפעילויות של היום...</p></sc-if>
 <sc-if value="{{dailyError}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 24px; padding: 16px 22px; font-size: 17px; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">לא הצלחנו לטעון את הסיכום. בדקי את החיבור לאינטרנט ונסי שוב.</p></sc-if>
 <sc-if value="{{dailyEmpty}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; background: #FFFFFF; border-radius: 28px; padding: 16px 22px; font-size: 17px; line-height: 1.6; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">עוד לא סומנו היום פעילויות. אחרי פעילות, סמני ״עבד״ או ״פחות עבד״ בכרטיס שלה, והיא תיכנס לסיכום.</p></sc-if>
+<sc-if value="{{hasDailyAges}}" hint-placeholder-val="{{ false }}"><div role="group" aria-label="סיכום לאיזו קבוצה" style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{dailyAges}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: {{c.color}}; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div><p style="margin: 0; font-size: 15px; color: #4A4960">כדאי לשלוח לכל קבוצת הורים את הסיכום של הקבוצה שלה.</p></sc-if>
 <sc-if value="{{dailyReady}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border-radius: 28px; padding: 18px 22px; font-size: 16px; line-height: 1.7; white-space: pre-wrap; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 10px 22px rgba(35,34,58,0.08)">{{dailyText}}</div>
 <a href="{{dailyWa}}" target="_blank" rel="noopener" onClick="{{dailySent}}" class="squish" style="min-height: 58px; border-radius: 999px; background: #0B6E73; color: #FFFFFF; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none">שליחה לקבוצת ההורים בוואטסאפ</a>
@@ -1369,10 +1370,13 @@ function buildDash(log, f, r, from, to) {
   };
 }
 
-function dailyText(rows, orgName, dayStr) {
+var PARENT_SP = { change: 'בזמן ההחתלה דיברנו עם הילדים על מה שעושים.', breakfast: 'בארוחת הבוקר קראנו בשם למה שאוכלים ושותים.', lunch: 'בארוחת הצהריים דיברנו על האוכל ועל מה שקורה סביב השולחן.', art: 'ביצירה תיארנו במילים את מה שהילדים עושים.', socio: 'במשחק דמיון שיחקנו ודיברנו יחד.', build: 'בבנייה דיברנו על מה שבונים: עוד, גבוה, נפל.', book: 'בקריאת ספר הצבענו, הקשבנו והשלמנו מילים.', yard: 'בחצר שמנו מילים למה שרואים ושומעים.' };
+function dayAges(rows) { var o = {}; (rows || []).forEach(function (r) { var d = r.data || {}; if ((r.type === 'fb' || r.type === 'word') && d.age) o[d.age] = 1; }); return AGES.filter(function (a) { return o[a.id]; }).map(function (a) { return a.id; }); }
+function dailyText(rows, orgName, dayStr, ageF) {
   var fbLast = {}, order = [], wordLast = {}, wOrder = [];
   (rows || []).forEach(function (r) {
     var d = r.data || {};
+    if (ageF && ageF !== 'all' && d.age !== ageF) return;
     if (r.type === 'fb' && d.act) { var k = actKey(d.age + '|' + d.space + '|' + (d.id || d.act)); if (!(k in fbLast)) order.push(k); fbLast[k] = d.v; }
     if (r.type === 'word' && d.w) { if (!(d.w in wordLast)) wOrder.push(d.w); wordLast[d.w] = !!d.on; }
   });
@@ -1383,10 +1387,11 @@ function dailyText(rows, orgName, dayStr) {
   if (!acts.length && !words.length) return '';
   var L = ['*פִּטְפּוּט · סיכום יומי מ' + orgName + '*', dayStr, ''];
   if (acts.length) {
-    L.push('היום עשינו במעון ' + (acts.length === 1 ? 'פעילות אחת' : acts.length + ' פעילויות') + ' להעשרה שפתית:', '');
+    var ag = (ageF && ageF !== 'all') ? byId(AGES, ageF) : null;
+    L.push('היום עשינו ' + (ag ? 'בקבוצת ה' + ag.label : 'במעון') + ' ' + (acts.length === 1 ? 'פעילות אחת' : acts.length + ' פעילויות') + ' להעשרה שפתית:', '');
     acts.forEach(function (a, i) {
       L.push((i + 1) + '. *' + a.t + '*' + (a.s ? ' (' + a.s.label + ')' : ''));
-      if (a.x && a.x[1]) L.push(a.x[1]);
+      if (a.s && PARENT_SP[a.s.id]) L.push(PARENT_SP[a.s.id]);
       var phs = (a.x && a.x[3]) ? a.x[3].filter(function (v) { return v.indexOf('[שם]') < 0; }) : []; if (phs.length) L.push('משפטים ששמעו: ' + phs.slice(0, 2).map(function (v) { return '״' + v + '״'; }).join(' '));
       L.push('');
     });
@@ -1485,7 +1490,9 @@ class Component extends DCLogic {
       return sbRpc('my_day_events', {}, tok).then(function (rows) {
         var s = self.state.sess || {};
         var day = ''; try { day = new Date().toLocaleDateString('he-IL', { weekday: 'long', day: 'numeric', month: 'long' }); } catch (e) {}
-        self.setState({ dailyState: 'ok', dailyText: dailyText(rows, s.name || '', day) });
+        var ages = dayAges(rows); var cur = self.state.dailyAge;
+        if (!cur || (cur !== 'all' && ages.indexOf(cur) < 0)) cur = ages.length === 1 ? ages[0] : 'all';
+        self.setState({ dailyState: 'ok', dayRows: rows || [], dayStr: day, dailyAge: cur });
       });
     }).catch(function () { self.setState({ dailyState: 'error' }); });
   }
@@ -1719,6 +1726,7 @@ class Component extends DCLogic {
     var lt = st.loginTab || 'org';
     var loginTabs = [['org', 'כניסת מעון'], ['guest', 'סתם לפטפט'], ['admin', 'מנהל']].map(function (t) { var on = lt === t[0]; return { label: t[1], sel: on ? 'true' : 'false', bg: on ? '#FF6B57' : 'transparent', pick: function () { self.setState({ loginTab: t[0], err: '', pwIn: '' }); } }; });
     var af = st.admF || 'all', ar = st.admR || 'all';
+    var dAges = dayAges(st.dayRows), dTxt = st.dailyState === 'ok' ? dailyText(st.dayRows, (sess && sess.name) || '', st.dayStr || '', st.dailyAge) : '';
     var dash = buildDash((isAdmin && view === 'admin') ? (this._log || []) : [], af, ar, st.admFrom, st.admTo);
     var fmtD = function (s) { try { return new Date(s + 'T12:00:00').toLocaleDateString('he-IL'); } catch (e) { return s; } };
     var rangeText = ar === 'custom' ? ('מוצגים נתונים ' + (st.admFrom ? 'מ-' + fmtD(st.admFrom) : 'מההתחלה') + ' ' + (st.admTo ? 'עד ' + fmtD(st.admTo) : 'עד היום')) : (ar === '7' ? 'מוצגים 7 הימים האחרונים' : (ar === '30' ? 'מוצגים 30 הימים האחרונים' : 'מוצגים כל הנתונים'));
@@ -1808,8 +1816,10 @@ class Component extends DCLogic {
       vDaily: view === 'daily',
       isOrg: !!(sess && sess.kind === 'org'), goDaily: function () { self.nav('daily'); self.loadDaily(); },
       dailyLoading: st.dailyState === 'loading', dailyError: st.dailyState === 'error',
-      dailyEmpty: st.dailyState === 'ok' && !st.dailyText, dailyReady: st.dailyState === 'ok' && !!st.dailyText,
-      dailyText: st.dailyText || '', dailyWa: 'https://wa.me/?text=' + encodeURIComponent(st.dailyText || ''),
+      dailyEmpty: st.dailyState === 'ok' && !dTxt, dailyReady: st.dailyState === 'ok' && !!dTxt,
+      dailyText: dTxt, dailyWa: 'https://wa.me/?text=' + encodeURIComponent(dTxt),
+      dailyAges: dAges.length > 1 ? [{ id: 'all', label: 'כל המעון' }].concat(dAges.map(function (a) { return { id: a, label: byId(AGES, a).label }; })).map(function (q) { var on = (st.dailyAge || 'all') === q.id; return { label: q.label, pressed: String(on), bg: on ? '#0B6E73' : '#FFFFFF', color: on ? '#FFFFFF' : '#23223A', pick: function () { self.setState({ dailyAge: q.id }); } }; }) : [],
+      hasDailyAges: dAges.length > 1,
       dailyRefresh: function () { self.loadDaily(); },
       dailySent: function () { self.log({ type: 'share', act: 'סיכום יומי' }); },
       vAbout: view === 'about'
