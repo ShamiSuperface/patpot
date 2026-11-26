@@ -321,7 +321,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </button>
 <sc-if value="{{x.open}}" hint-placeholder-val="{{ false }}">
 <div class="act-body" style="padding: 0 22px 22px; display: flex; flex-direction: column; gap: 14px">
-<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 14px">
 <strong style="font-family: Rubik, Arial, sans-serif; font-size: 17px">איך עושים?</strong>
 <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
 <sc-for list="{{x.steps}}" as="st" hint-placeholder-count="3">
@@ -681,10 +681,15 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </div>
 <div style="max-width: 1120px; margin: 0 auto; padding: 36px 16px 64px; display: flex; flex-direction: column; gap: 18px">
 <p role="note" style="margin: 0; background: #FFF1C2; border-radius: 24px; padding: 12px 20px; font-size: 15px; font-weight: 700; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">הנתונים נאספים מכל המעונות ומכל המכשירים. כל מעון רואה רק את הנתונים שלו, ולוח הבקרה פתוח רק למנהל.</p>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
-<sc-for list="{{admOrgs}}" as="o" hint-placeholder-count="4"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
-<span aria-hidden="true" style="width: 2px; height: 28px; background: #F0E3D3; margin: 0 6px"></span>
-<sc-for list="{{admRanges}}" as="o" hint-placeholder-count="3"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div role="group" aria-label="סינון לפי מעון" style="display: flex; align-items: flex-start; gap: 10px">
+<span style="flex: none; min-width: 52px; min-height: 44px; display: flex; align-items: center; font-size: 15px; font-weight: 800; color: #3A3950">מעון</span>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{admOrgs}}" as="o" hint-placeholder-count="4"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for></div>
+</div>
+<div role="group" aria-label="סינון לפי תקופה" style="display: flex; align-items: flex-start; gap: 10px">
+<span style="flex: none; min-width: 52px; min-height: 44px; display: flex; align-items: center; font-size: 15px; font-weight: 800; color: #3A3950">תקופה</span>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{admRanges}}" as="o" hint-placeholder-count="3"><button type="button" class="squish" aria-pressed="{{o.sel}}" onClick="{{o.pick}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 800; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 4px 12px rgba(35,34,58,0.08); background: {{o.bg}}; color: {{o.color}}">{{o.label}}</button></sc-for></div>
+</div>
 </div>
 <div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; background: #FFFFFF; border-radius: 36px 36px 36px 12px; padding: 16px 20px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 6px 16px rgba(35,34,58,0.06)">
 <span aria-hidden="true" class="morph" style="flex: none; width: 48px; height: 48px; background: #DDF0FB; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="4" fill="#FFFFFF"></rect><path d="M3 10h18M8 3v4M16 3v4"></path><circle cx="8" cy="14.5" r="1" fill="#FF6B57" stroke="none"></circle><circle cx="12" cy="14.5" r="1" fill="#FF6B57" stroke="none"></circle></svg></span>
