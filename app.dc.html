@@ -363,6 +363,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <button type="button" onClick="{{x.toggleFav}}" aria-pressed="{{x.favStr}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 8px; background: {{x.favBg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{x.starFill}}" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>{{x.favLabel}}</button>
 <a href="{{x.wa}}" target="_blank" rel="noopener" onClick="{{x.share}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; background: #D8F3EA; color: #23223A; font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px; text-decoration: none; box-sizing: border-box; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v12M7 8l5-5 5 5"></path></svg>שיתוף בוואטסאפ</a>
 </div>
+<button type="button" aria-pressed="{{x.doneStr}}" onClick="{{x.toggleDone}}" class="squish" style="align-self: flex-start; min-height: 48px; padding: 0 20px; border-radius: 999px; border: 2px solid #0B6E73; cursor: pointer; font-size: 16px; font-weight: 800; color: {{x.doneColor}}; background: {{x.doneBg}}">{{x.doneLabel}}</button>
 <div class="fb-box" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; background: #FDF6EE; border-radius: 28px; padding: 8px 10px 8px 18px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <strong style="font-size: 16px; margin-inline-end: auto">איך הלך?</strong>
 <button type="button" aria-pressed="{{x.goodStr}}" onClick="{{x.good}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #0B6E73; cursor: pointer; font-size: 16px; font-weight: 800; color: {{x.goodColor}}; background: {{x.goodBg}}">עבד מעולה</button>
@@ -371,10 +372,14 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <sc-if value="{{x.fbGood}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; font-weight: 700; color: #0B6E73">מעולה! זה נרשם במסע שלך.</p></sc-if>
 <sc-if value="{{x.fbBad}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; color: #4A4960">תודה. הפעילות לא תוצע שוב ברענון. לחיצה נוספת מבטלת.</p></sc-if>
 <sc-if value="{{x.showDet}}" hint-placeholder-val="{{ false }}"><div class="det-box" style="background: #FFFFFF; border-radius: 26px 26px 26px 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
+<sc-if value="{{x.isDone}}" hint-placeholder-val="{{ false }}"><span style="font-size: 15px; font-weight: 800">באיזו קבוצה?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detG}}" as="c" hint-placeholder-count="4"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
+<span style="font-size: 15px; font-weight: 800">ראית בקבוצה את מה שהפעילות מכוונת אליו?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detY}}" as="c" hint-placeholder-count="4"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
 <span style="font-size: 15px; font-weight: 800">מה עשית? אפשר לבחור כמה, לא חובה</span>
 <div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detS}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
 <span style="font-size: 15px; font-weight: 800">כמה זמן?</span>
-<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detM}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detM}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div></sc-if>
 <sc-if value="{{x.showReason}}" hint-placeholder-val="{{ false }}"><span style="font-size: 15px; font-weight: 800">מה לא עבד?</span>
 <div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detR}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div></sc-if>
 <span style="font-size: 13px; color: #55546B">נשמר בלי שמות ובלי פרטים על ילדים.</span>
@@ -519,7 +524,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div class="pop" style="display: flex; flex-direction: column; gap: 14px">
 <section style="background: #D8F3EA; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">סיכום יומי להורים</h1>
-<p style="margin: 0; font-size: 17px; color: #3A3950; line-height: 1.6">הסיכום אוסף את הפעילויות שסומנו היום ״עבד״ או ״פחות עבד״ ואת המילים שסומנו, מכל המכשירים של המעון. הוא כתוב ברמת הקבוצה, בלי שמות פעילויות ובלי משפטים שנשמעים כמו מידע על ילד מסוים. קראי אותו לפני השליחה, ובוואטסאפ בחרי את קבוצת ההורים.</p>
+<p style="margin: 0; font-size: 17px; color: #3A3950; line-height: 1.6">הסיכום אוסף את הפעילויות שסומנו היום ״ביצענו״ ואת המילים שסומנו, מכל המכשירים של המעון. הוא כתוב ברמת הקבוצה, בלי שמות פעילויות, בלי משפטים שנשמעים כמו מידע על ילד מסוים ובלי מילים של כאב, מחלה או רגש קשה. חשש לגבי ילד מסוים נמסר רק בשיחה פרטית עם ההורים. קראי אותו לפני השליחה, ובוואטסאפ בחרי את קבוצת ההורים.</p>
 </section>
 <sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 24px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">אוספים את הפעילויות של היום...</p></sc-if>
 <sc-if value="{{dailyError}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 24px; padding: 16px 22px; font-size: 17px; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">לא הצלחנו לטעון את הסיכום. בדקי את החיבור לאינטרנט ונסי שוב.</p></sc-if>
@@ -1259,6 +1264,10 @@ var NUMC = ['#FFB3A6', '#FFE08A', '#A9DCF2', '#D2C3FF', '#A8E6CF'];
 var LIM = { a1: [2, 4], a2: [3, 5], a3: [4, 7] };
 var STRATS = [['w', 'חיכיתי לתגובה'], ['n', 'תיארתי במילים'], ['e', 'הרחבתי'], ['c', 'הצעתי בחירה']];
 var MINS = [2, 5, 10];
+var GROUPS = [['a', 'קבוצה א׳'], ['b', 'קבוצה ב׳'], ['c', 'קבוצה ג׳'], ['d', 'קבוצה ד׳']];
+var GOALSEEN = [['y', 'כן'], ['p', 'חלקית'], ['n', 'לא'], ['u', 'לא בטוחה']];
+// Words kept out of the parent summary: pain, illness, negative emotion and toileting can read as news about one child.
+var SENS_W = /^(כוא|כאב|עצוב|חול|בוכ|בכי|כועס|כעס|נפל|רטוב|פוחד|מפחד|פחד|נבהל|לא רוצה|קשה|חיתול|פיפי|קקי)/;
 var REASONS = [['long', 'ארוך מדי'], ['hard', 'קשה לגיל'], ['easy', 'קל מדי'], ['mat', 'חסר ציוד'], ['big', 'קבוצה גדולה מדי'], ['int', 'לא עניין את הילדים'], ['safe', 'לא בטוח']];
 var OBSF = [['waits', 'המתנות לתגובה', 'המטפלת עוצרת ומחכה'], ['narr', 'תמלול', 'מתארת במילים מה קורה'], ['expand', 'הרחבות', 'מוסיפה מילה למה שהילד אמר'], ['choice', 'שאלות בחירה', 'זה או זה?'], ['testq', 'שאלות מבחן', 'מה זה? איזה צבע?'], ['direct', 'הוראות ניהול', 'שב, אל תיגע'], ['inits', 'יוזמות של ילדים', 'ילד פונה ראשון, במילה או בתנועה'], ['chains', 'שרשראות של 3 תורות', 'הלוך-חזור-הלוך'], ['newwords', 'מילים חדשות בהקשר', 'מילה חדשה שנשמעה במצב אמיתי']];
 var DUR = { a1: '2-3 דקות', a2: '3-5 דקות', a3: '3-5 דקות' };
@@ -1350,8 +1359,8 @@ function buildDash(log, f, r, from, to) {
     if (e.type === 'view') inc(views, e.view);
     if (e.type === 'did') didLast[e.u + '#' + actKey(e.age + '|' + e.space + '|' + (e.id || e.act)) + '#' + d.toDateString()] = e;
   });
-  var DL = Object.keys(didLast).map(function (k) { return didLast[k]; }), dn = DL.length;
-  var sc = {}, mc = {}, rc = {}; DL.forEach(function (e) { (e.s || []).forEach(function (q) { inc(sc, q); }); if (e.m) inc(mc, String(e.m)); if (e.r) inc(rc, e.r); });
+  var DA = Object.keys(didLast).map(function (k) { return didLast[k]; }), DL = DA.filter(function (e) { return e.done !== false; }), dn = DL.length;
+  var sc = {}, mc = {}, rc = {}; DL.forEach(function (e) { (e.s || []).forEach(function (q) { inc(sc, q); }); if (e.m) inc(mc, String(e.m)); }); DA.forEach(function (e) { if (e.r) inc(rc, e.r); });
   var pctRows = function (cnt, defs, base, color) { var mx = 1; defs.forEach(function (q) { mx = Math.max(mx, cnt[q[0]] || 0); }); return defs.map(function (q) { var v = cnt[q[0]] || 0; return { label: q[1], v: base ? Math.round(100 * v / base) + '%' : String(v), pct: base ? Math.round(100 * v / base) : Math.round(100 * v / mx), color: color }; }); };
   var rTot = 0; Object.keys(rc).forEach(function (q) { rTot += rc[q]; });
   var acts = {}, good = 0, bad = 0;
@@ -1393,13 +1402,13 @@ function dailyText(rows, orgName, dayStr, ageF) {
   (rows || []).forEach(function (r) {
     var d = r.data || {};
     if (ageF && ageF !== 'all' && d.age !== ageF) return;
-    if (r.type === 'fb' && d.act) { var k = actKey(d.age + '|' + d.space + '|' + (d.id || d.act)); if (!(k in fbLast)) order.push(k); fbLast[k] = d.v; }
+    if (r.type === 'did' && d.act) { var k = actKey(d.age + '|' + d.space + '|' + (d.id || d.act)); if (!(k in fbLast)) order.push(k); fbLast[k] = d.done !== false; }
     if (r.type === 'word' && d.w) { if (!(d.w in wordLast)) wOrder.push(d.w); wordLast[d.w] = !!d.on; }
   });
-  var acts = order.filter(function (k) { return fbLast[k] === 'good' || fbLast[k] === 'bad'; }).map(function (k) {
+  var acts = order.filter(function (k) { return fbLast[k] === true; }).map(function (k) {
     var p = k.split('|'); var fx = findAct(p[0], p[1], p.slice(2).join('|')); return { x: fx, t: fx ? fx[0] : p.slice(2).join('|'), s: byId(SPACES, p[1]) };
   });
-  var words = wOrder.filter(function (w) { return wordLast[w]; });
+  var words = wOrder.filter(function (w) { return wordLast[w] && !SENS_W.test(w); });
   if (!acts.length && !words.length) return '';
   var L = ['*פִּטְפּוּט · סיכום יומי מ' + orgName + '*', dayStr, ''];
   if (acts.length) {
@@ -1460,7 +1469,7 @@ class Component extends DCLogic {
       var raw = window.localStorage.getItem(STORE);
       if (raw) {
         var d = JSON.parse(raw);
-        this.setState({ fb: migKeys(d.fb), fav: migKeys(d.fav), used: d.used || {}, big: !!d.big, calm: !!d.calm });
+        this.setState({ fb: migKeys(d.fb), fav: migKeys(d.fav), used: d.used || {}, grp: d.grp || {}, big: !!d.big, calm: !!d.calm });
       }
     } catch (e) {}
   }
@@ -1468,7 +1477,7 @@ class Component extends DCLogic {
   save() {
     try {
       var s = this.state;
-      window.localStorage.setItem(STORE, JSON.stringify({ fb: s.fb, fav: s.fav, used: s.used, big: s.big, calm: s.calm }));
+      window.localStorage.setItem(STORE, JSON.stringify({ fb: s.fb, fav: s.fav, used: s.used, grp: s.grp || {}, big: s.big, calm: s.calm }));
     } catch (e) {}
   }
   up(o) { var self = this; this.setState(o, function () { self.save(); }); }
@@ -1616,10 +1625,16 @@ class Component extends DCLogic {
       var wa = '*' + x[0] + '* · פִּטְפּוּט\n' + 'מטרה: ' + x[1] + '\n\n' + x[2].map(function (v, j) { return (j + 1) + '. ' + v; }).join('\n') + '\n\nאפשר להגיד: ' + x[3].map(function (v) { return '״' + v + '״'; }).join(' ') + '\n\nמשך: ' + (DUR[age] || '3-5 דקות') + '\nאם קשה לילד: ' + (ADAPT[age] || '');
       wa += '\n\nעוד פעילויות להעשרה שפתית במעון, בפִּטְפּוּט:\nhttps://pitput.education/';
       var mw = matchWords(x, bankWords(age, space));
-      var det = Object.assign({ s: {}, m: 0, r: '' }, (st.det || {})[key] || {});
-      var setDet = function (patch) { var all = Object.assign({}, self.state.det || {}); var cur = Object.assign({ s: {}, m: 0, r: '' }, all[key] || {}, patch); all[key] = cur; self.setState({ det: all }); self.log({ type: 'did', age: age, space: space, n: self.state.n, act: x[0], id: x[5], fb: (self.state.fb || {})[key] || '', s: Object.keys(cur.s).filter(function (q) { return cur.s[q]; }), m: cur.m, r: cur.r }); };
+      var det = Object.assign({ done: false, s: {}, m: 0, r: '', y: '' }, (st.det || {})[key] || {});
+      var grp = (st.grp || {})[age] || '';
+      var setDet = function (patch, gNew) { var all = Object.assign({}, self.state.det || {}); var cur = Object.assign({ done: false, s: {}, m: 0, r: '', y: '' }, all[key] || {}, patch); all[key] = cur; var g = gNew != null ? gNew : (((self.state.grp || {})[age]) || ''); self.setState({ det: all }); self.log({ type: 'did', age: age, space: space, n: self.state.n, act: x[0], id: x[5], done: !!cur.done, g: g, y: cur.y, fb: (self.state.fb || {})[key] || '', s: Object.keys(cur.s).filter(function (q) { return cur.s[q]; }), m: cur.m, r: cur.r }); };
+      var setGrp = function (v) { var o = Object.assign({}, self.state.grp || {}); if (v) o[age] = v; else delete o[age]; self.up({ grp: o }); setDet({}, v); };
       var chipBg = function (on) { return on ? '#D8F3EA' : '#FFFFFF'; };
-      return { showDet: !!fb[key], showReason: fb[key] === 'bad',
+      return { showDet: !!det.done || fb[key] === 'bad', showReason: fb[key] === 'bad', isDone: !!det.done,
+        doneStr: det.done ? 'true' : 'false', doneLabel: det.done ? 'ביצענו ✓' : 'ביצענו את הפעילות', doneBg: det.done ? '#0B6E73' : '#FFFFFF', doneColor: det.done ? '#FFFFFF' : '#0B6E73',
+        toggleDone: function () { setDet({ done: !det.done }); },
+        detG: GROUPS.map(function (q) { var on = grp === q[0]; return { label: q[1], pressed: String(on), bg: chipBg(on), pick: function () { setGrp(on ? '' : q[0]); } }; }),
+        detY: GOALSEEN.map(function (q) { var on = det.y === q[0]; return { label: q[1], pressed: String(on), bg: chipBg(on), pick: function () { setDet({ y: on ? '' : q[0] }); } }; }),
         detS: STRATS.map(function (q) { var on = !!det.s[q[0]]; return { label: q[1], pressed: String(on), bg: chipBg(on), pick: function () { var o = Object.assign({}, det.s); o[q[0]] = !o[q[0]]; setDet({ s: o }); } }; }),
         detM: MINS.map(function (m) { var on = det.m === m; return { label: m + ' דקות', pressed: String(on), bg: chipBg(on), pick: function () { setDet({ m: on ? 0 : m }); } }; }),
         detR: REASONS.map(function (q) { var on = det.r === q[0]; return { label: q[1], pressed: String(on), bg: chipBg(on), pick: function () { setDet({ r: on ? '' : q[0] }); } }; }),
