@@ -1,0 +1,29 @@
+{
+  "id": "/",
+  "name": "פִּטְפּוּט: העשרה שפתית במעון",
+  "short_name": "פִּטְפּוּט",
+  "description": "פעילויות קצרות להעשרה שפתית למחנכות ומטפלות במעונות יום, לפי גיל, מרחב וגודל קבוצה.",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FDF6EE",
+  "theme_color": "#FF6B57",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "/img/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/img/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/img/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/img/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "/img/shots/05-space.jpg", "sizes": "560x1211", "type": "image/jpeg", "form_factor": "narrow", "label": "בחירת גיל, מרחב וגודל קבוצה" },
+    { "src": "/img/shots/08-card.jpg", "sizes": "560x1211", "type": "image/jpeg", "form_factor": "narrow", "label": "כרטיס פעילות" },
+    { "src": "/img/shots/17-daily.jpg", "sizes": "560x1211", "type": "image/jpeg", "form_factor": "narrow", "label": "סיכום יומי להורים" }
+  ],
+  "shortcuts": [
+    { "name": "מדריך קצר לצוות", "url": "/guide/", "icons": [{ "src": "/img/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
