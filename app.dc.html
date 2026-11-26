@@ -519,7 +519,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <div class="pop" style="display: flex; flex-direction: column; gap: 14px">
 <section style="background: #D8F3EA; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">סיכום יומי להורים</h1>
-<p style="margin: 0; font-size: 17px; color: #3A3950; line-height: 1.6">הסיכום אוסף את הפעילויות שסומנו היום ״עבד״ או ״פחות עבד״ ואת המילים שסומנו, מכל המכשירים של המעון. בוואטסאפ בוחרים את קבוצת ההורים ושולחים.</p>
+<p style="margin: 0; font-size: 17px; color: #3A3950; line-height: 1.6">הסיכום אוסף את הפעילויות שסומנו היום ״עבד״ או ״פחות עבד״ ואת המילים שסומנו, מכל המכשירים של המעון. הוא כתוב ברמת הקבוצה, בלי שמות פעילויות ובלי משפטים שנשמעים כמו מידע על ילד מסוים. קראי אותו לפני השליחה, ובוואטסאפ בחרי את קבוצת ההורים.</p>
 </section>
 <sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 24px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">אוספים את הפעילויות של היום...</p></sc-if>
 <sc-if value="{{dailyError}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 24px; padding: 16px 22px; font-size: 17px; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">לא הצלחנו לטעון את הסיכום. בדקי את החיבור לאינטרנט ונסי שוב.</p></sc-if>
@@ -1403,17 +1403,15 @@ function dailyText(rows, orgName, dayStr, ageF) {
   if (!acts.length && !words.length) return '';
   var L = ['*פִּטְפּוּט · סיכום יומי מ' + orgName + '*', dayStr, ''];
   if (acts.length) {
+    // Group level only: no activity titles or example sentences, which can read as information about a specific child.
     var ag = (ageF && ageF !== 'all') ? byId(AGES, ageF) : null;
     L.push('היום עשינו ' + (ag ? 'בקבוצת ה' + ag.label : 'במעון') + ' ' + (acts.length === 1 ? 'פעילות אחת' : acts.length + ' פעילויות') + ' להעשרה שפתית:', '');
-    acts.forEach(function (a, i) {
-      L.push((i + 1) + '. *' + a.t + '*' + (a.s ? ' (' + a.s.label + ')' : ''));
-      if (a.s && PARENT_SP[a.s.id]) L.push(PARENT_SP[a.s.id]);
-      var phs = (a.x && a.x[3]) ? a.x[3].filter(function (v) { return v.indexOf('[שם]') < 0; }) : []; if (phs.length) L.push('משפטים ששמעו: ' + phs.slice(0, 2).map(function (v) { return '״' + v + '״'; }).join(' '));
-      L.push('');
-    });
+    var spSeen = {};
+    acts.forEach(function (a) { if (a.s && PARENT_SP[a.s.id] && !spSeen[a.s.id]) { spSeen[a.s.id] = 1; L.push('• ' + PARENT_SP[a.s.id]); } });
+    L.push('');
   }
   if (words.length) { L.push('*מילים ששמענו ואמרנו היום:* ' + words.slice(0, 20).join(', '), ''); }
-  L.push('רעיון לבית: אפשר לחזור על ' + (words.length ? 'כמה מהמילים' : 'כמה מהמשפטים') + ' האלה בשיחה רגילה, בארוחה או באמבטיה. בלי לבחון, פשוט להגיד ולחכות לתגובה.', '');
+  L.push('רעיון לבית: ' + (words.length ? 'אפשר לחזור על כמה מהמילים האלה' : 'אפשר לדבר על מה שעושים') + ' בשיחה רגילה, בארוחה או באמבטיה. בלי לבחון, פשוט להגיד ולחכות לתגובה.', '');
   L.push('נשלח מפִּטְפּוּט: ' + SITE_LINK);
   return L.join('\n');
 }
