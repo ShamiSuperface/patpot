@@ -561,6 +561,11 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">מקורות</h2>
 <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #3A3950">משרד החינוך, האגף לחינוך הגיל הרך · The Hanen Centre · Head Start · Anita Zucker Center, University of Florida · Juniper Gardens Children׳s Project · ZERO TO THREE · Whitehurst, קריאה דיאלוגית</p>
 </section>
+<section style="background: #FFFFFF; border-radius: 36px; padding: 22px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
+<h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 20px; font-weight: 800">יצירת קשר</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6">שאלות, הערות או הצטרפות מעון: <a href="mailto:hello@pitput.education" style="color: #0B6E73; font-weight: 800">hello@pitput.education</a></p>
+<p style="margin: 0; font-size: 15px; line-height: 1.6"><a href="/terms/" target="_blank" rel="noopener" style="color: #0B6E73; font-weight: 800">תנאי שימוש</a> · <a href="/privacy/" target="_blank" rel="noopener" style="color: #0B6E73; font-weight: 800">מדיניות פרטיות</a> · <a href="/delete-account/" target="_blank" rel="noopener" style="color: #0B6E73; font-weight: 800">מחיקת חשבון ונתונים</a></p>
+</section>
 <p style="margin: 0; text-align: center; font-size: 14px; font-weight: 700; color: #4A4960">© 2026 כל הזכויות שמורות ל-SuperFace, שמי אוסטרובסקי</p>
 </div>
 </sc-if>
@@ -646,6 +651,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </div>
 </sc-if>
 </div>
+<nav aria-label="קישורים" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 14px; font-size: 15px; position: relative; z-index: 1"><a href="mailto:hello@pitput.education" style="color: #23223A; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; padding: 10px 4px; display: inline-block">יצירת קשר: hello@pitput.education</a><a href="/terms/" target="_blank" rel="noopener" style="color: #23223A; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; padding: 10px 4px; display: inline-block">תנאי שימוש</a><a href="/privacy/" target="_blank" rel="noopener" style="color: #23223A; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; padding: 10px 4px; display: inline-block">פרטיות</a></nav>
 </div>
 </div>
 </div>
@@ -2026,7 +2032,7 @@ class Component extends DCLogic {
     ];
     if (isAdmin) menuDefs.unshift(['admin', 'לוח בקרה', '▦', '#FFE0D6']);
     if (sess && sess.kind === 'org') menuDefs.splice(1, 0, ['daily', 'סיכום יומי להורים', '✉', '#D8F3EA']);
-    menuDefs.push(['video', 'סרטון הסבר', '▶', '#FFE0D6'], ['guide', 'מדריך קצר לצוות', '?', '#DDF0FB']);
+    menuDefs.push(['video', 'סרטון הסבר', '▶', '#FFE0D6'], ['guide', 'מדריך קצר לצוות', '?', '#DDF0FB'], ['contact', 'יצירת קשר', '@', '#D8F3EA']);
     if (!isAdmin) menuDefs.push(['joinme', 'הוספת המעון שלי', '+', '#E4F6D8']);
     var JOIN_TEXT = 'שלום, ראיתי את פִּטְפּוּט ואשמח לקבל הצעת מחיר להצטרפות המעון שלנו.';
     var JOIN_MAIL = 'mailto:hello@pitput.education?subject=' + encodeURIComponent('הצטרפות מעון לפִּטְפּוּט') + '&body=' + encodeURIComponent(JOIN_TEXT + '\n\nשם המעון:\nעיר:\nטלפון לחזרה:');
@@ -2034,7 +2040,7 @@ class Component extends DCLogic {
     var menuItems = menuDefs.map(function (m) {
       var on = view === m[0] || (m[0] === 'home' && (view === 'results' || view === 'loading'));
       return { label: m[1], mark: m[2], dot: m[3], bg: on ? m[3] : '#FFFFFF', hasBadge: m[0] === 'saved' && favKeys.length > 0, badge: String(favKeys.length),
-        go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'video') { self.setState({ menu: false, vidM: true }); return; } if (m[0] === 'guide') { self.setState({ menu: false }); var g = null; try { g = window.open('/guide/', '_blank'); } catch (e) {} if (!g) window.location.href = '/guide/'; return; } if (m[0] === 'joinme') { self.setState({ menu: false }); window.location.href = JOIN_MAIL; return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); if (m[0] === 'daily') self.loadDaily(); } };
+        go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'contact') { self.setState({ menu: false }); window.location.href = 'mailto:hello@pitput.education'; return; } if (m[0] === 'video') { self.setState({ menu: false, vidM: true }); return; } if (m[0] === 'guide') { self.setState({ menu: false }); var g = null; try { g = window.open('/guide/', '_blank'); } catch (e) {} if (!g) window.location.href = '/guide/'; return; } if (m[0] === 'joinme') { self.setState({ menu: false }); window.location.href = JOIN_MAIL; return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); if (m[0] === 'daily') self.loadDaily(); } };
     });
 
     var settings = [
