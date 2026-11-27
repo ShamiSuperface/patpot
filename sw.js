@@ -1,6 +1,6 @@
 /* פִּטְפּוּט service worker: רשת קודם, מטמון כגיבוי. נתונים (Supabase) לא נשמרים במטמון. */
-var CACHE = 'pitput-v1';
-var CORE = ['/', '/index.html', '/app.dc.html', '/manifest.webmanifest', '/img/logo.svg', '/img/mascot.svg',
+var CACHE = 'pitput-v2';
+var CORE = ['/', '/index.html', '/app.dc.html', '/manifest.webmanifest', '/fonts/fonts.css', '/img/logo.svg', '/img/mascot.svg',
   '/img/sp-change.svg', '/img/sp-breakfast.svg', '/img/sp-lunch.svg', '/img/sp-art.svg', '/img/sp-socio.svg',
   '/img/sp-build.svg', '/img/sp-book.svg', '/img/sp-yard.svg', '/img/icons/icon-192.png'];
 
@@ -18,16 +18,7 @@ self.addEventListener('fetch', function (e) {
   var req = e.request;
   if (req.method !== 'GET') return;
   var url = new URL(req.url);
-  var fonts = url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com';
-  if (url.origin !== self.location.origin && !fonts) return;
-  if (fonts) {
-    e.respondWith(caches.match(req).then(function (hit) {
-      return hit || fetch(req).then(function (res) {
-        var copy = res.clone(); caches.open(CACHE).then(function (c) { c.put(req, copy); }); return res;
-      });
-    }));
-    return;
-  }
+  if (url.origin !== self.location.origin) return;
   e.respondWith(fetch(req).then(function (res) {
     if (res && res.ok) { var copy = res.clone(); caches.open(CACHE).then(function (c) { c.put(req, copy); }); }
     return res;
