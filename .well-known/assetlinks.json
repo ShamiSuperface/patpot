@@ -7,7 +7,8 @@
       "namespace": "android_app",
       "package_name": "education.pitput.app",
       "sha256_cert_fingerprints": [
-        "52:A7:1A:BB:78:FE:79:A3:D3:B9:EC:76:A9:98:9B:9D:EC:E7:CC:2D:7F:8C:F4:47:4D:29:CB:77:1D:9D:C4:68"
+        "52:A7:1A:BB:78:FE:79:A3:D3:B9:EC:76:A9:98:9B:9D:EC:E7:CC:2D:7F:8C:F4:47:4D:29:CB:77:1D:9D:C4:68",
+        "0D:44:5C:59:66:72:59:70:9E:09:3F:45:74:EA:04:E3:3D:49:BD:A7:2C:8C:94:F4:5B:69:9F:87:6F:6E:3F:F4"
       ]
     }
   }
