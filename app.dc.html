@@ -126,7 +126,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </div>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px">
 <sc-for list="{{menuItems}}" as="m" hint-placeholder-count="7">
-<li>
+<li style="border-top: {{m.sepB}}; padding-top: {{m.sepP}}; margin-top: {{m.sepM}}">
 <button type="button" onClick="{{m.go}}" style="width: 100%; min-height: 54px; border: none; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 8px 12px; text-align: right; font-size: 18px; font-weight: 700; color: #23223A; background: {{m.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <span aria-hidden="true" class="morph" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: {{m.dot}}; font-family: Rubik, Arial, sans-serif; font-size: 16px; font-weight: 800">{{m.mark}}</span>
 <span style="flex: 1 1 auto">{{m.label}}</span>
@@ -148,7 +148,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </div>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
 <sc-for list="{{menuItems}}" as="m" hint-placeholder-count="7">
-<li>
+<li style="border-top: {{m.sepB}}; padding-top: {{m.sepP}}; margin-top: {{m.sepM}}">
 <button type="button" class="squish" onClick="{{m.go}}" style="width: 100%; min-height: 52px; border: none; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 6px 10px; text-align: right; font-size: 17px; font-weight: 700; color: #23223A; background: {{m.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <span aria-hidden="true" class="morph" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; background: {{m.dot}}; font-family: Rubik, Arial, sans-serif; font-size: 15px; font-weight: 800">{{m.mark}}</span>
 <span style="flex: 1 1 auto">{{m.label}}</span>
@@ -2109,18 +2109,20 @@ class Component extends DCLogic {
 
     var menuDefs = [
       ['home', 'בית', 'ב', '#FFE0D6'], ['saved', 'הפעילויות שלי', '★', '#FFF1C2'], ['words', 'בנק מילים', 'א', '#DDF0FB'],
-      ['journey', 'המסע שלי', '↑', '#D8F3EA'], ['tips', 'עקרונות וטיפים', '!', '#ECE4FF'], ['access', 'נגישות ותצוגה', 'Aא', '#FFE3EC'], ['about', 'אודות ומקורות', 'i', '#FCE9D6']
+      ['journey', 'המסע שלי', '↑', '#D8F3EA'], ['tips', 'עקרונות וטיפים', '!', '#ECE4FF']
     ];
     if (isAdmin) menuDefs.unshift(['admin', 'לוח בקרה', '▦', '#FFE0D6']);
     if (sess && sess.kind === 'org') menuDefs.splice(1, 0, ['daily', 'סיכום יומי להורים', '✉', '#D8F3EA']);
-    menuDefs.push(['video', 'סרטון הסבר', '▶', '#FFE0D6'], ['guide', 'מדריך קצר לצוות', '?', '#DDF0FB'], ['contact', 'יצירת קשר', '@', '#D8F3EA']);
+    var menuSep = menuDefs.length;
+    menuDefs.push(['video', 'סרטון לצוות חינוכי', '▶', '#FFE0D6'], ['guide', 'מדריך קצר לצוות', '?', '#DDF0FB']);
     if (!isAdmin) menuDefs.push(['joinme', 'הוספת המעון שלי', '+', '#E4F6D8']);
+    menuDefs.push(['access', 'נגישות ותצוגה', 'Aא', '#FFE3EC'], ['about', 'אודות ומקורות', 'i', '#FCE9D6'], ['contact', 'יצירת קשר', '@', '#D8F3EA']);
     var JOIN_TEXT = 'שלום, ראיתי את פִּטְפּוּט ואשמח לקבל הצעת מחיר להצטרפות המעון שלנו.';
     var JOIN_MAIL = 'mailto:hello@pitput.education?subject=' + encodeURIComponent('הצטרפות מעון לפִּטְפּוּט') + '&body=' + encodeURIComponent(JOIN_TEXT + '\n\nשם המעון:\nעיר:\nטלפון לחזרה:');
     menuDefs.push(['logout', 'התנתקות', '⎋', '#EDE7F0']);
-    var menuItems = menuDefs.map(function (m) {
+    var menuItems = menuDefs.map(function (m, i) {
       var on = view === m[0] || (m[0] === 'home' && (view === 'results' || view === 'loading'));
-      return { label: m[1], mark: m[2], dot: m[3], bg: on ? m[3] : '#FFFFFF', hasBadge: m[0] === 'saved' && favKeys.length > 0, badge: String(favKeys.length),
+      return { label: m[1], mark: m[2], dot: m[3], bg: on ? m[3] : '#FFFFFF', hasBadge: m[0] === 'saved' && favKeys.length > 0, badge: String(favKeys.length), sepB: i === menuSep ? '2px solid rgba(35,34,58,0.16)' : 'none', sepP: i === menuSep ? '10px' : '0', sepM: i === menuSep ? '6px' : '0',
         go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'contact') { self.setState({ menu: false }); window.location.href = 'mailto:hello@pitput.education'; return; } if (m[0] === 'video') { self.setState({ menu: false, vidM: true }); return; } if (m[0] === 'guide') { self.setState({ menu: false }); var g = null; try { g = window.open('/guide/', '_blank'); } catch (e) {} if (!g) window.location.href = '/guide/'; return; } if (m[0] === 'joinme') { self.setState({ menu: false }); window.location.href = JOIN_MAIL; return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); if (m[0] === 'daily') self.loadDaily(ymd()); } };
     });
 
