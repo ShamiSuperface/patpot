@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 body{margin:0;background:#FDF6EE}
+@media print{body{background:#FFFFFF}body *{visibility:hidden}.print-card,.print-card *{visibility:visible}.mainwrap{position:static !important}.print-card{position:absolute;top:0;right:0;left:0;box-sizing:border-box;box-shadow:none !important;border-radius:0 !important;padding:8mm 10mm !important}.print-item{break-inside:avoid}.no-print{display:none !important}}
 a{color:#0B6E73}a:hover{color:#084F53}
 button{font-family:inherit}
 button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3px}
@@ -268,13 +269,17 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <sc-if value="{{vSaved}}" hint-placeholder-val="{{ false }}">
 <section style="background: #FFF1C2; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">הפעילויות שלי</h1>
-<p style="margin: 0; font-size: 17px; color: #3A3950">פעילויות שסימנת בכוכב. אפשר לפתוח, לשתף בוואטסאפ או להסיר.</p>
+<p style="margin: 0; font-size: 17px; color: #3A3950">הפעילויות שבחרת לתוכנית של היום, ואחריהן אלה שסימנת בכוכב. אפשר לתכנן לפני העבודה או במנוחה, ולסמן אחר כך מה ביצעתן.</p>
+<sc-if value="{{hasPlanToday}}" hint-placeholder-val="{{ false }}"><div class="no-print" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px">
+<button type="button" class="squish" onClick="{{goCard}}" style="min-height: 50px; padding: 0 22px; border-radius: 999px; border: none; background: #0B6E73; color: #FFFFFF; font-size: 17px; font-weight: 800; cursor: pointer">כרטיס לשגרה: הדפסה או שליחה</button>
+<button type="button" class="squish" onClick="{{planClear}}" style="min-height: 50px; padding: 0 18px; border-radius: 999px; border: 2px solid #0B6E73; background: #FFFFFF; color: #0B6E73; font-size: 16px; font-weight: 800; cursor: pointer">ניקוי התוכנית של היום</button>
+</div></sc-if>
 </section>
-<sc-if value="{{noFav}}" hint-placeholder-val="{{ false }}">
+<sc-if value="{{noSaved}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border-radius: 44px; padding: 30px 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <img src="/_blob/55a5ba60b8c3fe4146b54f13b98b97ec" alt="" width="110" height="100">
-<p style="margin: 0; font-size: 18px; font-weight: 700">עוד אין פעילויות שמורות</p>
-<p style="margin: 0; font-size: 16px; color: #55546B">בכל כרטיס פעילות יש כפתור ״שמירה״. מה שתשמרי יופיע כאן.</p>
+<p style="margin: 0; font-size: 18px; font-weight: 700">עוד אין פעילויות בתוכנית או בשמורות</p>
+<p style="margin: 0; font-size: 16px; color: #55546B">בכל כרטיס פעילות יש כפתור ״לתוכנית של היום״ וכפתור ״שמירה״. מה שתבחרי יופיע כאן.</p>
 <button type="button" onClick="{{goHome}}" style="min-height: 50px; padding: 0 24px; border-radius: 25px; border: none; background: #FF6B57; color: #23223A; font-size: 18px; font-weight: 800; cursor: pointer">למציאת פעילויות</button>
 </div>
 </sc-if>
@@ -292,6 +297,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 
 <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px">
 <sc-for list="{{acts}}" as="x" hint-placeholder-count="5">
+<sc-if value="{{x.hasHead}}" hint-placeholder-val="{{ false }}"><li role="presentation" style="padding: 6px 8px 0"><h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800">{{x.head}}</h2></li></sc-if>
 <li class="pop" style="animation-delay: {{x.delay}}; background: #FFFFFF; border-radius: 38px; overflow: hidden; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 12px 28px rgba(35,34,58,0.07)">
 <button type="button" class="act-head" onClick="{{x.toggle}}" aria-expanded="{{x.openStr}}" style="width: 100%; min-height: 78px; border: none; background: transparent; cursor: pointer; text-align: right; padding: 18px 22px; display: flex; align-items: center; gap: 14px; color: #23223A">
 <span aria-hidden="true" class="morph act-num" style="flex: none; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800; background: {{x.numBg}}">{{x.num}}</span>
@@ -299,6 +305,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <span class="act-title" style="font-family: Rubik, Arial, sans-serif; font-size: 21px; font-weight: 800; line-height: 1.25">{{x.t}}</span>
 <span style="font-size: 15px; font-weight: 600; color: #4A4960">{{x.g}}</span>
 <sc-if value="{{x.showWhere}}" hint-placeholder-val="{{ false }}"><span style="font-size: 14px; font-weight: 700; color: #0B6E73">{{x.where}}</span></sc-if>
+<sc-if value="{{x.hasPlanNote}}" hint-placeholder-val="{{ false }}"><span style="align-self: flex-start; background: #FFF1C2; border-radius: 999px; padding: 2px 10px; font-size: 14px; font-weight: 800">{{x.planNote}}</span></sc-if>
 </span>
 <sc-if value="{{x.fav}}" hint-placeholder-val="{{ false }}"><svg aria-label="שמורה" role="img" width="22" height="22" viewBox="0 0 24 24" fill="#FFC93C" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round" style="flex: none"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg></sc-if>
 <span aria-hidden="true" style="flex: none; width: 38px; height: 38px; border-radius: 50%; background: #FFE0D6; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
@@ -349,6 +356,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <p style="margin: 0; font-size: 16px; line-height: 1.55">{{x.b}}</p>
 </div>
 <div class="act-actions" style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" onClick="{{x.togglePlan}}" aria-pressed="{{x.planStr}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; background: {{x.planBg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{x.planLabel}}</button>
 <button type="button" onClick="{{x.toggleFav}}" aria-pressed="{{x.favStr}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: #23223A; display: flex; align-items: center; gap: 8px; background: {{x.favBg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{x.starFill}}" stroke="#23223A" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"></path></svg>{{x.favLabel}}</button>
 <a href="{{x.wa}}" target="_blank" rel="noopener" onClick="{{x.share}}" class="squish" style="min-height: 48px; padding: 0 18px; border-radius: 999px; background: #D8F3EA; color: #23223A; font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px; text-decoration: none; box-sizing: border-box; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#23223A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v12M7 8l5-5 5 5"></path></svg>שיתוף בוואטסאפ</a>
 </div>
@@ -361,7 +369,9 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 <sc-if value="{{x.fbGood}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; font-weight: 700; color: #0B6E73">מעולה! זה נרשם במסע שלך.</p></sc-if>
 <sc-if value="{{x.fbBad}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; color: #4A4960">תודה. הפעילות לא תוצע שוב ברענון. לחיצה נוספת מבטלת.</p></sc-if>
 <sc-if value="{{x.showDet}}" hint-placeholder-val="{{ false }}"><div class="det-box" style="background: #FFFFFF; border-radius: 26px 26px 26px 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
-<sc-if value="{{x.isDone}}" hint-placeholder-val="{{ false }}"><span style="font-size: 15px; font-weight: 800">באיזו קבוצה?</span>
+<sc-if value="{{x.isDone}}" hint-placeholder-val="{{ false }}"><span style="font-size: 15px; font-weight: 800">מתי ביצעתן?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detD}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
+<span style="font-size: 15px; font-weight: 800">באיזו קבוצה?</span>
 <div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detG}}" as="c" hint-placeholder-count="4"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
 <span style="font-size: 15px; font-weight: 800">ראית בקבוצה את מה שכתוב ב״מה לחפש״?</span>
 <div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{x.detY}}" as="c" hint-placeholder-count="4"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: none; cursor: pointer; font-size: 15px; font-weight: 700; color: #23223A; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
@@ -509,15 +519,42 @@ button:focus-visible,a:focus-visible{outline:3px solid #0B6E73;outline-offset:3p
 </div>
 </sc-if>
 
+<sc-if value="{{vCard}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div class="no-print" style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" class="squish" onClick="{{goSaved}}" style="min-height: 48px; padding: 0 18px; border-radius: 999px; border: 2px solid #0B6E73; background: #FFFFFF; color: #0B6E73; font-size: 16px; font-weight: 800; cursor: pointer">חזרה לפעילויות שלי</button>
+<sc-if value="{{hasCard}}" hint-placeholder-val="{{ true }}"><button type="button" class="squish" onClick="{{cardPrint}}" style="min-height: 48px; padding: 0 20px; border-radius: 999px; border: none; background: #0B6E73; color: #FFFFFF; font-size: 16px; font-weight: 800; cursor: pointer">הדפסה</button>
+<a href="{{cardWa}}" target="_blank" rel="noopener" onClick="{{cardShare}}" class="squish" style="min-height: 48px; padding: 0 20px; border-radius: 999px; background: #D8F3EA; color: #23223A; font-size: 16px; font-weight: 800; display: flex; align-items: center; text-decoration: none; box-sizing: border-box; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">שליחה בוואטסאפ</a></sc-if>
+</div>
+<sc-if value="{{noCard}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; background: #FFFFFF; border-radius: 28px; padding: 16px 22px; font-size: 17px; line-height: 1.6; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">אין עדיין פעילויות בתוכנית של היום. בכרטיס פעילות לחצי ״לתוכנית של היום״.</p></sc-if>
+<sc-if value="{{hasCard}}" hint-placeholder-val="{{ true }}">
+<article class="print-card" style="background: #FFFFFF; border-radius: 28px; padding: 20px 22px; display: flex; flex-direction: column; gap: 16px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
+<header style="display: flex; flex-direction: column; gap: 2px"><strong style="font-family: Rubik, Arial, sans-serif; font-size: 22px">פִּטְפּוּט · התוכנית שלי</strong><span style="font-size: 16px; color: #3A3950">{{cardDay}}</span></header>
+<sc-for list="{{cardItems}}" as="c" hint-placeholder-count="2">
+<section class="print-item" style="display: flex; flex-direction: column; gap: 6px; border-top: 2px solid #E8E1D8; padding-top: 12px">
+<h2 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 19px; font-weight: 800">{{c.t}}</h2>
+<span style="font-size: 14px; font-weight: 700; color: #0B6E73">{{c.where}}</span>
+<ol style="margin: 0; padding-inline-start: 22px; font-size: 16px; line-height: 1.5"><sc-for list="{{c.steps}}" as="q" hint-placeholder-count="3"><li>{{q.v}}</li></sc-for></ol>
+<p style="margin: 0; font-size: 16px; line-height: 1.5"><strong>להגיד:</strong> <sc-for list="{{c.ph}}" as="q" hint-placeholder-count="2">״{{q.v}}״ </sc-for></p>
+<sc-if value="{{c.hasOg}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 16px; line-height: 1.5"><strong>מה לחפש:</strong> {{c.og}}</p></sc-if>
+</section>
+</sc-for>
+<p style="margin: 0; font-size: 14px; color: #55546B">אחרי הפעילות, סמני ״ביצענו״ בפִּטְפּוּט, גם אם עבר יום או יומיים.</p>
+</article>
+</sc-if>
+</div>
+</sc-if>
+
 <sc-if value="{{vDaily}}" hint-placeholder-val="{{ false }}">
 <div class="pop" style="display: flex; flex-direction: column; gap: 14px">
 <section style="background: #D8F3EA; border-radius: 44px 44px 44px 110px; padding: 24px 24px 30px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">
 <h1 style="margin: 0; font-family: Rubik, Arial, sans-serif; font-size: 28px; font-weight: 800">סיכום יומי להורים</h1>
-<p style="margin: 0; font-size: 17px; color: #3A3950; line-height: 1.6">הסיכום אוסף את הפעילויות שסומנו היום ״ביצענו״ ואת המילים שסומנו, מכל המכשירים של המעון. הוא כתוב ברמת הקבוצה, בלי שמות פעילויות, בלי משפטים שנשמעים כמו מידע על ילד מסוים ובלי מילים של כאב, מחלה או רגש קשה. חשש לגבי ילד מסוים נמסר רק בשיחה פרטית עם ההורים. קראי אותו לפני השליחה, ובוואטסאפ בחרי את קבוצת ההורים.</p>
+<p style="margin: 0; font-size: 17px; color: #3A3950; line-height: 1.6">הסיכום אוסף את הפעילויות שסומנו ״ביצענו״ ליום שבחרת ואת המילים שסומנו באותו יום, מכל המכשירים של המעון. הוא כתוב ברמת הקבוצה, בלי שמות פעילויות, בלי משפטים שנשמעים כמו מידע על ילד מסוים ובלי מילים של כאב, מחלה או רגש קשה. חשש לגבי ילד מסוים נמסר רק בשיחה פרטית עם ההורים. קראי אותו לפני השליחה, ובוואטסאפ בחרי את קבוצת ההורים.</p>
 </section>
-<sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 24px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">אוספים את הפעילויות של היום...</p></sc-if>
+<div role="group" aria-label="סיכום לאיזה יום" style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{dailyDays}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: {{c.color}}; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div>
+<sc-if value="{{dailyLoading}}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin: 0; background: #FFFFFF; border-radius: 24px; padding: 16px 22px; font-size: 17px; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">אוספים את הפעילויות...</p></sc-if>
 <sc-if value="{{dailyError}}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; background: #FFE3EC; border-radius: 24px; padding: 16px 22px; font-size: 17px; color: #8A1F3A; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">לא הצלחנו לטעון את הסיכום. בדקי את החיבור לאינטרנט ונסי שוב.</p></sc-if>
-<sc-if value="{{dailyEmpty}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; background: #FFFFFF; border-radius: 28px; padding: 16px 22px; font-size: 17px; line-height: 1.6; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">עוד לא סומנו היום פעילויות. אחרי פעילות, סמני ״עבד״ או ״פחות עבד״ בכרטיס שלה, והיא תיכנס לסיכום.</p></sc-if>
+<sc-if value="{{dailyEmpty}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; background: #FFFFFF; border-radius: 28px; padding: 16px 22px; font-size: 17px; line-height: 1.6; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">עוד לא סומנו פעילויות ליום הזה. אחרי פעילות, לחצי ״ביצענו את הפעילות״ בכרטיס שלה ובחרי מתי ביצעתן, והיא תיכנס לסיכום של אותו יום.</p></sc-if>
 <sc-if value="{{hasDailyAges}}" hint-placeholder-val="{{ false }}"><div role="group" aria-label="סיכום לאיזו קבוצה" style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{dailyAges}}" as="c" hint-placeholder-count="3"><button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" class="squish" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: none; cursor: pointer; font-size: 16px; font-weight: 800; color: {{c.color}}; background: {{c.bg}}; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32)">{{c.label}}</button></sc-for></div><p style="margin: 0; font-size: 15px; color: #4A4960">כדאי לשלוח לכל קבוצת הורים את הסיכום של הקבוצה שלה.</p></sc-if>
 <sc-if value="{{dailyReady}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border-radius: 28px; padding: 18px 22px; font-size: 16px; line-height: 1.7; white-space: pre-wrap; box-shadow: inset 0 0 0 2px rgba(35,34,58,0.32), 0 10px 22px rgba(35,34,58,0.08)">{{dailyText}}</div>
@@ -1619,8 +1656,18 @@ function sbRpc(name, body, tok, keep) {
 function qLoad() { try { return JSON.parse(window.localStorage.getItem(QKEY) || '[]') || []; } catch (e) { return []; } }
 function qSave(a) { try { window.localStorage.setItem(QKEY, JSON.stringify(a.slice(-500))); } catch (e) {} }
 var PAL = ['#FF6B57', '#FFC93C', '#6FC3E8', '#B49CFF', '#7ED9B8', '#FF9D5C', '#FF8FAA', '#8FD46B'];
-var VLAB = { home: 'בית', saved: 'הפעילויות שלי', words: 'בנק מילים', journey: 'המסע שלי', tips: 'עקרונות וטיפים', access: 'נגישות', about: 'אודות', admin: 'לוח בקרה', daily: 'סיכום יומי להורים' };
+var VLAB = { home: 'בית', saved: 'הפעילויות שלי', card: 'כרטיס תוכנית', words: 'בנק מילים', journey: 'המסע שלי', tips: 'עקרונות וטיפים', access: 'נגישות', about: 'אודות', admin: 'לוח בקרה', daily: 'סיכום יומי להורים' };
 var DAYS = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
+// Calendar days are counted in Israel time, as in my_day_events. A 'did' event may carry d (YYYY-MM-DD): the day the activity was done, which can be up to LATE_DAYS before the day it was marked.
+var LATE_DAYS = 2;
+function ymd(t) { var d = new Date(t == null ? Date.now() : t); try { return d.toLocaleDateString('en-CA', { timeZone: 'Asia/Jerusalem' }); } catch (e) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); } }
+function ymdAdd(s, n) { var d = new Date(s + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+function dayWord(s) { var t = ymd(); if (s === t) return 'היום'; if (s === ymdAdd(t, -1)) return 'אתמול'; if (s === ymdAdd(t, -2)) return 'שלשום'; return 'ביום ' + DAYS[new Date(s + 'T12:00:00Z').getUTCDay()]; }
+function dayLong(s) { try { return new Date(s + 'T12:00:00Z').toLocaleDateString('he-IL', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }); } catch (e) { return s; } }
+function rowDay(r) { var d = r.data || {}; return (r.type === 'did' && d.d) ? d.d : ymd(Date.parse(r.t)); }
+// Plan: { key: { d: day planned for, done: day marked done or '' } }, kept on the device. Entries older than the late-marking window are dropped.
+function prunePlan(o) { var r = {}, min = ymdAdd(ymd(), -LATE_DAYS); Object.keys(o || {}).forEach(function (k) { var v = o[k]; if (v && v.d && v.d >= min) r[k] = { d: v.d, done: v.done || '' }; }); return r; }
+function recentDays() { var t = ymd(), o = []; for (var i = 0; i <= LATE_DAYS; i++) o.push(ymdAdd(t, -i)); return o; }
 function readLog() { try { return JSON.parse(window.localStorage.getItem(LOGKEY) || '[]') || []; } catch (e) { return []; } }
 function inc(m, k, d) { m[k] = (m[k] || 0) + (d == null ? 1 : d); }
 function bars(map, keys, labels, colors) {
@@ -1662,7 +1709,7 @@ function buildDash(log, f, r, from, to) {
     if (e.type === 'fav') inc(favs, actKey(e.age + '|' + e.space + '|' + (e.id || e.act)), e.on ? 1 : -1);
     if (e.type === 'word') inc(words, e.w, e.on ? 1 : -1);
     if (e.type === 'view') inc(views, e.view);
-    if (e.type === 'did') didLast[e.u + '#' + actKey(e.age + '|' + e.space + '|' + (e.id || e.act)) + '#' + d.toDateString()] = e;
+    if (e.type === 'did') didLast[e.u + '#' + actKey(e.age + '|' + e.space + '|' + (e.id || e.act)) + '#' + (e.d || ymd(e.t))] = e;
   });
   var DA = Object.keys(didLast).map(function (k) { return didLast[k]; }), DL = DA.filter(function (e) { return e.done !== false; }), dn = DL.length;
   var sc = {}, mc = {}, rc = {}; DL.forEach(function (e) { (e.s || []).forEach(function (q) { inc(sc, q); }); if (e.m) inc(mc, String(e.m)); }); DA.forEach(function (e) { if (e.r) inc(rc, e.r); });
@@ -1700,8 +1747,9 @@ function buildDash(log, f, r, from, to) {
 }
 
 var PARENT_SP = { change: 'בזמן ההחתלה דיברנו עם הילדים על מה שעושים.', breakfast: 'בארוחת הבוקר קראנו בשם למה שאוכלים ושותים.', lunch: 'בארוחת הצהריים דיברנו על האוכל ועל מה שקורה סביב השולחן.', art: 'ביצירה תיארנו במילים את מה שהילדים עושים.', socio: 'במשחק דמיון שיחקנו ודיברנו יחד.', build: 'בבנייה דיברנו על מה שבונים: עוד, גבוה, נפל.', book: 'בקריאת ספר הצבענו, הקשבנו והשלמנו מילים.', yard: 'בחצר שמנו מילים למה שרואים ושומעים.' };
-function dayAges(rows) { var o = {}; (rows || []).forEach(function (r) { var d = r.data || {}; if ((r.type === 'fb' || r.type === 'word') && d.age) o[d.age] = 1; }); return AGES.filter(function (a) { return o[a.id]; }).map(function (a) { return a.id; }); }
-function dailyText(rows, orgName, dayStr, ageF) {
+function dayAges(rows) { var o = {}; (rows || []).forEach(function (r) { var d = r.data || {}; if ((r.type === 'fb' || r.type === 'word' || r.type === 'did') && d.age) o[d.age] = 1; }); return AGES.filter(function (a) { return o[a.id]; }).map(function (a) { return a.id; }); }
+function dailyText(rows, orgName, dayStr, ageF, dw) {
+  dw = dw || 'היום';
   var fbLast = {}, order = [], wordLast = {}, wOrder = [];
   (rows || []).forEach(function (r) {
     var d = r.data || {};
@@ -1718,12 +1766,12 @@ function dailyText(rows, orgName, dayStr, ageF) {
   if (acts.length) {
     // Group level only: no activity titles or example sentences, which can read as information about a specific child.
     var ag = (ageF && ageF !== 'all') ? byId(AGES, ageF) : null;
-    L.push('היום עשינו ' + (ag ? 'בקבוצת ה' + ag.label : 'במעון') + ' ' + (acts.length === 1 ? 'פעילות אחת' : acts.length + ' פעילויות') + ' להעשרה שפתית:', '');
+    L.push(dw + ' עשינו ' + (ag ? 'בקבוצת ה' + ag.label : 'במעון') + ' ' + (acts.length === 1 ? 'פעילות אחת' : acts.length + ' פעילויות') + ' להעשרה שפתית:', '');
     var spSeen = {};
     acts.forEach(function (a) { if (a.s && PARENT_SP[a.s.id] && !spSeen[a.s.id]) { spSeen[a.s.id] = 1; L.push('• ' + PARENT_SP[a.s.id]); } });
     L.push('');
   }
-  if (words.length) { L.push('*מילים ששמענו ואמרנו היום:* ' + words.slice(0, 20).join(', '), ''); }
+  if (words.length) { L.push('*מילים ששמענו ואמרנו ' + dw + ':* ' + words.slice(0, 20).join(', '), ''); }
   L.push('רעיון לבית: ' + (words.length ? 'אפשר לחזור על כמה מהמילים האלה' : 'אפשר לדבר על מה שעושים') + ' בשיחה רגילה, בארוחה או באמבטיה. בלי לבחון, פשוט להגיד ולחכות לתגובה.', '');
   L.push('נשלח מפִּטְפּוּט: ' + SITE_LINK);
   return L.join('\n');
@@ -1773,7 +1821,7 @@ class Component extends DCLogic {
       var raw = window.localStorage.getItem(STORE);
       if (raw) {
         var d = JSON.parse(raw);
-        this.setState({ fb: migKeys(d.fb), fav: migKeys(d.fav), used: d.used || {}, grp: d.grp || {}, big: !!d.big, calm: !!d.calm });
+        this.setState({ fb: migKeys(d.fb), fav: migKeys(d.fav), plan: prunePlan(migKeys(d.plan)), used: d.used || {}, grp: d.grp || {}, big: !!d.big, calm: !!d.calm });
       }
     } catch (e) {}
   }
@@ -1781,7 +1829,7 @@ class Component extends DCLogic {
   save() {
     try {
       var s = this.state;
-      window.localStorage.setItem(STORE, JSON.stringify({ fb: s.fb, fav: s.fav, used: s.used, grp: s.grp || {}, big: s.big, calm: s.calm }));
+      window.localStorage.setItem(STORE, JSON.stringify({ fb: s.fb, fav: s.fav, plan: s.plan || {}, used: s.used, grp: s.grp || {}, big: s.big, calm: s.calm }));
     } catch (e) {}
   }
   up(o) { var self = this; this.setState(o, function () { self.save(); }); }
@@ -1809,17 +1857,21 @@ class Component extends DCLogic {
     };
     return Promise.resolve(guest ? null : sbToken()).then(send).catch(function () { self._qBusy = false; });
   }
-  loadDaily() {
-    var self = this;
-    this.setState({ dailyState: 'loading' });
+  loadDaily(day) {
+    var self = this, D = day || this.state.dailyDay || ymd(), T = ymd();
+    if (D > T) D = T;
+    // Activities can be marked up to LATE_DAYS after they were done, so the summary for D also reads the days after it and keeps the rows that belong to D.
+    var days = [D]; for (var i = 1; i <= LATE_DAYS && ymdAdd(D, i) <= T; i++) days.push(ymdAdd(D, i));
+    this.setState({ dailyState: 'loading', dailyDay: D });
     Promise.resolve(this.flushQ()).then(function () { return sbToken(); }).then(function (tok) {
       if (!tok) { self.logout(); return; }
-      return sbRpc('my_day_events', {}, tok).then(function (rows) {
-        var s = self.state.sess || {};
-        var day = ''; try { day = new Date().toLocaleDateString('he-IL', { weekday: 'long', day: 'numeric', month: 'long' }); } catch (e) {}
+      return Promise.all(days.map(function (dd) { return sbRpc('my_day_events', { day: dd }, tok); })).then(function (rs) {
+        if (self.state.dailyDay !== D) return;
+        var rows = [].concat.apply([], rs.map(function (r) { return r || []; })).filter(function (r) { return rowDay(r) === D; });
+        rows.sort(function (a, b) { return Date.parse(a.t) - Date.parse(b.t); });
         var ages = dayAges(rows); var cur = self.state.dailyAge;
         if (!cur || (cur !== 'all' && ages.indexOf(cur) < 0)) cur = ages.length === 1 ? ages[0] : 'all';
-        self.setState({ dailyState: 'ok', dayRows: rows || [], dayStr: day, dailyAge: cur });
+        self.setState({ dailyState: 'ok', dayRows: rows, dayStr: dayLong(D), dailyAge: cur });
       });
     }).catch(function () { self.setState({ dailyState: 'error' }); });
   }
@@ -1900,6 +1952,8 @@ class Component extends DCLogic {
     var view = st.view || 'home';
     var fb = st.fb || {}, fav = st.fav || {}, used = st.used || {};
     var favKeys = Object.keys(fav);
+    var today = ymd(), plan = prunePlan(st.plan), planKeys = Object.keys(plan);
+    var planToday = planKeys.filter(function (k) { return plan[k].d === today; }), planPast = planKeys.filter(function (k) { return plan[k].d < today; });
     var ready = !!(st.age && st.space);
     var ag = byId(AGES, st.age), sp = byId(SPACES, st.space);
     var sess = st.sess || null, isAdmin = !!(sess && sess.kind === 'admin');
@@ -1929,15 +1983,24 @@ class Component extends DCLogic {
       var wa = '*' + x[0] + '* · פִּטְפּוּט\n' + 'מטרה: ' + x[1] + '\n' + (OG[x[5]] && sess && sess.kind === 'org' ? 'מה לחפש: ' + (OG_SUBJ[age] || 'הילד') + ' ' + OG[x[5]] + '\n' : '') + '\n' + x[2].map(function (v, j) { return (j + 1) + '. ' + v; }).join('\n') + '\n\nאפשר להגיד: ' + x[3].map(function (v) { return '״' + v + '״'; }).join(' ') + '\n\nמשך: ' + (DUR[age] || '3-5 דקות') + '\nאם קשה לילד: ' + (ADAPT[age] || '');
       wa += '\n\nעוד פעילויות להעשרה שפתית במעון, בפִּטְפּוּט:\nhttps://pitput.education/';
       var mw = matchWords(x, bankWords(age, space));
-      var det = Object.assign({ done: false, s: {}, m: 0, r: '', y: '' }, (st.det || {})[key] || {});
+      var pe = plan[key] || null, defDay = pe && pe.d < today ? pe.d : today;
+      var det = Object.assign({ done: !!(pe && pe.done), dd: (pe && pe.done) || defDay, s: {}, m: 0, r: '', y: '' }, (st.det || {})[key] || {});
       var grp = (st.grp || {})[age] || '';
-      var setDet = function (patch, gNew) { var all = Object.assign({}, self.state.det || {}); var cur = Object.assign({ done: false, s: {}, m: 0, r: '', y: '' }, all[key] || {}, patch); all[key] = cur; var g = gNew != null ? gNew : (((self.state.grp || {})[age]) || ''); self.setState({ det: all }); self.log({ type: 'did', age: age, space: space, act: x[0], id: x[5], done: !!cur.done, g: g, y: cur.y, fb: (self.state.fb || {})[key] || '', s: Object.keys(cur.s).filter(function (q) { return cur.s[q]; }), m: cur.m, r: cur.r }); };
+      var setDet = function (patch, gNew) { var all = Object.assign({}, self.state.det || {}); var cur = Object.assign({}, det, all[key] || {}, patch); all[key] = cur; var g = gNew != null ? gNew : (((self.state.grp || {})[age]) || ''); var o = { det: all }; var pl = prunePlan(self.state.plan); if (pl[key]) { pl[key] = { d: pl[key].d, done: cur.done ? cur.dd : '' }; o.plan = pl; } self.up(o); self.log({ type: 'did', age: age, space: space, act: x[0], id: x[5], d: cur.dd, done: !!cur.done, g: g, y: cur.y, fb: (self.state.fb || {})[key] || '', s: Object.keys(cur.s).filter(function (q) { return cur.s[q]; }), m: cur.m, r: cur.r }); };
       var setGrp = function (v) { var o = Object.assign({}, self.state.grp || {}); if (v) o[age] = v; else delete o[age]; self.up({ grp: o }); setDet({}, v); };
       var chipBg = function (on) { return on ? '#D8F3EA' : '#FFFFFF'; };
       var isOrgS = !!(sess && sess.kind === 'org');
       return { isOrgS: isOrgS, showDet: (isOrgS && !!det.done) || fb[key] === 'bad', showReason: fb[key] === 'bad', isDone: isOrgS && !!det.done,
         doneStr: det.done ? 'true' : 'false', doneLabel: det.done ? 'ביצענו ✓' : 'ביצענו את הפעילות', doneBg: det.done ? '#0B6E73' : '#FFFFFF', doneColor: det.done ? '#FFFFFF' : '#0B6E73',
         toggleDone: function () { setDet({ done: !det.done }); },
+        detD: recentDays().map(function (dd) { var on = det.dd === dd; return { label: dayWord(dd) + ' (' + DAYS[new Date(dd + 'T12:00:00Z').getUTCDay()] + ')', pressed: String(on), bg: chipBg(on),
+          pick: function () { if (on) return; if (det.done) self.log({ type: 'did', age: age, space: space, act: x[0], id: x[5], d: det.dd, done: false }); setDet({ dd: dd }); } }; }),
+        inPlan: !!pe && pe.d === today, planStr: String(!!pe && pe.d === today), planBg: pe && pe.d === today ? '#D8F3EA' : '#FFFFFF',
+        planLabel: pe && pe.d === today ? 'בתוכנית להיום ✓' : 'לתוכנית של היום',
+        togglePlan: function () { var o = prunePlan(self.state.plan); if (o[key] && o[key].d === today) delete o[key]; else o[key] = { d: today, done: '' }; self.up({ plan: o }); },
+        planNote: pe ? [pe.d !== today ? 'תוכנן ל' + dayWord(pe.d).replace(/^ביום/, 'יום') : '', isOrgS && pe.done ? 'ביצענו ' + dayWord(pe.done) : ''].filter(Boolean).join(' · ') : '',
+        hasPlanNote: !!pe && (pe.d !== today || (isOrgS && !!pe.done)),
+        head: '', hasHead: false,
         detG: GROUPS.map(function (q) { var on = grp === q[0]; return { label: q[1], pressed: String(on), bg: chipBg(on), pick: function () { setGrp(on ? '' : q[0]); } }; }),
         detY: GOALSEEN.map(function (q) { var on = det.y === q[0]; return { label: q[1], pressed: String(on), bg: chipBg(on), pick: function () { setDet({ y: on ? '' : q[0] }); } }; }),
         detS: STRATS.map(function (q) { var on = !!det.s[q[0]]; return { label: q[1], pressed: String(on), bg: chipBg(on), pick: function () { var o = Object.assign({}, det.s); o[q[0]] = !o[q[0]]; setDet({ s: o }); } }; }),
@@ -1973,12 +2036,30 @@ class Component extends DCLogic {
       }
       rounds = Math.ceil(L / 5); roundNo = (pg % rounds) + 1;
     }
-    if (view === 'saved') {
-      favKeys.forEach(function (key) {
-        var p = key.split('|'); var x = findAct(p[0], p[1], p.slice(2).join('|'));
-        if (x) acts.push(mk(x, acts.length, p[0], p[1], true));
+    var cardItems = [];
+    if (view === 'saved' || view === 'card') {
+      var seen = {}, hasPlan = planToday.length + planPast.length > 0;
+      var addGroup = function (keys, head) {
+        var first = true;
+        keys.forEach(function (key) {
+          if (seen[key]) return; var p = key.split('|'); var x = findAct(p[0], p[1], p.slice(2).join('|')); if (!x) return;
+          seen[key] = 1; var it = mk(x, acts.length, p[0], p[1], true);
+          if (first && hasPlan) { it.head = head; it.hasHead = true; } first = false; acts.push(it);
+        });
+      };
+      addGroup(planToday, 'תוכנן להיום');
+      addGroup(planPast.sort(function (a, b) { return plan[b].d < plan[a].d ? -1 : 1; }), 'מהימים האחרונים: אפשר עוד לסמן מה ביצעתן');
+      addGroup(favKeys, 'שמורות');
+      planToday.forEach(function (key) {
+        var p = key.split('|'); var x = findAct(p[0], p[1], p.slice(2).join('|')); if (!x) return;
+        var a = byId(AGES, p[0]), s = byId(SPACES, p[1]);
+        cardItems.push({ t: x[0], where: (a ? a.label : '') + ' · ' + (s ? s.label : ''), steps: x[2].map(function (v, j) { return { v: v, n: j + 1 }; }), ph: toV(x[3].slice(0, 2)),
+          og: OG[x[5]] ? (OG_SUBJ[p[0]] || 'הילד') + ' ' + OG[x[5]] : '', hasOg: !!(sess && sess.kind === 'org' && OG[x[5]]), raw: x, age: p[0] });
       });
     }
+    var cardTxt = cardItems.length ? ['*פִּטְפּוּט · התוכנית ל' + dayLong(today) + '*', ''].concat(cardItems.map(function (c, i) {
+      return (i + 1) + '. *' + c.t + '* (' + c.where + ')\n' + c.steps.map(function (q) { return '   ' + q.v; }).join('\n') + '\n   להגיד: ' + c.ph.map(function (q) { return '״' + q.v + '״'; }).join(' ') + (c.hasOg ? '\n   מה לחפש: ' + c.og : '') + '\n';
+    })).concat(['https://pitput.education/']).join('\n') : '';
 
     var groupTip = '';
     if (ready) {
@@ -2040,7 +2121,7 @@ class Component extends DCLogic {
     var menuItems = menuDefs.map(function (m) {
       var on = view === m[0] || (m[0] === 'home' && (view === 'results' || view === 'loading'));
       return { label: m[1], mark: m[2], dot: m[3], bg: on ? m[3] : '#FFFFFF', hasBadge: m[0] === 'saved' && favKeys.length > 0, badge: String(favKeys.length),
-        go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'contact') { self.setState({ menu: false }); window.location.href = 'mailto:hello@pitput.education'; return; } if (m[0] === 'video') { self.setState({ menu: false, vidM: true }); return; } if (m[0] === 'guide') { self.setState({ menu: false }); var g = null; try { g = window.open('/guide/', '_blank'); } catch (e) {} if (!g) window.location.href = '/guide/'; return; } if (m[0] === 'joinme') { self.setState({ menu: false }); window.location.href = JOIN_MAIL; return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); if (m[0] === 'daily') self.loadDaily(); } };
+        go: function () { if (m[0] === 'logout') { self.logout(); return; } if (m[0] === 'contact') { self.setState({ menu: false }); window.location.href = 'mailto:hello@pitput.education'; return; } if (m[0] === 'video') { self.setState({ menu: false, vidM: true }); return; } if (m[0] === 'guide') { self.setState({ menu: false }); var g = null; try { g = window.open('/guide/', '_blank'); } catch (e) {} if (!g) window.location.href = '/guide/'; return; } if (m[0] === 'joinme') { self.setState({ menu: false }); window.location.href = JOIN_MAIL; return; } if (m[0] === 'home' && view === 'results') self.nav('results'); else self.nav(m[0]); if (m[0] === 'daily') self.loadDaily(ymd()); } };
     });
 
     var settings = [
@@ -2058,7 +2139,7 @@ class Component extends DCLogic {
     var lt = st.loginTab || 'org';
     var loginTabs = [['org', 'כניסת מעון'], ['guest', 'סתם לפטפט'], ['admin', 'מנהל']].map(function (t) { var on = lt === t[0]; return { label: t[1], sel: on ? 'true' : 'false', bg: on ? '#FF6B57' : 'transparent', pick: function () { self.setState({ loginTab: t[0], err: '', pwIn: '' }); } }; });
     var af = st.admF || 'all', ar = st.admR || 'all';
-    var dAges = dayAges(st.dayRows), dTxt = st.dailyState === 'ok' ? dailyText(st.dayRows, (sess && sess.name) || '', st.dayStr || '', st.dailyAge) : '';
+    var dDay = st.dailyDay || ymd(), dAges = dayAges(st.dayRows), dTxt = st.dailyState === 'ok' ? dailyText(st.dayRows, (sess && sess.name) || '', st.dayStr || '', st.dailyAge, dayWord(dDay)) : '';
     var dash = buildDash((isAdmin && view === 'admin') ? (this._log || []) : [], af, ar, st.admFrom, st.admTo);
     var fmtD = function (s) { try { return new Date(s + 'T12:00:00').toLocaleDateString('he-IL'); } catch (e) { return s; } };
     var rangeText = ar === 'custom' ? ('מוצגים נתונים ' + (st.admFrom ? 'מ-' + fmtD(st.admFrom) : 'מההתחלה') + ' ' + (st.admTo ? 'עד ' + fmtD(st.admTo) : 'עד היום')) : (ar === '7' ? 'מוצגים 7 הימים האחרונים' : (ar === '30' ? 'מוצגים 30 הימים האחרונים' : 'מוצגים כל הנתונים'));
@@ -2131,7 +2212,15 @@ class Component extends DCLogic {
       selAge: ag ? ag.label : '', selSpace: sp ? sp.label : '', spaceBg: sp ? sp.bg : '#FFFFFF', spaceIcon: sp ? sp.icon : LOGO,
       vHome: view === 'home', vLoading: view === 'loading',
       vList: vResults || view === 'saved', vResults: vResults, vSaved: view === 'saved',
-      showActs: (vResults && tab === 'acts') || (view === 'saved' && favKeys.length > 0),
+      showActs: (vResults && tab === 'acts') || (view === 'saved' && acts.length > 0),
+      noSaved: view === 'saved' && acts.length === 0,
+      hasPlanToday: planToday.length > 0, planTodayN: planToday.length,
+      goCard: function () { self.nav('card'); },
+      vCard: view === 'card', cardItems: cardItems, hasCard: cardItems.length > 0, noCard: cardItems.length === 0, cardDay: dayLong(today),
+      cardWa: 'https://wa.me/?text=' + encodeURIComponent(cardTxt),
+      cardShare: function () { self.log({ type: 'share', act: 'כרטיס תוכנית' }); },
+      cardPrint: function () { self.log({ type: 'share', act: 'הדפסת כרטיס תוכנית' }); try { window.print(); } catch (e) {} },
+      planClear: function () { var o = prunePlan(self.state.plan); planToday.forEach(function (k) { delete o[k]; }); self.up({ plan: o }); },
       tabs: tabs,
       acts: acts, total: total, rounds: rounds, roundNo: roundNo, groupTip: groupTip,
       more: function () { self.log({ type: 'more', age: self.state.age, space: self.state.space }); self.setState({ page: (self.state.page || 0) + 1, openKey: null, keep: null }); self.top(); },
@@ -2144,12 +2233,13 @@ class Component extends DCLogic {
       vTips: view === 'tips', tips: TIPS,
       vAccess: view === 'access', settings: settings,
       vDaily: view === 'daily',
-      isOrg: !!(sess && sess.kind === 'org'), goDaily: function () { self.nav('daily'); self.loadDaily(); },
+      isOrg: !!(sess && sess.kind === 'org'), goDaily: function () { self.nav('daily'); self.loadDaily(ymd()); },
       dailyLoading: st.dailyState === 'loading', dailyError: st.dailyState === 'error',
       dailyEmpty: st.dailyState === 'ok' && !dTxt, dailyReady: st.dailyState === 'ok' && !!dTxt,
       dailyText: dTxt, dailyWa: 'https://wa.me/?text=' + encodeURIComponent(dTxt),
       dailyAges: dAges.length > 1 ? [{ id: 'all', label: 'כל המעון' }].concat(dAges.map(function (a) { return { id: a, label: byId(AGES, a).label }; })).map(function (q) { var on = (st.dailyAge || 'all') === q.id; return { label: q.label, pressed: String(on), bg: on ? '#0B6E73' : '#FFFFFF', color: on ? '#FFFFFF' : '#23223A', pick: function () { self.setState({ dailyAge: q.id }); } }; }) : [],
       hasDailyAges: dAges.length > 1,
+      dailyDays: recentDays().map(function (dd) { var on = dDay === dd; return { label: dayWord(dd) + ' (' + DAYS[new Date(dd + 'T12:00:00Z').getUTCDay()] + ')', pressed: String(on), bg: on ? '#0B6E73' : '#FFFFFF', color: on ? '#FFFFFF' : '#23223A', pick: function () { if (!on) self.loadDaily(dd); } }; }),
       dailyRefresh: function () { self.loadDaily(); },
       dailySent: function () { self.log({ type: 'share', act: 'סיכום יומי' }); },
       vAbout: view === 'about'
